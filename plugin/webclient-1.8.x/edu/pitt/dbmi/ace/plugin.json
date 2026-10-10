@@ -1,0 +1,13 @@
+{
+    "title": "ACE",
+    "description": "An i2b2 plugin for Automated Clinical Evidence.",
+    "category": ["llm,ai"],
+    "icons": {
+        "size32x32": "ace.png"
+    },
+    "assetDir": "assets",
+    "plugin_version": "1.0",
+    "i2b2_version": "1.8.1",
+    "base": "index.html",
+    "sandbox": true
+}
