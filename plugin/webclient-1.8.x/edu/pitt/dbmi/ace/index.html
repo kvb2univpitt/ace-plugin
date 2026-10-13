@@ -32,6 +32,7 @@
                 </div>
                 <div class="py-6">
                     <div class="tab-panel text-sm text-gray-600" id="home_tab_pane" role="tabpanel" aria-labelledby="home_tab">
+                        <!-- input section -->
                         <div class="bg-gray-50 rounded-2xl border border-gray-200 p-6">
                             <label class="block text-base font-medium text-gray-900 mb-2">Clinical Question</label>
                             <textarea
@@ -40,14 +41,22 @@
                                 class="question-textarea"></textarea>
                             <div class="mt-4 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
                                 <div class="flex min-w-0 flex-wrap gap-2" id="examples"></div>
-                                <button class="start-generation-btn" id="start_gen_btn">
-                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                    </svg>
-                                    Start Automated Clinical Evidence Generation
-                                </button>
+                                <button class="start-generation-btn" id="start_gen_btn"></button>
                             </div>
                         </div>
+                        <!-- end of input section -->
+                        <!-- pipeline visualization-->
+                        <div class="py-8" id="pipeline">
+                            <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
+                                <!-- stage progress sidebar -->
+                                <div class="bg-gray-50 rounded-2xl border border-gray-200 p-5">
+                                    <h3 class="text-sm font-semibold text-gray-900 mb-4">Agent Pipeline</h3>
+                                    <div className="space-y-1" id="stage_progress"></div>
+                                </div>
+                                <!-- end of stage progress sidebar -->
+                            </div>
+                        </div>
+                        <!-- end of pipeline visualization-->
                     </div>
                     <div class="tab-panel text-sm text-gray-600 hidden" id="about_tab_pane" role="tabpanel" aria-labelledby="about_tab">
                         <h3 class="text-base font-semibold text-gray-900 mb-1">Automated Clinical Evidence (ACE)</h3>
@@ -75,5 +84,121 @@
                 init();
             });
         </script>
+        <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
+            <div class="bg-gray-50 rounded-2xl border border-gray-200 p-5">
+                <h3 class="text-sm font-semibold text-gray-900 mb-4">Agent Pipeline</h3>
+                <div class="space-y-1">
+                    <div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl transition-all bg-gray-100">
+                            <div class="relative w-8 h-8 flex items-center justify-center">
+                                <div class="absolute w-8 h-8 rounded-full border-2 border-amber-400 animate-pulse-ring"></div>
+                                <div class="w-4 h-4 rounded-full bg-amber-400 animate-pulse"></div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-medium text-gray-900">Intake &amp; Literature Review</span>
+                                </div>
+                                <p class="text-xs mt-0.5 text-gray-600">Validate question, check existing evidence, assess SHRINE suitability</p>
+                                <span class="inline-block text-xs mt-1 px-1.5 py-0.5 rounded bg-amber-50 text-amber-600">ACE Clinician Team</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-start ml-[15px] my-0.5">
+                            <div class="w-0.5 h-4 bg-gray-200">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl transition-all ">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-medium text-gray-400">Clinical Concept Extraction</span>
+                                </div>
+                                <p class="text-xs mt-0.5 text-gray-400">Extract diseases, medications, labs, demographics, temporal relationships</p>
+                                <span class="inline-block text-xs mt-1 px-1.5 py-0.5 rounded bg-violet-50 text-violet-600">ACE Clinician &amp; Informatics</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-start ml-[15px] my-0.5">
+                            <div class="w-0.5 h-4 bg-gray-200">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl transition-all ">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-gray-300">
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-medium text-gray-400">SHRINE Ontology Mapping</span>
+                                </div>
+                                <p class="text-xs mt-0.5 text-gray-400">Map concepts to ICD-10, RxNorm, LOINC codes in SHRINE dictionary</p>
+                                <span class="inline-block text-xs mt-1 px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-600">Informatics Analyst Team</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-start ml-[15px] my-0.5">
+                            <div class="w-0.5 h-4 bg-gray-200">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl transition-all ">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-gray-300">
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-medium text-gray-400">Query Logic Builder</span>
+                                </div>
+                                <p class="text-xs mt-0.5 text-gray-400">Define inclusion/exclusion criteria with With, Without, When logic</p>
+                                <span class="inline-block text-xs mt-1 px-1.5 py-0.5 rounded bg-violet-50 text-violet-600">ACE Clinician &amp; Informatics</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-start ml-[15px] my-0.5">
+                            <div class="w-0.5 h-4 bg-gray-200">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-start gap-3 p-3 rounded-xl transition-all ">
+                            <div class="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-gray-300">
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm font-medium text-gray-400">Sharephe / i2b2 XML Compiler</span>
+                                </div>
+                                <p class="text-xs mt-0.5 text-gray-400">Compile reviewed query logic into validated i2b2 XML</p>
+                                <span class="inline-block text-xs mt-1 px-1.5 py-0.5 rounded bg-blue-50 text-blue-600">Informatics Analyst Team</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-gray-50 rounded-2xl border p-5 animate-slide-in border-amber-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold px-2 py-1 rounded-lg bg-amber-50 text-amber-600">Stage 1</span>
+                            <h4 class="text-sm font-semibold text-gray-900">Intake &amp; Literature Review</h4>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2 text-xs text-amber-600">
+                                <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse">
+                                </div>Processing...</div>
+                        </div>
+                    </div>
+                    <div class="h-1 bg-gray-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-amber-500 to-violet-500 rounded-full animate-shimmer" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
