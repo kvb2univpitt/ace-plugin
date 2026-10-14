@@ -18,7 +18,7 @@ interface AgentRouteDependencies {
     ontologyMappingAgent: typeof ontologyMappingAgent;
     queryLogicAgent: typeof queryLogicAgent;
     queryCompilerAgent: typeof queryCompilerAgent;
-}
+};
 
 const defaultDependencies: AgentRouteDependencies = {
     intakeAgent,
@@ -32,21 +32,27 @@ function recordOrEmpty(value: unknown): Record<string, unknown> {
     return typeof value === "object" && value !== null && !Array.isArray(value)
         ? (value as Record<string, unknown>)
         : {};
-}
+};
 
 
 class RequestBodyTooLargeError extends Error { }
 
-async function loadAgentResultFromFile(filename: string): Promise<AgentResult> {
+async function loadFromFile(filename: string): Promise<string> {
     // build an absolute path to the JSON file using process.cwd()
     const filePath = path.join(process.cwd(), 'data', filename);
 
     // read the file contents as a string
     const fileContents = await fs.readFile(filePath, 'utf8');
 
-    return JSON.parse(fileContents);
-}
-async function saveAgentResultToFile(data: AgentResult, filename: string): Promise<{ success: boolean; message: string }> {
+    return fileContents;
+};
+async function loadAgentResultFromFile(filename: string): Promise<AgentResult> {
+    return JSON.parse(await loadFromFile(filename));
+};
+async function loadUnknownFromFile(filename: string): Promise<unknown> {
+    return JSON.parse(await loadFromFile(filename));
+};
+async function saveToFile(data: unknown, filename: string): Promise<{ success: boolean; message: string }> {
     try {
         // resolve the file path in your project directory
         const filePath = path.join(process.cwd(), 'data', filename);
@@ -62,8 +68,13 @@ async function saveAgentResultToFile(data: AgentResult, filename: string): Promi
         console.error('Error writing JSON file:', error);
         return { success: false, message: 'Failed to save JSON file.' };
     }
-}
-
+};
+async function saveAgentResultToFile(data: AgentResult, filename: string): Promise<{ success: boolean; message: string }> {
+    return await saveToFile(data, filename);
+};
+async function saveUnknownToFile(data: unknown, filename: string): Promise<{ success: boolean; message: string }> {
+    return await saveToFile(data, filename);
+};
 
 export async function POST(req: NextRequest) {
     const dependencies = { ...defaultDependencies };
@@ -109,11 +120,14 @@ export async function POST(req: NextRequest) {
                             stage: 1,
                             agent: "Intake & Literature Review",
                         });
+
                         // const intakeResult = await dependencies.intakeAgent(
                         //     clinicalQuestion,
                         //     apiKey
                         // );
-                        const intakeResult = await loadAgentResultFromFile('step1.json');
+                        // await saveAgentResultToFile(intakeResult, 'step1_intake_result.json');
+                        const intakeResult = await loadAgentResultFromFile('step1_intake_result.json');
+
                         send({
                             type: "stage_complete",
                             stage: 1,
@@ -127,12 +141,15 @@ export async function POST(req: NextRequest) {
                             stage: 2,
                             agent: "Clinical Concept Extraction",
                         });
+
                         // const concepts = await dependencies.conceptExtractionAgent(
                         //     clinicalQuestion,
                         //     recordOrEmpty(intakeData),
                         //     apiKey
                         // );
-                        const concepts = await loadAgentResultFromFile('step2.json');
+                        // await saveAgentResultToFile(concepts, 'step2_concepts.json');
+                        const concepts = await loadAgentResultFromFile('step2_concepts.json');
+
                         send({
                             type: "stage_complete",
                             stage: 2,
@@ -146,12 +163,14 @@ export async function POST(req: NextRequest) {
                             stage: 3,
                             agent: "SHRINE Ontology Mapping",
                         });
-                        const mappings = await dependencies.ontologyMappingAgent(
-                            recordOrEmpty(editedConcepts),
-                            apiKey
-                        );
-                        await saveAgentResultToFile(mappings, 'step3.json');
-                        // const mappings = await readAgentResultFromFile('step3.json');
+
+                        // const mappings = await dependencies.ontologyMappingAgent(
+                        //     recordOrEmpty(editedConcepts),
+                        //     apiKey
+                        // );
+                        // await saveAgentResultToFile(mappings, 'step3_mappings.json');
+                        const mappings = await loadAgentResultFromFile('step3_mappings.json');
+
                         send({
                             type: "stage_complete",
                             stage: 3,
@@ -165,19 +184,25 @@ export async function POST(req: NextRequest) {
                             stage: 4,
                             agent: "Query Logic Builder",
                         });
-                        const reviewedMappings = editedMappings ?? mappingsData ?? {};
-                        const logic = await dependencies.queryLogicAgent(
-                            clinicalQuestion,
-                            recordOrEmpty(editedConcepts),
-                            reviewedMappings,
-                            apiKey
-                        );
+                        // const reviewedMappings = editedMappings ?? mappingsData ?? {};
+                        // const logic = await dependencies.queryLogicAgent(
+                        //     clinicalQuestion,
+                        //     recordOrEmpty(editedConcepts),
+                        //     reviewedMappings,
+                        //     apiKey
+                        // );
+                        // await saveUnknownToFile(reviewedMappings, 'step4_reviewed_mappings.json');
+                        // await saveAgentResultToFile(logic, 'step4_logic.json');
+                        const reviewedMappings = await loadUnknownFromFile('step4_reviewed_mappings.json');
+                        const logic = await loadAgentResultFromFile('step4_logic.json');
+
                         send({
                             type: "stage_complete",
                             stage: 4,
                             agent: "Query Logic Builder",
                             result: logic,
                         });
+
                         send({ type: "stage4_review", mappingsData: reviewedMappings });
                     } else if (startFromStage === 5) {
                         send({
@@ -185,11 +210,15 @@ export async function POST(req: NextRequest) {
                             stage: 5,
                             agent: "Sharephe / i2b2 XML Compiler",
                         });
-                        const compiled = await dependencies.queryCompilerAgent(
-                            clinicalQuestion,
-                            editedQueryLogic || {},
-                            artifactToken
-                        );
+
+                        // const compiled = await dependencies.queryCompilerAgent(
+                        //     clinicalQuestion,
+                        //     editedQueryLogic || {},
+                        //     artifactToken
+                        // );
+                        // await saveAgentResultToFile(compiled, 'step5_compiled.json');
+                        const compiled = await loadAgentResultFromFile('step5_compiled.json');
+
                         send({
                             type: "stage_complete",
                             stage: 5,
