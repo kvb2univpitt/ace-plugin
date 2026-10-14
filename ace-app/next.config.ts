@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         // This applies CORS headers to all routes starting with /api
-        source: "/api/:path*",
+        source: "/api/i2b2/:path*",
         headers: [
           {
             key: "Access-Control-Allow-Credentials",
@@ -33,7 +33,6 @@ const nextConfig: NextConfig = {
   // we don't have installed. Mark the duckdb packages as external so Next
   // leaves them to Node's runtime resolver.
   serverExternalPackages: ["@duckdb/node-api", "@duckdb/node-bindings"],
-  crossOrigin: "anonymous",
 };
 
 export default nextConfig;

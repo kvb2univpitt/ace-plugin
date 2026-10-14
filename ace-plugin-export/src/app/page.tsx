@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import {
   QueryPlanReview,
   QueryPlanSummary,
@@ -1600,7 +1600,7 @@ export default function Home() {
     body: Record<string, unknown>,
     signal: AbortSignal
   ) => {
-    const response = await fetch("http://localhost:3000/api/step1", {
+    const response = await fetch("http://localhost:3000/api/i2b2/agents", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

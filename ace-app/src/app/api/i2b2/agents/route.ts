@@ -5,7 +5,7 @@ import {
     ontologyMappingAgent,
     queryCompilerAgent,
     queryLogicAgent,
-} from "../../../lib/agents";
+} from "../../../../lib/agents";
 
 interface AgentRouteDependencies {
     intakeAgent: typeof intakeAgent;
