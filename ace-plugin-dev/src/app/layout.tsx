@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from 'next/script';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -29,8 +28,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        {/* adds script to the HTML head / document with beforeInteractive */}
-        <Script src="js/i2b2-loader.js" strategy="beforeInteractive" />
       </body>
     </html>
   );

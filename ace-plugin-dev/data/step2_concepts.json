@@ -1,0 +1,38 @@
+{
+    "agent": "Clinical Concept Extraction",
+    "status": "success",
+    "data": {
+        "diseases": [
+            {
+                "name": "Calf muscle injury (strain, tear, or rupture)",
+                "role": "target_condition"
+            }
+        ],
+        "medications": [],
+        "labTests": [],
+        "demographics": {
+            "ageRange": null,
+            "sex": "Unspecified",
+            "other": []
+        },
+        "temporalRelationships": [],
+        "outcomes": [
+            {
+                "name": "Deep Vein Thrombosis",
+                "type": "primary"
+            }
+        ],
+        "populationDescription": "Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury",
+        "comparisonGroups": [
+            {
+                "name": "Calf muscle injury group",
+                "definition": "Patients with a documented calf muscle injury including strain, partial tear, or complete rupture (e.g., gastrocnemius, soleus)"
+            },
+            {
+                "name": "No calf muscle injury group",
+                "definition": "Patients without calf muscle injury serving as comparators"
+            }
+        ]
+    },
+    "summary": "Extracted 1 medical concepts. 2 comparison groups identified. Population: Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury"
+}

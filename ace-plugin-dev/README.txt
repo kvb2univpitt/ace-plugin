@@ -3,7 +3,13 @@ clear;history -c;history -w
 ================================================================================
 npx create-next-app@16.1.6
 
-ace-plugin-export
+ace-plugin-dev
 ================================================================================
-rm -rf .next dist;npm run build
+clear;rm -rf .next dist;npm run dev
+
+clear;rm -rf .next dist;npm run build
+================================================================================
+Install rimraf to ensure cross-platform compatibility for deleting folders across Windows, Mac, and Linux:
+
+npm i -D rimraf
 ================================================================================
