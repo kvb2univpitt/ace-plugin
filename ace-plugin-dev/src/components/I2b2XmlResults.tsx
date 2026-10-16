@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import type { Step5ArtifactStatus, Step5XmlPackage } from "@/lib/query-plan-types";
+import { XMLParser } from 'fast-xml-parser';
+
 
 const STATUS_PRESENTATION: Record<
   Step5ArtifactStatus,
@@ -136,6 +138,12 @@ export function I2b2XmlResults({
     error: boolean;
   } | null>(null);
 
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    parseTagValue: true,
+    trimValues: true,
+  });
+
   async function copyXml(queryId: string, xml: string | null): Promise<void> {
     if (!xml || !navigator.clipboard) {
       setFeedback({
@@ -170,6 +178,17 @@ export function I2b2XmlResults({
     anchor.click();
     document.body.removeChild(anchor);
     URL.revokeObjectURL(url);
+  }
+
+  function runQueryXml(
+    queryId: string,
+    queryName: string,
+    xml: string | null
+  ): void {
+    if (xml) {
+      const xmlDoc = parser.parse(xml);
+      console.info(xmlDoc);
+    }
   }
 
   return (
@@ -210,6 +229,8 @@ export function I2b2XmlResults({
         const actionsDisabled = artifact.xml === null;
         const artifactFeedback =
           feedback?.queryId === artifact.queryId ? feedback : null;
+
+        // runQueryXml(artifact.queryId, artifact.queryName, artifact.xml);
 
         return (
           <article
@@ -286,9 +307,8 @@ export function I2b2XmlResults({
               {artifactFeedback ? (
                 <p
                   aria-live="polite"
-                  className={`mt-2 text-xs ${
-                    artifactFeedback.error ? "text-red-700" : "text-emerald-700"
-                  }`}
+                  className={`mt-2 text-xs ${artifactFeedback.error ? "text-red-700" : "text-emerald-700"
+                    }`}
                 >
                   {artifactFeedback.message}
                 </p>
