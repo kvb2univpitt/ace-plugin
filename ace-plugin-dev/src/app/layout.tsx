@@ -23,6 +23,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const ACE_REST_ENDPOINT = 'http://localhost:3000/api/i2b2/agents';
+
   return (
     <html lang="en">
       <body
@@ -31,6 +33,9 @@ export default function RootLayout({
         {children}
         {/* adds script to the HTML head / document with beforeInteractive */}
         <Script src="js/i2b2-loader.js" strategy="beforeInteractive" />
+        <Script id="ace-endpoint" strategy="afterInteractive">
+          {`window.ACE_REST_ENDPOINT = ${JSON.stringify(ACE_REST_ENDPOINT)};`}
+        </Script>
       </body>
     </html>
   );

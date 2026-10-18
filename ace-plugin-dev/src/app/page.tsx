@@ -21,6 +21,12 @@ import type {
   Step4ReviewContext,
 } from "@/lib/query-plan-types";
 
+declare global {
+  interface Window {
+    ACE_REST_ENDPOINT?: string;
+  }
+}
+
 /** One member path of an expanded drug class, as shown in the review list. */
 interface ClassPath {
   path: string;
@@ -1600,7 +1606,8 @@ export default function Home() {
     body: Record<string, unknown>,
     signal: AbortSignal
   ) => {
-    const response = await fetch("http://localhost:3000/api/i2b2/agents", {
+    const ACE_REST_ENDPOINT = (typeof window === 'undefined') ? '' : window.ACE_REST_ENDPOINT;
+    const response = await fetch(`${ACE_REST_ENDPOINT}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
