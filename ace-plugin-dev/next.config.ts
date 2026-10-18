@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async headers() {
+    // CORS is enabled for development purposes ONLY.
+    // The backend calls will be made to the i2b2 PM cell from the plugin.
     return [
       {
         // This applies CORS headers to all routes starting with /api
@@ -29,7 +31,10 @@ const nextConfig: NextConfig = {
   },
   output: 'export',
   distDir: 'dist',
-  assetPrefix: './'
+  images: {
+    unoptimized: true, // required for static exports
+  },
+  assetPrefix: process.env.NODE_ENV === 'production' ? './' : undefined,
 };
 
 export default nextConfig;
