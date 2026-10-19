@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import type { Step5ArtifactStatus, Step5XmlPackage } from "@/lib/query-plan-types";
-import { XMLParser } from 'fast-xml-parser';
+import type { Step5ArtifactStatus, Step5XmlPackage, Step5XmlArtifact } from "@/lib/query-plan-types";
+import { runQueryXml } from "@/lib/i2b2/query-xml";
 
 
 const STATUS_PRESENTATION: Record<
@@ -22,6 +22,8 @@ const STATUS_PRESENTATION: Record<
     tone: "border-amber-200 bg-amber-50 text-amber-700",
   },
 };
+
+const queryXmlCache = new Map<string, number>();
 
 function asciiSlug(value: string): string {
   return value
@@ -138,12 +140,6 @@ export function I2b2XmlResults({
     error: boolean;
   } | null>(null);
 
-  const parser = new XMLParser({
-    ignoreAttributes: false,
-    parseTagValue: true,
-    trimValues: true,
-  });
-
   async function copyXml(queryId: string, xml: string | null): Promise<void> {
     if (!xml || !navigator.clipboard) {
       setFeedback({
@@ -180,16 +176,16 @@ export function I2b2XmlResults({
     URL.revokeObjectURL(url);
   }
 
-  function runQueryXml(
-    queryId: string,
-    queryName: string,
-    xml: string | null
-  ): void {
-    if (xml) {
-      const xmlDoc = parser.parse(xml);
-      console.info(xmlDoc);
+  async function runI2b2QueryXml(artifact: Step5XmlArtifact): Promise<void> {
+    if (!queryXmlCache.has(artifact.queryId)) {
+      const counts: number = await runQueryXml(artifact);
+      queryXmlCache.set(artifact.queryId, counts);
     }
-  }
+  };
+
+  xmlPackage.artifacts.map(async (artifact) => {
+    await runI2b2QueryXml(artifact);
+  });
 
   return (
     <section aria-labelledby="step5-query-set" className="space-y-4">
@@ -230,8 +226,6 @@ export function I2b2XmlResults({
         const artifactFeedback =
           feedback?.queryId === artifact.queryId ? feedback : null;
 
-        // runQueryXml(artifact.queryId, artifact.queryName, artifact.xml);
-
         return (
           <article
             key={artifact.queryId}
@@ -259,6 +253,15 @@ export function I2b2XmlResults({
               </p>
               <p className="mt-1 whitespace-pre-wrap text-sm text-gray-800">
                 {artifact.panelSummary}
+              </p>
+            </div>
+
+            <div className="px-4 py-3 border-t border-gray-200">
+              <p className="text-xs font-semibold uppercase text-gray-500">
+                Patient Counts
+              </p>
+              <p className="mt-1 whitespace-pre-wrap text-sm text-gray-800">
+                {queryXmlCache.get(artifact.queryId)}
               </p>
             </div>
 
