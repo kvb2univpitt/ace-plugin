@@ -20,12 +20,7 @@ import type {
   Step4QueryPlan,
   Step4ReviewContext,
 } from "@/lib/query-plan-types";
-
-declare global {
-  interface Window {
-    ACE_REST_ENDPOINT?: string;
-  }
-}
+import { runQueryXml } from "@/lib/i2b2/query-xml"
 
 /** One member path of an expanded drug class, as shown in the review list. */
 interface ClassPath {
@@ -137,6 +132,8 @@ const EXAMPLE_QUESTIONS = [
   "Does hydroxychloroquine (HCQ) prevent Covid-19 as post-exposure prophylaxis (after exposure to the virus)?",
   "Does empagliflozin (Jardiance) have a lower limb amputation (LLA) rate compared to canagliflozin (Invokana), as previously reported? FDA had issued a Boxed Warning on increased risk of LLAs for canagliflozin in 2017 and removed the Boxed Warning in September 2020.",
 ];
+
+const patientCounts: Map<string, number> = new Map();
 
 function StatusIcon({ status }: { status: StageUiStatus }) {
   if (status === "pending") {
@@ -354,7 +351,7 @@ function StageDetail({ result, stageNum, forceExpand }: { result: StageResult; s
       case 4:
         return <QueryPlanSummary plan={data as unknown as Step4QueryPlan} />;
       case 5:
-        return <Step5ResultDetails data={data} />;
+        return <Step5ResultDetails data={data} patientCounts={patientCounts} />;
       default:
         return <pre className="text-sm text-gray-900 whitespace-pre-wrap">{JSON.stringify(data, null, 2)}</pre>;
     }
@@ -1686,6 +1683,12 @@ export default function Home() {
                 );
               }
             }
+
+            // run i2b2 query XMLs to get patient counts
+            if (event.stage === 5) {
+              await runQueryXml(event.result.data.artifacts, patientCounts);
+            }
+
             if (completion.restoreStep4Review) {
               const recovery = resolveStep4ReviewRecovery(event.result);
               const reviewUpdate = recovery.update;
