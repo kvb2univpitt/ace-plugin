@@ -26,21 +26,6 @@ function parseXMLFromString(xmlString: string): Document | null {
     }
 }
 
-function refreshCrcViewHistory() {
-    // ensure we are in a browser environment
-    if (typeof window === 'undefined' || !(window as any).i2b2) {
-        return;
-    }
-
-    try {
-        const i2b2 = (window as any).i2b2;
-
-        setTimeout(i2b2.authorizedTunnel.function["i2b2.CRC.view.history.doRefreshAll"], 500);
-    } catch (error) {
-        console.error("Failed to securely communicate with i2b2 framework:", error);
-    }
-}
-
 export async function runQueryXml(artifacts: Step5XmlArtifact[], patientCounts: Map<string, number>): Promise<void> {
     // verify that the i2b2 framework is loaded in the global window
     if (typeof window === 'undefined' || !(window as any).i2b2) {
@@ -48,11 +33,11 @@ export async function runQueryXml(artifacts: Step5XmlArtifact[], patientCounts: 
         return;
     }
 
+    const i2b2 = (window as any).i2b2;
+
     for (const artifact of artifacts) {
         const queryDef: string | null = artifact.xml;
         if (queryDef) {
-            const i2b2 = (window as any).i2b2;
-
             const params = {
                 result_wait_time: 180,
                 psm_query_definition: queryDef,
@@ -82,5 +67,9 @@ export async function runQueryXml(artifacts: Step5XmlArtifact[], patientCounts: 
         }
     }
 
-    refreshCrcViewHistory();
+    try {
+        setTimeout(i2b2.authorizedTunnel.function["i2b2.CRC.view.history.doRefreshAll"], 250);
+    } catch (error) {
+        console.error("Failed to securely communicate with i2b2 framework:", error);
+    }
 }
