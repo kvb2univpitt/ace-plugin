@@ -1,0 +1,50 @@
+{
+    "agent": "Sharephe / i2b2 XML Compiler",
+    "status": "success",
+    "data": {
+        "version": "step5-i2b2-xml-v1",
+        "querySetName": "Calf Muscle Injury vs No Injury — DVT Incidence",
+        "artifacts": [
+            {
+                "queryId": "query-calf-injury-with-dvt",
+                "queryName": "Calf Muscle Injury — With DVT",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITH Calf Muscle Injury: ...",
+                "tableCell": "r1c1"
+            },
+            {
+                "queryId": "query-calf-injury-denominator",
+                "queryName": "Calf Muscle Injury — All Patients",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITH Calf Muscle Injury: ...",
+                "tableCell": "r1c2"
+            },
+            {
+                "queryId": "query-no-calf-injury-with-dvt",
+                "queryName": "No Calf Muscle Injury — With DVT",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITHOUT No Calf Muscle Injury: ...",
+                "tableCell": "r2c1"
+            },
+            {
+                "queryId": "query-no-calf-injury-denominator",
+                "queryName": "No Calf Muscle Injury — All Patients",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITHOUT No Calf Muscle Injury: ...",
+                "tableCell": "r2c2"
+            }
+        ]
+    }
+}

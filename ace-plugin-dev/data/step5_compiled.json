@@ -12,7 +12,8 @@
                 "status": "ready",
                 "sharepheReady": true,
                 "warnings": [],
-                "panelSummary": "WITH Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) ; WITH Deep Vein Thrombosis: Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ; Calf Muscle Injury BEFORE Deep Vein Thrombosis"
+                "panelSummary": "WITH Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) ; WITH Deep Vein Thrombosis: Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ; Calf Muscle Injury BEFORE Deep Vein Thrombosis",
+                "tableCell": "r1c1"
             },
             {
                 "queryId": "query-calf-injury-denominator",
@@ -21,7 +22,8 @@
                 "status": "ready",
                 "sharepheReady": true,
                 "warnings": [],
-                "panelSummary": "WITH Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) "
+                "panelSummary": "WITH Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) ",
+                "tableCell": "r1c2"
             },
             {
                 "queryId": "query-no-calf-injury-with-dvt",
@@ -30,7 +32,8 @@
                 "status": "ready",
                 "sharepheReady": true,
                 "warnings": [],
-                "panelSummary": "WITHOUT No Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) ; WITH Deep Vein Thrombosis: Deep Vein Thrombosis [Dvt] (PHECODE:452.2) "
+                "panelSummary": "WITHOUT No Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) ; WITH Deep Vein Thrombosis: Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ",
+                "tableCell": "r2c1"
             },
             {
                 "queryId": "query-no-calf-injury-denominator",
@@ -39,7 +42,8 @@
                 "status": "ready",
                 "sharepheReady": true,
                 "warnings": [],
-                "panelSummary": "WITHOUT No Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) "
+                "panelSummary": "WITHOUT No Calf Muscle Injury: Crushing Or Internal Injury To Organs (PHECODE:1008) ",
+                "tableCell": "r2c2"
             }
         ],
         "validationSummary": {
