@@ -1,0 +1,1 @@
+window.ACE_REST_URL = 'http://localhost:3000';

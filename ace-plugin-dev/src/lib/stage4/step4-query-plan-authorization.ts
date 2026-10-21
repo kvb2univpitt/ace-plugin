@@ -11,10 +11,10 @@ import {
   type TemporalRelation,
   type TemporalRule,
   type ValidationIssue,
-} from "./query-plan-types";
+} from "../common/query-plan-types";
 import { validateStep4QueryPlan } from "./query-plan-validation";
 import type { Step4ReviewArtifactClaims } from "./step4-review-artifact";
-import { clonePlainData } from "./plain-data";
+import { clonePlainData } from "../common/plain-data";
 
 export interface Step4QueryPlanAuthorizationResult {
   authorized: boolean;

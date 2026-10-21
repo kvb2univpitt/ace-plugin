@@ -1,5 +1,5 @@
 import { XMLValidator } from "fast-xml-parser";
-import type { ValueConstraint } from "./ontology/valueConstraint";
+import type { ValueConstraint } from "../stage3/valueConstraint";
 import type {
   CountQuery,
   QueryPanel,
@@ -10,8 +10,8 @@ import type {
   Step5XmlPackage,
   TemporalRule,
   ValidationIssue,
-} from "./query-plan-types";
-import { validateStep4QueryPlan } from "./query-plan-validation";
+} from "../common/query-plan-types";
+import { validateStep4QueryPlan } from "../stage4/query-plan-validation";
 
 const VALUE_OPERATORS: Record<
   Extract<ValueConstraint, { type: "single" }>['operator'],

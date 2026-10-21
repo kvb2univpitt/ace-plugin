@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Step5ArtifactStatus, Step5XmlPackage } from "@/lib/query-plan-types";
+import type { Step5ArtifactStatus, Step5XmlPackage } from "@/lib/common/query-plan-types";
 
 const STATUS_PRESENTATION: Record<
   Step5ArtifactStatus,
@@ -106,10 +106,10 @@ export function isStep5XmlPackage(value: unknown): value is Step5XmlPackage {
 
 export function Step5ResultDetails({
   data,
-  patientCounts
+  patientCounts,
 }: {
   data: unknown;
-  patientCounts: Map<string, number>
+  patientCounts: Map<string, number>;
 }): React.ReactNode {
   if (!isStep5XmlPackage(data)) {
     return (
@@ -129,10 +129,10 @@ export function Step5ResultDetails({
 
 export function I2b2XmlResults({
   package: xmlPackage,
-  patientCounts: patientCounts
+  patientCounts: patientCounts,
 }: {
   package: Step5XmlPackage;
-  patientCounts: Map<string, number>
+  patientCounts: Map<string, number>;
 }): React.ReactNode {
   const [feedback, setFeedback] = useState<{
     queryId: string;
@@ -250,7 +250,7 @@ export function I2b2XmlResults({
                 Patient Counts
               </p>
               <p className="mt-1 whitespace-pre-wrap text-sm text-gray-800">
-                {patientCounts.get(artifact.queryId)}
+                {patientCounts.get(artifact.queryId.trim())}
               </p>
             </div>
 

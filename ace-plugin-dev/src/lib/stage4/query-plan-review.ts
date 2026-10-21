@@ -5,7 +5,7 @@ import type {
   QueryPlanItem,
   Step4QueryPlan,
   TemporalRule,
-} from "./query-plan-types";
+} from "../common/query-plan-types";
 
 function cloneItem(item: QueryPlanItem): QueryPlanItem {
   return {

@@ -14,7 +14,7 @@
 // Step-2 bundles, and does not emit anything Step 4 doesn't strictly need.
 //
 // Usage:
-//   import { lookupConcept } from "@/lib/ontology/lookup";
+//   import { lookupConcept } from "@/lib/stage3/lookup";
 //
 //   const paths = await lookupConcept({
 //     name: "Type 2 Diabetes Mellitus",

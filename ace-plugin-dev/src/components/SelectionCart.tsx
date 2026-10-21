@@ -20,8 +20,8 @@ import {
   collapseToTopPaths,
   type SelectedPath,
 } from "@/lib/selection/useSelection";
-import { formatValueConstraint } from "@/lib/ontology/valueConstraint";
-import { summarizeDerivation } from "@/lib/ontology/derivation";
+import { formatValueConstraint } from "@/lib/stage3/valueConstraint";
+import { summarizeDerivation } from "@/lib/stage3/derivation";
 
 type PreviewKind = "paths" | "json" | "csv" | "step4";
 

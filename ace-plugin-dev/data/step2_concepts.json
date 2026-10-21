@@ -15,24 +15,31 @@
             "sex": "Unspecified",
             "other": []
         },
-        "temporalRelationships": [],
+        "temporalRelationships": [
+            {
+                "description": "DVT occurrence following calf muscle injury — no specific timeframe stated in the question",
+                "sequence": "calf_muscle_injury -> deep_vein_thrombosis",
+                "value": null,
+                "unit": null
+            }
+        ],
         "outcomes": [
             {
-                "name": "Deep Vein Thrombosis",
+                "name": "Deep Vein Thrombosis incidence",
                 "type": "primary"
             }
         ],
-        "populationDescription": "Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury",
+        "populationDescription": "Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury, with no restriction on age, sex, injury severity, mechanism of injury, or clinical setting",
         "comparisonGroups": [
             {
                 "name": "Calf muscle injury group",
-                "definition": "Patients with a documented calf muscle injury including strain, partial tear, or complete rupture (e.g., gastrocnemius, soleus)"
+                "definition": "Patients with a documented calf muscle injury, including gastrocnemius or soleus strain, tear, or rupture"
             },
             {
                 "name": "No calf muscle injury group",
-                "definition": "Patients without calf muscle injury serving as comparators"
+                "definition": "Patients without calf muscle injury serving as comparators for DVT incidence"
             }
         ]
     },
-    "summary": "Extracted 1 medical concepts. 2 comparison groups identified. Population: Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury"
+    "summary": "Extracted 1 medical concepts. 2 comparison groups identified. Population: Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury, with no restriction on age, sex, injury severity, mechanism of injury, or clinical setting"
 }

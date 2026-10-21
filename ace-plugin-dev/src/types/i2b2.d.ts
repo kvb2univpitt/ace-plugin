@@ -18,6 +18,6 @@ declare global {
                 };
             };
         };
-        ACE_REST_ENDPOINT?: string;
+        ACE_REST_URL?: string;
     }
 }

@@ -17,7 +17,7 @@ import {
   updateCountQueryInPlan,
   updatePanelDateRange,
   updatePanelInPlan,
-} from "@/lib/query-plan-review";
+} from "@/lib/stage4/query-plan-review";
 import type {
   CountQuery,
   PanelLogic,
@@ -28,7 +28,7 @@ import type {
   TemporalRelation,
   TemporalRule,
   ValidationIssue,
-} from "@/lib/query-plan-types";
+} from "@/lib/common/query-plan-types";
 
 const PANEL_LOGICS: PanelLogic[] = ["WITH", "WITHOUT"];
 const PANEL_TIMINGS: PanelTiming[] = ["ANY", "SAMEVISIT", "SAMEINSTANCENUM"];

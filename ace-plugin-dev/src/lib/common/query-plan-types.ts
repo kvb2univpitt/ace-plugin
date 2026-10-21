@@ -1,5 +1,5 @@
-import type { MappingCode } from "./ontology/mapper";
-import type { ValueConstraint } from "./ontology/valueConstraint";
+import type { MappingCode } from "../stage3/mapper";
+import type { ValueConstraint } from "../stage3/valueConstraint";
 
 export const STEP4_QUERY_PLAN_VERSION = "step4-query-plan-v1" as const;
 export const ANALYSIS_TYPES = ["cohort_count", "comparative_count"] as const;

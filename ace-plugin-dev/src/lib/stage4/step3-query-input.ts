@@ -1,24 +1,24 @@
 import { createHash } from "node:crypto";
-import { mapConcepts, type MappingCode, type MappingResult } from "./ontology/mapper";
+import { mapConcepts, type MappingCode, type MappingResult } from "../stage3/mapper";
 import {
   exactOntologyAnchorExists,
   exactOntologyAnchorQueryCount,
-} from "./ontology/lookup";
+} from "../stage3/lookup";
 import {
   OPERATORS,
   type ConstraintOperator,
   type ValueConstraint,
-} from "./ontology/valueConstraint";
+} from "../stage3/valueConstraint";
 import type {
   PreparedMapping,
   QueryPlanItem,
   ValidationIssue,
-} from "./query-plan-types";
+} from "../common/query-plan-types";
 import {
   verifyStep3OntologyProof,
   type Step3OntologyAnchor,
-} from "./step3-ontology-proof";
-import { clonePlainData } from "./plain-data";
+} from "../common/step3-ontology-proof";
+import { clonePlainData } from "../common/plain-data";
 
 export interface PreparedStep3Input {
   mappings: PreparedMapping[];

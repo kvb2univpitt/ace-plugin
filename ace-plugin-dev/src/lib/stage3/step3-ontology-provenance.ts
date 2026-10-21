@@ -1,14 +1,14 @@
-import type { LookupResult } from "./ontology/lookup";
+import type { LookupResult } from "./lookup";
 import type {
   MappingCode,
   MappingResult,
   MappingRow,
-} from "./ontology/mapper";
-import type { ArtifactIssueOptions } from "./signed-artifact";
+} from "./mapper";
+import type { ArtifactIssueOptions } from "../common/signed-artifact";
 import {
   issueStep3OntologyProof,
   type Step3OntologyAnchor,
-} from "./step3-ontology-proof";
+} from "../common/step3-ontology-proof";
 
 export interface Step3ProofIdentity {
   concept: string;

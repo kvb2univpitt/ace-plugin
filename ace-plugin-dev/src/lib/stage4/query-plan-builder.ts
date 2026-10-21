@@ -1,4 +1,4 @@
-import type { ValueConstraint } from "./ontology/valueConstraint";
+import type { ValueConstraint } from "../stage3/valueConstraint";
 import {
   isAnalysisType,
   STEP4_QUERY_PLAN_VERSION,
@@ -14,7 +14,7 @@ import {
   type TemporalRelation,
   type TemporalRule,
   type ValidationIssue,
-} from "./query-plan-types";
+} from "../common/query-plan-types";
 import type { PreparedStep3Input } from "./step3-query-input";
 import { toQueryPlanItem } from "./step3-query-input";
 import { validateStep4QueryPlan } from "./query-plan-validation";

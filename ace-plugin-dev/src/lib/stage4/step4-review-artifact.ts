@@ -2,8 +2,8 @@ import type {
   QueryPlanItem,
   Step4QueryPlan,
   ValidationIssue,
-} from "./query-plan-types";
-import { OPERATORS } from "./ontology/valueConstraint";
+} from "../common/query-plan-types";
+import { OPERATORS } from "../stage3/valueConstraint";
 import {
   canonicalArtifactPayloadFits,
   createArtifactMetadata,
@@ -12,7 +12,7 @@ import {
   verifyCanonicalArtifact,
   type ArtifactIssueOptions,
   type ArtifactVerifyOptions,
-} from "./signed-artifact";
+} from "../common/signed-artifact";
 
 export const STEP4_REVIEW_ARTIFACT_VERSION =
   "step4-review-artifact-v1" as const;

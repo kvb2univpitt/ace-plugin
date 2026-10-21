@@ -3,18 +3,18 @@
     "status": "success",
     "data": {
         "version": "step4-query-plan-v1",
-        "question": "In Patients with calf muscle injury (e.g., strain, tear, or rupture), what is the effect of Presence of calf muscle injury versus Patients without calf muscle injury on Incidence or risk of deep vein thrombosis (DVT)?",
+        "question": "In Patients with calf muscle injury, what is the effect of Calf muscle injury (e.g., strain, tear, or rupture) versus Patients without calf muscle injury on Incidence or risk of deep vein thrombosis (DVT)?",
         "analysisType": "comparative_count",
-        "querySetName": "Calf Muscle Injury vs No Injury: DVT Risk",
+        "querySetName": "Calf Muscle Injury vs No Injury — DVT Incidence",
         "countQueries": [
             {
                 "id": "query-calf-injury-with-dvt",
-                "name": "Calf Muscle Injury Group with DVT",
-                "purpose": "Count patients with documented calf muscle injury who develop deep vein thrombosis",
+                "name": "Calf Muscle Injury — With DVT",
+                "purpose": "Count patients with calf muscle injury who subsequently develop DVT",
                 "panels": [
                     {
-                        "id": "panel-calf-injury",
-                        "title": "Calf Muscle Injury (Strain, Tear, or Rupture)",
+                        "id": "panel-calf-injury-arm1",
+                        "title": "Calf Muscle Injury",
                         "logic": "WITH",
                         "items": [
                             {
@@ -34,13 +34,13 @@
                         "panelTiming": "ANY"
                     },
                     {
-                        "id": "panel-dvt-injury-arm",
+                        "id": "panel-dvt-arm1",
                         "title": "Deep Vein Thrombosis",
                         "logic": "WITH",
                         "items": [
                             {
-                                "mappingId": "outcome:deep vein thrombosis",
-                                "concept": "Deep Vein Thrombosis",
+                                "mappingId": "outcome:deep vein thrombosis incidence",
+                                "concept": "Deep Vein Thrombosis incidence",
                                 "category": "outcome",
                                 "code": "PHECODE:452.2",
                                 "display": "Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ",
@@ -56,23 +56,22 @@
                 ],
                 "temporalRules": [
                     {
-                        "id": "temporal-injury-before-dvt",
-                        "relation": "BEFORE_OR_SAME",
-                        "firstPanelId": "panel-calf-injury",
-                        "secondPanelId": "panel-dvt-injury-arm",
-                        "minDays": 0,
-                        "maxDays": 365
+                        "id": "temporal-injury-before-dvt-arm1",
+                        "relation": "BEFORE",
+                        "firstPanelId": "panel-calf-injury-arm1",
+                        "secondPanelId": "panel-dvt-arm1",
+                        "minDays": 0
                     }
                 ]
             },
             {
                 "id": "query-calf-injury-denominator",
-                "name": "Calf Muscle Injury Group (Denominator)",
-                "purpose": "Count all patients with documented calf muscle injury (the exposed cohort)",
+                "name": "Calf Muscle Injury — All Patients",
+                "purpose": "Count all patients with calf muscle injury (denominator for injury arm)",
                 "panels": [
                     {
                         "id": "panel-calf-injury-denom",
-                        "title": "Calf Muscle Injury (Strain, Tear, or Rupture)",
+                        "title": "Calf Muscle Injury",
                         "logic": "WITH",
                         "items": [
                             {
@@ -96,11 +95,11 @@
             },
             {
                 "id": "query-no-calf-injury-with-dvt",
-                "name": "No Calf Muscle Injury Group with DVT",
-                "purpose": "Count patients without calf muscle injury who develop deep vein thrombosis",
+                "name": "No Calf Muscle Injury — With DVT",
+                "purpose": "Count patients without calf muscle injury who develop DVT",
                 "panels": [
                     {
-                        "id": "panel-no-calf-injury",
+                        "id": "panel-no-calf-injury-arm2",
                         "title": "No Calf Muscle Injury",
                         "logic": "WITHOUT",
                         "items": [
@@ -121,13 +120,13 @@
                         "panelTiming": "ANY"
                     },
                     {
-                        "id": "panel-dvt-no-injury-arm",
+                        "id": "panel-dvt-arm2",
                         "title": "Deep Vein Thrombosis",
                         "logic": "WITH",
                         "items": [
                             {
-                                "mappingId": "outcome:deep vein thrombosis",
-                                "concept": "Deep Vein Thrombosis",
+                                "mappingId": "outcome:deep vein thrombosis incidence",
+                                "concept": "Deep Vein Thrombosis incidence",
                                 "category": "outcome",
                                 "code": "PHECODE:452.2",
                                 "display": "Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ",
@@ -145,8 +144,8 @@
             },
             {
                 "id": "query-no-calf-injury-denominator",
-                "name": "No Calf Muscle Injury Group (Denominator)",
-                "purpose": "Count all patients without documented calf muscle injury (the comparator cohort)",
+                "name": "No Calf Muscle Injury — All Patients",
+                "purpose": "Count all patients without calf muscle injury (denominator for comparator arm)",
                 "panels": [
                     {
                         "id": "panel-no-calf-injury-denom",
@@ -176,29 +175,29 @@
         "analysisCells": [
             {
                 "id": "cell-calf-injury-denominator",
-                "arm": "Calf Muscle Injury Group",
+                "arm": "Calf Muscle Injury",
                 "outcome": "cohort",
                 "kind": "denominator",
                 "queryId": "query-calf-injury-denominator"
             },
             {
                 "id": "cell-calf-injury-dvt",
-                "arm": "Calf Muscle Injury Group",
-                "outcome": "Deep Vein Thrombosis",
+                "arm": "Calf Muscle Injury",
+                "outcome": "Deep Vein Thrombosis incidence",
                 "kind": "outcome_positive",
                 "queryId": "query-calf-injury-with-dvt"
             },
             {
                 "id": "cell-no-calf-injury-denominator",
-                "arm": "No Calf Muscle Injury Group",
+                "arm": "No Calf Muscle Injury",
                 "outcome": "cohort",
                 "kind": "denominator",
                 "queryId": "query-no-calf-injury-denominator"
             },
             {
                 "id": "cell-no-calf-injury-dvt",
-                "arm": "No Calf Muscle Injury Group",
-                "outcome": "Deep Vein Thrombosis",
+                "arm": "No Calf Muscle Injury",
+                "outcome": "Deep Vein Thrombosis incidence",
                 "kind": "outcome_positive",
                 "queryId": "query-no-calf-injury-with-dvt"
             }
@@ -222,8 +221,8 @@
                 "role": "target_condition"
             },
             {
-                "mappingId": "outcome:deep vein thrombosis",
-                "concept": "Deep Vein Thrombosis",
+                "mappingId": "outcome:deep vein thrombosis incidence",
+                "concept": "Deep Vein Thrombosis incidence",
                 "category": "outcome",
                 "code": "PHECODE:452.2",
                 "display": "Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ",
@@ -233,6 +232,6 @@
                 "source": "step3_reviewed"
             }
         ],
-        "artifactToken": "eyJhdXRob3JpdGF0aXZlSXRlbXMiOlt7ImNhdGVnb3J5IjoiZGlhZ25vc2lzIiwiY29kZSI6IlBIRUNPREU6MTAwOCIsImNvbmNlcHQiOiJDYWxmIG11c2NsZSBpbmp1cnkgKHN0cmFpbiwgdGVhciwgb3IgcnVwdHVyZSkiLCJkaXNwbGF5IjoiQ3J1c2hpbmcgT3IgSW50ZXJuYWwgSW5qdXJ5IFRvIE9yZ2FucyAoUEhFQ09ERToxMDA4KSAiLCJsZXZlbCI6NywibWFwcGluZ0lkIjoiZGlhZ25vc2lzOmNhbGYgbXVzY2xlIGluanVyeSAoc3RyYWluLCB0ZWFyLCBvciBydXB0dXJlKSIsInBhdGgiOiJcXFxcQUNUX1JFU0VBUkNIXFxBQ1RcXFJlc2VhcmNoXFxQaGVub3R5cGluZ1xcUGhlQ29kZVxcQ2FzZVxcQ2F0ZWdvcnlfMFxcUGhlY29kZV8xMDA4XFwiLCJyb2xlIjoidGFyZ2V0X2NvbmRpdGlvbiIsInNvdXJjZSI6InN0ZXAzX3Jldmlld2VkIiwic3lzdGVtIjoiUGhlQ29kZSJ9LHsiY2F0ZWdvcnkiOiJvdXRjb21lIiwiY29kZSI6IlBIRUNPREU6NDUyLjIiLCJjb25jZXB0IjoiRGVlcCBWZWluIFRocm9tYm9zaXMiLCJkaXNwbGF5IjoiRGVlcCBWZWluIFRocm9tYm9zaXMgW0R2dF0gKFBIRUNPREU6NDUyLjIpICIsImxldmVsIjo4LCJtYXBwaW5nSWQiOiJvdXRjb21lOmRlZXAgdmVpbiB0aHJvbWJvc2lzIiwicGF0aCI6IlxcXFxBQ1RfUkVTRUFSQ0hcXEFDVFxcUmVzZWFyY2hcXFBoZW5vdHlwaW5nXFxQaGVDb2RlXFxDYXNlXFxDYXRlZ29yeV84XFxQaGVjb2RlXzQ1MlxcUGhlY29kZV80NTIuMlxcIiwic291cmNlIjoic3RlcDNfcmV2aWV3ZWQiLCJzeXN0ZW0iOiJQaGVDb2RlIn1dLCJjbGluaWNhbFF1ZXN0aW9uIjoiSW4gUGF0aWVudHMgd2l0aCBjYWxmIG11c2NsZSBpbmp1cnkgKGUuZy4sIHN0cmFpbiwgdGVhciwgb3IgcnVwdHVyZSksIHdoYXQgaXMgdGhlIGVmZmVjdCBvZiBQcmVzZW5jZSBvZiBjYWxmIG11c2NsZSBpbmp1cnkgdmVyc3VzIFBhdGllbnRzIHdpdGhvdXQgY2FsZiBtdXNjbGUgaW5qdXJ5IG9uIEluY2lkZW5jZSBvciByaXNrIG9mIGRlZXAgdmVpbiB0aHJvbWJvc2lzIChEVlQpPyIsImV4cGlyZXNBdCI6MTc5MjAxODM5NTUzOCwiZ2VuZXJhdGlvbiI6ImxsbSIsImlzc3VlZEF0IjoxNzkyMDE2NTk1NTM4LCJub25jZSI6ImEzU1JSWVAwc0k3S2VrZ2ZPLTZZdEEiLCJwZXJzaXN0ZW50SXNzdWVzIjpbXSwidmVyc2lvbiI6InN0ZXA0LXJldmlldy1hcnRpZmFjdC12MSJ9.e-1Vvmh-EkFUzvf4baC2NTwi4NkRUG0R554ubz1TiYA"
+        "artifactToken": "eyJhdXRob3JpdGF0aXZlSXRlbXMiOlt7ImNhdGVnb3J5IjoiZGlhZ25vc2lzIiwiY29kZSI6IlBIRUNPREU6MTAwOCIsImNvbmNlcHQiOiJDYWxmIG11c2NsZSBpbmp1cnkgKHN0cmFpbiwgdGVhciwgb3IgcnVwdHVyZSkiLCJkaXNwbGF5IjoiQ3J1c2hpbmcgT3IgSW50ZXJuYWwgSW5qdXJ5IFRvIE9yZ2FucyAoUEhFQ09ERToxMDA4KSAiLCJsZXZlbCI6NywibWFwcGluZ0lkIjoiZGlhZ25vc2lzOmNhbGYgbXVzY2xlIGluanVyeSAoc3RyYWluLCB0ZWFyLCBvciBydXB0dXJlKSIsInBhdGgiOiJcXFxcQUNUX1JFU0VBUkNIXFxBQ1RcXFJlc2VhcmNoXFxQaGVub3R5cGluZ1xcUGhlQ29kZVxcQ2FzZVxcQ2F0ZWdvcnlfMFxcUGhlY29kZV8xMDA4XFwiLCJyb2xlIjoidGFyZ2V0X2NvbmRpdGlvbiIsInNvdXJjZSI6InN0ZXAzX3Jldmlld2VkIiwic3lzdGVtIjoiUGhlQ29kZSJ9LHsiY2F0ZWdvcnkiOiJvdXRjb21lIiwiY29kZSI6IlBIRUNPREU6NDUyLjIiLCJjb25jZXB0IjoiRGVlcCBWZWluIFRocm9tYm9zaXMgaW5jaWRlbmNlIiwiZGlzcGxheSI6IkRlZXAgVmVpbiBUaHJvbWJvc2lzIFtEdnRdIChQSEVDT0RFOjQ1Mi4yKSAiLCJsZXZlbCI6OCwibWFwcGluZ0lkIjoib3V0Y29tZTpkZWVwIHZlaW4gdGhyb21ib3NpcyBpbmNpZGVuY2UiLCJwYXRoIjoiXFxcXEFDVF9SRVNFQVJDSFxcQUNUXFxSZXNlYXJjaFxcUGhlbm90eXBpbmdcXFBoZUNvZGVcXENhc2VcXENhdGVnb3J5XzhcXFBoZWNvZGVfNDUyXFxQaGVjb2RlXzQ1Mi4yXFwiLCJzb3VyY2UiOiJzdGVwM19yZXZpZXdlZCIsInN5c3RlbSI6IlBoZUNvZGUifV0sImNsaW5pY2FsUXVlc3Rpb24iOiJJbiBQYXRpZW50cyB3aXRoIGNhbGYgbXVzY2xlIGluanVyeSwgd2hhdCBpcyB0aGUgZWZmZWN0IG9mIENhbGYgbXVzY2xlIGluanVyeSAoZS5nLiwgc3RyYWluLCB0ZWFyLCBvciBydXB0dXJlKSB2ZXJzdXMgUGF0aWVudHMgd2l0aG91dCBjYWxmIG11c2NsZSBpbmp1cnkgb24gSW5jaWRlbmNlIG9yIHJpc2sgb2YgZGVlcCB2ZWluIHRocm9tYm9zaXMgKERWVCk_IiwiZXhwaXJlc0F0IjoxNzkyNTQ5OTgxMzEyLCJnZW5lcmF0aW9uIjoibGxtIiwiaXNzdWVkQXQiOjE3OTI1NDgxODEzMTIsIm5vbmNlIjoiR3lTbjFDUFkxTndzVWhuaC12bmJ3dyIsInBlcnNpc3RlbnRJc3N1ZXMiOltdLCJ2ZXJzaW9uIjoic3RlcDQtcmV2aWV3LWFydGlmYWN0LXYxIn0.uSg9rNsCqQtsPLQruCesBYluli_l7ANJ7356QTFH3l4"
     }
 }

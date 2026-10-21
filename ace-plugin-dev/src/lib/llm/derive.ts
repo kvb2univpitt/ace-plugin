@@ -8,7 +8,7 @@
 // + (component concepts), each of which the user can then trace and select.
 
 import { getProvider, parseJsonLoose, type LlmProvider } from "./client";
-import { coerceDerivation, type Derivation } from "@/lib/ontology/derivation";
+import { coerceDerivation, type Derivation } from "@/lib/stage3/derivation";
 
 export interface DeriveInput {
   name: string;

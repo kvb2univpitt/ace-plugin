@@ -13,14 +13,14 @@ import {
   reviewStageForFailedContinuation,
   resolveStep4ReviewRecovery,
   type StageUiStatus,
-} from "@/lib/agents-client-state";
-import { hasValidationErrors } from "@/lib/query-plan-review";
+} from "@/lib/common/agents-client-state";
+import { hasValidationErrors } from "@/lib/stage4/query-plan-review";
+import { runQueryXml } from "@/lib/i2b2/query-xml"
 import type {
   QueryPlanItem,
   Step4QueryPlan,
   Step4ReviewContext,
-} from "@/lib/query-plan-types";
-import { runQueryXml } from "@/lib/i2b2/query-xml"
+} from "@/lib/common/query-plan-types";
 
 /** One member path of an expanded drug class, as shown in the review list. */
 interface ClassPath {
@@ -133,8 +133,6 @@ const EXAMPLE_QUESTIONS = [
   "Does empagliflozin (Jardiance) have a lower limb amputation (LLA) rate compared to canagliflozin (Invokana), as previously reported? FDA had issued a Boxed Warning on increased risk of LLAs for canagliflozin in 2017 and removed the Boxed Warning in September 2020.",
 ];
 
-const patientCounts: Map<string, number> = new Map();
-
 function StatusIcon({ status }: { status: StageUiStatus }) {
   if (status === "pending") {
     return (
@@ -238,7 +236,7 @@ function renderDataSection(title: string, items: unknown) {
   );
 }
 
-function StageDetail({ result, stageNum, forceExpand }: { result: StageResult; stageNum: number; forceExpand?: boolean }) {
+function StageDetail({ result, stageNum, forceExpand, patientCounts }: { result: StageResult; stageNum: number; forceExpand?: boolean, patientCounts: Map<string, number> }) {
   const [expanded, setExpanded] = useState(stageNum === 5 || !!forceExpand);
   const data = result.data;
 
@@ -911,7 +909,8 @@ function MappingEditor({
 
     let resolvedCode: MappingCode | undefined;
     try {
-      const resp = await fetch("/api/ontology/lookup", {
+      const ACE_REST_URL = (typeof window === 'undefined') ? '' : window.ACE_REST_URL;
+      const resp = await fetch(`${ACE_REST_URL}/api/ontology/lookup`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -1595,16 +1594,18 @@ export default function Home() {
     ? hasValidationErrors(editedQueryPlan)
     : false;
 
+  // Step 5
+  const [patientCounts, setPatientCounts] = useState<Map<string, number>>(new Map());
+
   const abortRef = useRef<AbortController | null>(null);
-
-
 
   const streamEvents = useCallback(async (
     body: Record<string, unknown>,
     signal: AbortSignal
   ) => {
-    const ACE_REST_ENDPOINT = (typeof window === 'undefined') ? '' : window.ACE_REST_ENDPOINT;
-    const response = await fetch(`${ACE_REST_ENDPOINT}`, {
+
+    const ACE_REST_URL = (typeof window === 'undefined') ? '' : window.ACE_REST_URL;
+    const response = await fetch(`${ACE_REST_URL}/api/i2b2/agents`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -1683,12 +1684,11 @@ export default function Home() {
                 );
               }
             }
-
             // run i2b2 query XMLs to get patient counts
-            if (event.stage === 5) {
-              await runQueryXml(event.result.data.artifacts, patientCounts);
+            if (event.stage === 5 && event.result?.data?.artifacts) {
+              const patientCounts: Map<string, number> = await runQueryXml(event.result.data.artifacts);
+              setPatientCounts(patientCounts);
             }
-
             if (completion.restoreStep4Review) {
               const recovery = resolveStep4ReviewRecovery(event.result);
               const reviewUpdate = recovery.update;
@@ -2217,6 +2217,7 @@ export default function Home() {
                           }
                           stageNum={state.stage}
                           forceExpand={(state.stage === 1 && awaitingReview === 1) || (state.stage === 2 && awaitingReview === 2) || (state.stage === 3 && awaitingReview === 3) || (state.stage === 4 && awaitingReview === 4)}
+                          patientCounts={patientCounts}
                         />
                       </>
                     )}
@@ -2402,6 +2403,33 @@ export default function Home() {
                   />
                 </ReviewPanel>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {stages.length === 0 && (
+          <div className="text-center py-20">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-amber-50 to-violet-50 border border-gray-200 flex items-center justify-center">
+              <svg className="w-10 h-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-medium text-gray-700 mb-2">ACE Process Flow Automation</h3>
+            <p className="text-sm text-gray-900 max-w-lg mx-auto mb-6">
+              Enter a clinical question above. The multi-agent pipeline will process it through 5 stages
+              — mirroring the ACE workflow from Figure 2 — to generate Sharephe-ready i2b2 XML.
+            </p>
+            <div className="flex justify-center gap-4 text-xs text-gray-700">
+              <span>Intake</span>
+              <span>-&gt;</span>
+              <span>Concepts</span>
+              <span>-&gt;</span>
+              <span>Ontology</span>
+              <span>-&gt;</span>
+              <span>Logic</span>
+              <span>-&gt;</span>
+              <span>i2b2 XML</span>
             </div>
           </div>
         )}

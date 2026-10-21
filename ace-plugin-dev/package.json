@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf .next dist",
-    "dev": "npm run clean && next dev",
+    "dev": "next dev",
     "build": "npm run clean && next build",
     "start": "next start",
     "lint": "eslint",
@@ -23,6 +23,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "rimraf": "^6.1.3",

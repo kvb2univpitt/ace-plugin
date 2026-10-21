@@ -6,7 +6,7 @@ import {
   type Step4QueryPlan,
   type TemporalRule,
   type ValidationIssue,
-} from "./query-plan-types";
+} from "../common/query-plan-types";
 
 const PANEL_TIMINGS = new Set(["ANY", "SAMEVISIT", "SAMEINSTANCENUM"]);
 const XML_INVALID_CONTROL_CHAR = /[\u0000-\u0008\u000B\u000C\u000E-\u001F]/;

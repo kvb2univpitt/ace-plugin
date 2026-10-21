@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     return [
       {
         // This applies CORS headers to all routes starting with /api
-        source: "/api/i2b2/:path*",
+        source: "/api/:path*",
         headers: [
           {
             key: "Access-Control-Allow-Credentials",
@@ -35,6 +35,7 @@ const nextConfig: NextConfig = {
     unoptimized: true, // required for static exports
   },
   assetPrefix: process.env.NODE_ENV === 'production' ? './' : undefined,
+  reactCompiler: true,
 };
 
 export default nextConfig;

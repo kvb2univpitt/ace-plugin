@@ -6,8 +6,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { ValueConstraint } from "@/lib/ontology/valueConstraint";
-import type { Derivation } from "@/lib/ontology/derivation";
+import type { ValueConstraint } from "@/lib/stage3/valueConstraint";
+import type { Derivation } from "@/lib/stage3/derivation";
 
 export interface SelectedPath {
   code: string;

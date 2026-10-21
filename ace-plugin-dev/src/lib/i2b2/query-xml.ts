@@ -1,6 +1,6 @@
 "use client";
 
-import type { Step5XmlArtifact } from "@/lib/query-plan-types";
+import type { Step5XmlArtifact } from "@/lib/common/query-plan-types";
 
 
 function parseXMLFromString(xmlString: string): Document | null {
@@ -26,11 +26,13 @@ function parseXMLFromString(xmlString: string): Document | null {
     }
 }
 
-export async function runQueryXml(artifacts: Step5XmlArtifact[], patientCounts: Map<string, number>): Promise<void> {
+export async function runQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
+    const patientCounts: Map<string, number> = new Map();
+
     // verify that the i2b2 framework is loaded in the global window
     if (typeof window === 'undefined' || !(window as any).i2b2) {
         console.warn('DOMParser is only available in the browser.');
-        return;
+        return patientCounts;
     }
 
     const i2b2 = (window as any).i2b2;
@@ -72,4 +74,6 @@ export async function runQueryXml(artifacts: Step5XmlArtifact[], patientCounts: 
     } catch (error) {
         console.error("Failed to securely communicate with i2b2 framework:", error);
     }
+
+    return patientCounts;
 }
