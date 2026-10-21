@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Two-byTwo Table</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container mt-4">
+            <div class="table-responsive">
+                <table class="table table-borderless caption-top align-middle text-center">
+                    <caption>2x2 Table: Patient Counts</caption>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="bg-black text-white border-2 border-black">Outcome</th>
+                            <th class="bg-black text-white border-2 border-black">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="bg-black text-white border-2 border-black">Case (Experiment)</th>
+                            <td class="border-2 border-black">r1c1</td>
+                            <td class="border-2 border-black">r1c2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="bg-black text-white border-2 border-black">Control</th>
+                            <td class="border-2 border-black">r2c1</td>
+                            <td class="border-2 border-black">r2c2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <pre>
+{
+    "agent": "Sharephe / i2b2 XML Compiler",
+    "status": "success",
+    "data": {
+        "version": "step5-i2b2-xml-v1",
+        "querySetName": "Calf Muscle Injury vs No Injury — DVT Incidence",
+        "artifacts": [
+            {
+                "queryId": "query-calf-injury-with-dvt",
+                "queryName": "Calf Muscle Injury — With DVT",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITH Calf Muscle Injury: ...",
+                "tableCell": "r1c1"
+            },
+            {
+                "queryId": "query-calf-injury-denominator",
+                "queryName": "Calf Muscle Injury — All Patients",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITH Calf Muscle Injury: ...",
+                "tableCell": "r1c2"
+            },
+            {
+                "queryId": "query-no-calf-injury-with-dvt",
+                "queryName": "No Calf Muscle Injury — With DVT",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITHOUT No Calf Muscle Injury: ...",
+                "tableCell": "r2c1"
+            },
+            {
+                "queryId": "query-no-calf-injury-denominator",
+                "queryName": "No Calf Muscle Injury — All Patients",
+                "xml": "<query_definition>...</query_definition>",
+                "status": "ready",
+                "sharepheReady": true,
+                "warnings": [],
+                "panelSummary": "WITHOUT No Calf Muscle Injury: ...",
+                "tableCell": "r2c2"
+            }
+        ]
+    }
+}
+            </pre>
+        </div>
+    </body>
+</html>
