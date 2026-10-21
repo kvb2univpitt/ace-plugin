@@ -36,6 +36,7 @@ interface StageResult {
   data: Record<string, unknown>;
   summary: string;
   reviewContext?: Step4ReviewContext;
+  patientCounts: Map<string, number>;
 }
 
 interface StageState {
@@ -236,9 +237,10 @@ function renderDataSection(title: string, items: unknown) {
   );
 }
 
-function StageDetail({ result, stageNum, forceExpand, patientCounts }: { result: StageResult; stageNum: number; forceExpand?: boolean, patientCounts: Map<string, number> }) {
+function StageDetail({ result, stageNum, forceExpand }: { result: StageResult; stageNum: number; forceExpand?: boolean }) {
   const [expanded, setExpanded] = useState(stageNum === 5 || !!forceExpand);
   const data = result.data;
+  const patientCounts = result.patientCounts;
 
   const renderContent = () => {
     switch (stageNum) {
@@ -2213,11 +2215,10 @@ export default function Home() {
                                 ? { ...state.result, data: editedMappings }
                                 : state.stage === 4 && editedQueryPlan
                                   ? { ...state.result, data: editedQueryPlan as unknown as Record<string, unknown> }
-                                  : state.result
+                                  : { ...state.result, patientCounts: patientCounts }
                           }
                           stageNum={state.stage}
                           forceExpand={(state.stage === 1 && awaitingReview === 1) || (state.stage === 2 && awaitingReview === 2) || (state.stage === 3 && awaitingReview === 3) || (state.stage === 4 && awaitingReview === 4)}
-                          patientCounts={patientCounts}
                         />
                       </>
                     )}
