@@ -121,12 +121,12 @@ export async function POST(req: NextRequest) {
                             agent: "Intake & Literature Review",
                         });
 
-                        // const intakeResult = await dependencies.intakeAgent(
-                        //     clinicalQuestion,
-                        //     apiKey
-                        // );
-                        // await saveAgentResultToFile(intakeResult, 'step1_intake_result.json');
-                        const intakeResult = await loadAgentResultFromFile('step1_intake_result.json');
+                        const intakeResult = await dependencies.intakeAgent(
+                            clinicalQuestion,
+                            apiKey
+                        );
+                        await saveAgentResultToFile(intakeResult, 'step1_intake_result.json');
+                        // const intakeResult = await loadAgentResultFromFile('step1_intake_result.json');
 
                         send({
                             type: "stage_complete",
@@ -142,13 +142,13 @@ export async function POST(req: NextRequest) {
                             agent: "Clinical Concept Extraction",
                         });
 
-                        // const concepts = await dependencies.conceptExtractionAgent(
-                        //     clinicalQuestion,
-                        //     recordOrEmpty(intakeData),
-                        //     apiKey
-                        // );
-                        // await saveAgentResultToFile(concepts, 'step2_concepts.json');
-                        const concepts = await loadAgentResultFromFile('step2_concepts.json');
+                        const concepts = await dependencies.conceptExtractionAgent(
+                            clinicalQuestion,
+                            recordOrEmpty(intakeData),
+                            apiKey
+                        );
+                        await saveAgentResultToFile(concepts, 'step2_concepts.json');
+                        // const concepts = await loadAgentResultFromFile('step2_concepts.json');
 
                         send({
                             type: "stage_complete",
@@ -164,12 +164,12 @@ export async function POST(req: NextRequest) {
                             agent: "SHRINE Ontology Mapping",
                         });
 
-                        // const mappings = await dependencies.ontologyMappingAgent(
-                        //     recordOrEmpty(editedConcepts),
-                        //     apiKey
-                        // );
-                        // await saveAgentResultToFile(mappings, 'step3_mappings.json');
-                        const mappings = await loadAgentResultFromFile('step3_mappings.json');
+                        const mappings = await dependencies.ontologyMappingAgent(
+                            recordOrEmpty(editedConcepts),
+                            apiKey
+                        );
+                        await saveAgentResultToFile(mappings, 'step3_mappings.json');
+                        // const mappings = await loadAgentResultFromFile('step3_mappings.json');
 
                         send({
                             type: "stage_complete",
@@ -184,17 +184,17 @@ export async function POST(req: NextRequest) {
                             stage: 4,
                             agent: "Query Logic Builder",
                         });
-                        // const reviewedMappings = editedMappings ?? mappingsData ?? {};
-                        // const logic = await dependencies.queryLogicAgent(
-                        //     clinicalQuestion,
-                        //     recordOrEmpty(editedConcepts),
-                        //     reviewedMappings,
-                        //     apiKey
-                        // );
-                        // await saveUnknownToFile(reviewedMappings, 'step4_reviewed_mappings.json');
-                        // await saveAgentResultToFile(logic, 'step4_logic.json');
-                        const reviewedMappings = await loadUnknownFromFile('step4_reviewed_mappings.json');
-                        const logic = await loadAgentResultFromFile('step4_logic.json');
+                        const reviewedMappings = editedMappings ?? mappingsData ?? {};
+                        const logic = await dependencies.queryLogicAgent(
+                            clinicalQuestion,
+                            recordOrEmpty(editedConcepts),
+                            reviewedMappings,
+                            apiKey
+                        );
+                        await saveUnknownToFile(reviewedMappings, 'step4_reviewed_mappings.json');
+                        await saveAgentResultToFile(logic, 'step4_logic.json');
+                        // const reviewedMappings = await loadUnknownFromFile('step4_reviewed_mappings.json');
+                        // const logic = await loadAgentResultFromFile('step4_logic.json');
 
                         send({
                             type: "stage_complete",
@@ -211,13 +211,13 @@ export async function POST(req: NextRequest) {
                             agent: "Sharephe / i2b2 XML Compiler",
                         });
 
-                        // const compiled = await dependencies.queryCompilerAgent(
-                        //     clinicalQuestion,
-                        //     editedQueryLogic || {},
-                        //     artifactToken
-                        // );
-                        // await saveAgentResultToFile(compiled, 'step5_compiled.json');
-                        const compiled = await loadAgentResultFromFile('step5_compiled.json');
+                        const compiled = await dependencies.queryCompilerAgent(
+                            clinicalQuestion,
+                            editedQueryLogic || {},
+                            artifactToken
+                        );
+                        await saveAgentResultToFile(compiled, 'step5_compiled.json');
+                        // const compiled = await loadAgentResultFromFile('step5_compiled.json');
 
                         send({
                             type: "stage_complete",
