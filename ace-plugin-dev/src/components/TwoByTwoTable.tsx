@@ -1,6 +1,7 @@
 "use client";
 
 import type { Step5XmlPackage } from "@/lib/common/query-plan-types";
+import { getTableCellData } from "./Step5ResultAnalysis";
 
 function normalCDF(z: number): number {
     const t = 1 / (1 + 0.2316419 * Math.abs(z));
@@ -20,17 +21,19 @@ export function TwoByTwoTable(
     }
 ): React.ReactNode {
     // get the table cell counts
-    const cellTableCounts: Map<string, number> = new Map();
-    xmlPackage.artifacts.map((artifact) => {
-        const counts = patientCounts.get(artifact.queryId);
+    const cellData = getTableCellData(xmlPackage, patientCounts);
 
-        cellTableCounts.set(artifact.tableCell, counts ? counts : 0);
-    });
+    // number of patients in the exposed group that test positive
+    const r1c1 = cellData.get("r1c1");
 
-    const r1c1 = cellTableCounts.get("r1c1");
-    const r1c2 = cellTableCounts.get("r1c2");
-    const r2c1 = cellTableCounts.get("r2c1");
-    const r2c2 = cellTableCounts.get("r2c2");
+    // total number of patients in the exposed group
+    const r1c2 = cellData.get("r1c2");
+
+    // number of patients in the unexposed group that test positive
+    const r2c1 = cellData.get("r2c1");
+
+    // total number of patients in the unexposed group
+    const r2c2 = cellData.get("r2c2");
 
     // total # per 100 persons
     const r1c3 = (r1c1 && r1c2 && r1c2 > 0) ? (r1c1 / r1c2) : 0;

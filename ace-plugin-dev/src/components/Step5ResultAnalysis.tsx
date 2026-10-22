@@ -47,6 +47,52 @@ function isStep5XmlPackage(value: unknown): value is Step5XmlPackage {
     );
 }
 
+function checkDataExists(cellData: Map<string, number>): string[] {
+    const errorMsg: string[] = [];
+
+    if (!cellData.has("r1c1")) {
+        errorMsg.push("Counts for the exposed group that has a positive outcome.")
+    }
+    if (!cellData.has("r1c2")) {
+        errorMsg.push("Total counts for the exposed group.");
+    }
+    if (!cellData.has("r1c1")) {
+        errorMsg.push("Counts for the unexposed group that has a positive outcome.");
+    }
+    if (!cellData.has("r2c2")) {
+        errorMsg.push("Total counts for the unexposed group.");
+    }
+
+    return errorMsg;
+}
+
+function checkDataIsValid(cellData: Map<string, number>): string[] {
+    const errorMsg: string[] = [];
+
+    const r1c2 = cellData.get("r1c2");
+    const r2c2 = cellData.get("r2c2");
+
+    if (!(r1c2 && r1c2 > 0)) {
+        errorMsg.push("Total counts for the exposed group.");
+    }
+    if (!(r2c2 && r2c2 > 0)) {
+        errorMsg.push("Total counts for the unexposed group.");
+    }
+
+    return errorMsg;
+}
+
+export function getTableCellData(xmlPackage: Step5XmlPackage, patientCounts: Map<string, number>): Map<string, number> {
+    const cellData: Map<string, number> = new Map();
+
+    xmlPackage.artifacts.map((artifact) => {
+        const counts = patientCounts.get(artifact.queryId);
+        cellData.set(artifact.tableCell, counts ? counts : 0);
+    });
+
+    return cellData;
+}
+
 export function Step5ResultAnalysis({
     data,
     patientCounts
@@ -55,17 +101,52 @@ export function Step5ResultAnalysis({
     patientCounts: Map<string, number>;
 }): React.ReactNode {
     if (isStep5XmlPackage(data)) {
+        const cellData = getTableCellData(data, patientCounts);
+
+        let errors = checkDataExists(cellData);
+        if (errors.length > 0) {
+            return (
+                <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
+                    <p className="font-semibold">Missing the following counts:</p>
+                    <ul className="max-w-md space-y-1 text-body list-inside">
+                        {errors.map((msg, index) => (
+                            <li key={index} className="flex items-center">
+                                <svg className="w-4 h-4 text-red-700 me-1.5 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                {msg}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+
+        errors = checkDataIsValid(cellData);
+        if (errors.length > 0) {
+            return (
+                <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
+                    <p className="font-semibold">The following counts must be greater than 0:</p>
+                    <ul className="max-w-md space-y-1 text-body list-inside">
+                        {errors.map((msg, index) => (
+                            <li key={index} className="flex items-center">
+                                <svg className="w-4 h-4 text-red-700 me-1.5 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                {msg}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+
         return <TwoByTwoTable package={data} patientCounts={patientCounts} />;
     } else {
         return (
-            <div
-                role="alert"
-                className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900"
-            >
+            <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
                 <p className="font-semibold">No XML package was emitted.</p>
-                <p className="mt-1">
-                    Review the refreshed Step 4 plan, then run Step 5 again.
-                </p>
+                <p className="mt-1">Review the refreshed Step 4 plan, then run Step 5 again.</p>
             </div>
         );
     }
