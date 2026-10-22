@@ -26,6 +26,34 @@ function parseXMLFromString(xmlString: string): Document | null {
     }
 }
 
+export async function fakeRunQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
+    const patientCounts: Map<string, number> = new Map();
+
+    for (const artifact of artifacts) {
+        const queryId: string = artifact.queryId;
+        switch (queryId) {
+            case 'query-calf-injury-with-dvt':
+                // r1c1
+                patientCounts.set(artifact.queryId, 7194);
+                break;
+            case 'query-calf-injury-denominator':
+                // r1c2
+                patientCounts.set(artifact.queryId, 97952);
+                break;
+            case 'query-no-calf-injury-with-dvt':
+                // r2c1
+                patientCounts.set(artifact.queryId, 8195);
+                break;
+            case 'query-no-calf-injury-denominator':
+                // r2c2
+                patientCounts.set(artifact.queryId, 103648);
+                break;
+        }
+    }
+
+    return patientCounts;
+}
+
 export async function runQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
     const patientCounts: Map<string, number> = new Map();
 

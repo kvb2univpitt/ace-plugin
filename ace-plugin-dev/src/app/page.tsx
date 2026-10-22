@@ -5,7 +5,7 @@ import {
   QueryPlanReview,
   QueryPlanSummary,
 } from "@/components/QueryPlanReview";
-import { Step5ResultDetails } from "@/components/I2b2XmlResults";
+import { Step5ResultAnalysis } from "@/components/Step5ResultAnalysis";
 import {
   assertAgentStreamResponse,
   classifyStageCompletion,
@@ -15,7 +15,7 @@ import {
   type StageUiStatus,
 } from "@/lib/common/agents-client-state";
 import { hasValidationErrors } from "@/lib/stage4/query-plan-review";
-import { runQueryXml } from "@/lib/i2b2/query-xml"
+import { fakeRunQueryXml, runQueryXml } from "@/lib/i2b2/query-xml"
 import type {
   QueryPlanItem,
   Step4QueryPlan,
@@ -121,7 +121,7 @@ const STAGES = [
   },
   {
     num: 5,
-    name: "Sharephe / i2b2 XML Compiler",
+    name: "2x2 Table: Incidence Rate Ratio (IRR)",
     color: "blue",
     description: "Compile reviewed query logic into validated i2b2 XML",
     team: "Informatics Analyst Team",
@@ -351,7 +351,7 @@ function StageDetail({ result, stageNum, forceExpand }: { result: StageResult; s
       case 4:
         return <QueryPlanSummary plan={data as unknown as Step4QueryPlan} />;
       case 5:
-        return <Step5ResultDetails data={data} patientCounts={patientCounts} />;
+        return <Step5ResultAnalysis data={data} patientCounts={patientCounts} />;
       default:
         return <pre className="text-sm text-gray-900 whitespace-pre-wrap">{JSON.stringify(data, null, 2)}</pre>;
     }
@@ -1689,6 +1689,7 @@ export default function Home() {
             // run i2b2 query XMLs to get patient counts
             if (event.stage === 5 && event.result?.data?.artifacts) {
               const patientCounts: Map<string, number> = await runQueryXml(event.result.data.artifacts);
+              // const patientCounts: Map<string, number> = await fakeRunQueryXml(event.result.data.artifacts);
               setPatientCounts(patientCounts);
             }
             if (completion.restoreStep4Review) {

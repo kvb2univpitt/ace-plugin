@@ -111,6 +111,7 @@ export interface Step5XmlArtifact {
   sharepheReady: boolean;
   warnings: string[];
   panelSummary: string;
+  tableCell: string;
 }
 
 export interface Step5XmlPackage {
