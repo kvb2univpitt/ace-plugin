@@ -26,7 +26,7 @@ function parseXMLFromString(xmlString: string): Document | null {
     }
 }
 
-export async function fakeRunQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
+export function getFakeQueryXmlResults(artifacts: Step5XmlArtifact[]): Map<string, number> {
     const patientCounts: Map<string, number> = new Map();
 
     for (const artifact of artifacts) {
@@ -52,6 +52,10 @@ export async function fakeRunQueryXml(artifacts: Step5XmlArtifact[]): Promise<Ma
     }
 
     return patientCounts;
+}
+
+export async function fakeRunQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
+    return getFakeQueryXmlResults(artifacts);
 }
 
 export async function runQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
