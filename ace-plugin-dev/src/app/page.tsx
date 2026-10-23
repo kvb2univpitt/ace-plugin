@@ -1688,8 +1688,8 @@ export default function Home() {
             }
             // run i2b2 query XMLs to get patient counts
             if (event.stage === 5 && event.result?.data?.artifacts) {
-              // const patientCounts: Map<string, number> = await runQueryXml(event.result.data.artifacts);
-              const patientCounts: Map<string, number> = await fakeRunQueryXml(event.result.data.artifacts);
+              const patientCounts: Map<string, number> = await runQueryXml(event.result.data.artifacts);
+              // const patientCounts: Map<string, number> = await fakeRunQueryXml(event.result.data.artifacts);
               setPatientCounts(patientCounts);
             }
             if (completion.restoreStep4Review) {

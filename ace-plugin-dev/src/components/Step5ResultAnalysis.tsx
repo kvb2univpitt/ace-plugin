@@ -1,7 +1,8 @@
 "use client";
 
 import type { Step5XmlPackage } from "@/lib/common/query-plan-types";
-import { TwoByTwoTable } from "@/components/TwoByTwoTable";
+import type { CellData, TableData } from "@/types/stats-table";
+import { IncidenceRateRatioTable } from "@/components/IncidenceRateRatioTable";
 
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -47,50 +48,78 @@ function isStep5XmlPackage(value: unknown): value is Step5XmlPackage {
     );
 }
 
-function checkDataExists(cellData: Map<string, number>): string[] {
-    const errorMsg: string[] = [];
-
-    if (!cellData.has("r1c1")) {
-        errorMsg.push("Counts for the exposed group that has a positive outcome.")
-    }
-    if (!cellData.has("r1c2")) {
-        errorMsg.push("Total counts for the exposed group.");
-    }
-    if (!cellData.has("r1c1")) {
-        errorMsg.push("Counts for the unexposed group that has a positive outcome.");
-    }
-    if (!cellData.has("r2c2")) {
-        errorMsg.push("Total counts for the unexposed group.");
-    }
-
-    return errorMsg;
+function createCellData(id: string, description: string, counts: number): CellData {
+    return {
+        id: id,
+        description: description,
+        counts: counts
+    };
 }
 
-function checkDataIsValid(cellData: Map<string, number>): string[] {
-    const errorMsg: string[] = [];
-
-    const r1c2 = cellData.get("r1c2");
-    const r2c2 = cellData.get("r2c2");
-
-    if (!(r1c2 && r1c2 > 0)) {
-        errorMsg.push("Total counts for the exposed group.");
-    }
-    if (!(r2c2 && r2c2 > 0)) {
-        errorMsg.push("Total counts for the unexposed group.");
-    }
-
-    return errorMsg;
-}
-
-export function getTableCellData(xmlPackage: Step5XmlPackage, patientCounts: Map<string, number>): Map<string, number> {
-    const cellData: Map<string, number> = new Map();
+function getTableData(xmlPackage: Step5XmlPackage, patientCounts: Map<string, number>): TableData {
+    const tableData: TableData = {
+        r1c1: createCellData("", "", -1),
+        r1c2: createCellData("", "", -1),
+        r2c1: createCellData("", "", -1),
+        r2c2: createCellData("", "", -1)
+    };
 
     xmlPackage.artifacts.map((artifact) => {
-        const counts = patientCounts.get(artifact.queryId);
-        cellData.set(artifact.tableCell, counts ? counts : 0);
+        const queryId = artifact.queryId;
+        const queryName = artifact.queryName;
+        const tableCell = artifact.tableCell;
+        const counts = patientCounts.get(queryId) ?? -1;
+
+        const cellData = createCellData(queryId, queryName, counts);
+        switch (tableCell) {
+            case "r1c1":
+                tableData.r1c1 = cellData;
+                break;
+            case "r1c2":
+                tableData.r1c2 = cellData;
+                break;
+            case "r2c1":
+                tableData.r2c1 = cellData;
+                break;
+            case "r2c2":
+                tableData.r2c2 = cellData;
+                break;
+        }
     });
 
-    return cellData;
+    return tableData;
+}
+
+function checkDataExists(tableData: TableData): string[] {
+    const errorMsg: string[] = [];
+
+    if (tableData.r1c1.counts < 0) {
+        errorMsg.push("Counts for the exposed group that has a positive outcome.")
+    }
+    if (tableData.r1c2.counts < 0) {
+        errorMsg.push("Total counts for the exposed group.");
+    }
+    if (tableData.r2c1.counts < 0) {
+        errorMsg.push("Counts for the unexposed group that has a positive outcome.");
+    }
+    if (tableData.r2c2.counts < 0) {
+        errorMsg.push("Total counts for the unexposed group.");
+    }
+
+    return errorMsg;
+}
+
+function checkDataIsValid(tableData: TableData): string[] {
+    const errorMsg: string[] = [];
+
+    if (tableData.r1c2.counts <= 0) {
+        errorMsg.push("Total counts for the exposed group.");
+    }
+    if (tableData.r2c2.counts <= 0) {
+        errorMsg.push("Total counts for the unexposed group.");
+    }
+
+    return errorMsg;
 }
 
 export function Step5ResultAnalysis({
@@ -101,9 +130,9 @@ export function Step5ResultAnalysis({
     patientCounts: Map<string, number>;
 }): React.ReactNode {
     if (isStep5XmlPackage(data)) {
-        const cellData = getTableCellData(data, patientCounts);
+        const tableData = getTableData(data, patientCounts);
 
-        let errors = checkDataExists(cellData);
+        let errors = checkDataExists(tableData);
         if (errors.length > 0) {
             return (
                 <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
@@ -122,7 +151,7 @@ export function Step5ResultAnalysis({
             );
         }
 
-        errors = checkDataIsValid(cellData);
+        errors = checkDataIsValid(tableData);
         if (errors.length > 0) {
             return (
                 <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
@@ -141,7 +170,7 @@ export function Step5ResultAnalysis({
             );
         }
 
-        return <TwoByTwoTable package={data} patientCounts={patientCounts} />;
+        return <IncidenceRateRatioTable package={data} tableData={tableData} />
     } else {
         return (
             <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
