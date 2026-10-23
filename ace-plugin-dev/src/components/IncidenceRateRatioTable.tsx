@@ -69,14 +69,102 @@ function computeIncidenceRateRatio(tableData: TableData): IncidenceRateRatio {
     }
 }
 
-export function TwoByTwoTable({
-    counts: counts
+export function IncidenceRateRatioStatsTable({
+    irrStats: irrStats
 }: {
-    counts: TableCounts
-}): React.ReactNode {
+    irrStats: IncidenceRateRatio
+}) {
+    return (
+        <div className="relative overflow-x-auto shadow-md max-w-4xl">
+            <table className="text-sm text-left text-gray-700 border-collapse">
+                <tbody className="divide-y divide-gray-200">
+                    <tr>
+                        <th scope="row" className="px-3 py-1">SE for ln(IRR)</th>
+                        <td className="px-3 py-1">{irrStats.lnStdErr.toFixed(4)}</td>
+                    </tr>
+                    <tr className="bg-gray-100">
+                        <th scope="row" className="px-3 py-1">Incidence rate ratio</th>
+                        <td className="px-3 py-1">{irrStats.irr.toFixed(4)}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" className="px-3 py-1">Lower bound 95% CI</th>
+                        <td className="px-3 py-1">{irrStats.lower95CI.toFixed(4)}</td>
+                    </tr>
+                    <tr className="bg-gray-100">
+                        <th scope="row" className="px-3 py-1">Upper bound 95% CI</th>
+                        <td className="px-3 py-1">{irrStats.upper95CI.toFixed(4)}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" className="px-3 py-1">P-Value</th>
+                        <td className="px-3 py-1">{(irrStats.pValue < 0.0001) ? '< 0.0001' : irrStats.pValue.toFixed(4)}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+export function IncidenceRateRatioCountsTable({
+    tableData: tableData,
+    irrStats: irrStats
+}: {
+    tableData: TableData
+    irrStats: IncidenceRateRatio
+}) {
+    const r1c1 = tableData.r1c1.counts;
+    const r1c2 = tableData.r1c2.counts;
+    const r2c1 = tableData.r2c1.counts;
+    const r2c2 = tableData.r2c2.counts;
+
+    const r1c3 = irrStats.exposedTotalPer100;
+    const r2c3 = irrStats.unexposedTotalPer100
+
+    const r1c4 = `${irrStats.irr.toFixed(4)} (${irrStats.lower95CI.toFixed(4)}-${irrStats.upper95CI.toFixed(4)})`;
+
+
     return (
         <div className="relative overflow-x-auto">
-            <table className="text-sm [&_td]:px-6 [&_td]:py-4 [&_th]:px-6 [&_th]:py-4">
+            <table className="text-sm text-gray-700 [&_td]:px-6 [&_td]:py-4 [&_th]:px-6 [&_th]:py-4">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Outcome</th>
+                        <th>Total</th>
+                        <th>Total # Per 100 Persons</th>
+                        <th>Incidence rate ratio (95% CI)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" className="text-right">Exposed Group</th>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r1c1}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r1c2}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center">{(r1c3 * 100).toFixed(2)}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r1c4}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" className="text-right">Unexposed Group</th>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r2c1}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r2c2}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center">{(r2c3 * 100).toFixed(2)}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 bg-slate-700 text-center text-white">Reference</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+export function TwoByTwoTable({
+    tableData: tableData
+}: {
+    tableData: TableData
+}): React.ReactNode {
+    const counts = computeTableCounts(tableData);
+
+    return (
+        <div className="relative overflow-x-auto">
+            <table className="text-sm text-gray-700 [&_td]:px-6 [&_td]:py-4 [&_th]:px-6 [&_th]:py-4">
                 <thead>
                     <tr>
                         <th></th>
@@ -110,6 +198,51 @@ export function TwoByTwoTable({
     );
 }
 
+export function QueryXMLResultTable({
+    tableData: tableData
+}: {
+    tableData: TableData
+}): React.ReactNode {
+    return (
+        <div className="relative overflow-x-auto shadow-md max-w-4xl">
+            <table className="text-sm text-left text-gray-700 border-collapse">
+                <caption className="font-bold caption-bottom p-4 text-xs italic text-gray-800 bg-gray-50 border-t border-gray-100">
+                    i2b2 Query XML Results
+                </caption>
+                <thead className="text-xs text-gray-700 bg-gray-200 border-b border-gray-200">
+                    <tr>
+                        <th scope="col" className="px-3 py-2 font-semibold">Query Name</th>
+                        <th scope="col" className="px-3 py-2 font-semibold">Counts</th>
+                        <th scope="col" className="px-3 py-2 font-semibold">Exposure</th>
+                    </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                    <tr className="bg-white">
+                        <td className="px-3 py-1">{tableData.r1c1.description}</td>
+                        <td className="px-3 py-1">{tableData.r1c1.counts}</td>
+                        <td className="px-3 py-1">Exposed with positive outcome.</td>
+                    </tr>
+                    <tr className="bg-gray-100">
+                        <td className="px-3 py-1">{tableData.r1c2.description}</td>
+                        <td className="px-3 py-1">{tableData.r1c2.counts}</td>
+                        <td className="px-3 py-1">Exposed total counts.</td>
+                    </tr>
+                    <tr className="bg-white">
+                        <td className="px-3 py-1">{tableData.r2c1.description}</td>
+                        <td className="px-3 py-1">{tableData.r2c1.counts}</td>
+                        <td className="px-3 py-1">Unexposed with positive outcome.</td>
+                    </tr>
+                    <tr className="bg-gray-100 ">
+                        <td className="px-3 py-1">{tableData.r2c2.description}</td>
+                        <td className="px-3 py-1">{tableData.r2c2.counts}</td>
+                        <td className="px-3 py-1">Unexposed total counts.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
 export function IncidenceRateRatioTable({
     package: xmlPackage,
     tableData: tableData
@@ -117,78 +250,18 @@ export function IncidenceRateRatioTable({
     package: Step5XmlPackage,
     tableData: TableData
 }): React.ReactNode {
-    const counts = computeTableCounts(tableData);
     const irrStats = computeIncidenceRateRatio(tableData);
-
-    const r1c1 = tableData.r1c1.counts;
-    const r1c2 = tableData.r1c2.counts;
-    const r2c1 = tableData.r2c1.counts;
-    const r2c2 = tableData.r2c2.counts;
-
-    const r1c3 = irrStats.exposedTotalPer100;
-    const r2c3 = irrStats.unexposedTotalPer100
-
-    const r1c4 = `${irrStats.irr.toFixed(4)} (${irrStats.lower95CI.toFixed(4)}-${irrStats.upper95CI.toFixed(4)})`;
 
     return (
         <section aria-labelledby="step5-query-set" className="space-y-4">
-            <div className="border-b border-gray-200 pb-4">
+            <div className="border-b border-gray-200 py-6">
                 <h5 id="step5-query-set" className="wrap-break-word text-base font-semibold text-gray-900">{xmlPackage.querySetName || "Untitled i2b2 query set"}</h5>
             </div>
-            <div className="relative overflow-x-auto mb-10">
-                <table className="text-sm [&_td]:px-6 [&_td]:py-4 [&_th]:px-6 [&_th]:py-4">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Outcome</th>
-                            <th>Total</th>
-                            <th>Total # Per 100 Persons</th>
-                            <th>Incidence rate ratio (95% CI)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" className="text-right">Exposed Group</th>
-                            <td className="border border-slate-300 dark:border-slate-700 text-center">{r1c1}</td>
-                            <td className="border border-slate-300 dark:border-slate-700 text-center">{r1c2}</td>
-                            <td className="border border-slate-300 dark:border-slate-700 text-center">{(r1c3 * 100).toFixed(2)}</td>
-                            <td className="border border-slate-300 dark:border-slate-700 text-center">{r1c4}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" className="text-right">Unexposed Group</th>
-                            <td className="border border-slate-300 dark:border-slate-700 text-center">{r2c1}</td>
-                            <td className="border border-slate-300 dark:border-slate-700 text-center">{r2c2}</td>
-                            <td className="border border-slate-300 dark:border-slate-700 text-center">{(r2c3 * 100).toFixed(2)}</td>
-                            <td className="border border-slate-300 dark:border-slate-700 bg-slate-700 text-center text-white">Reference</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div className="relative overflow-x-auto">
-                <table className="w-60 border-collapse text-left text-sm text-gray-700">
-                    <tbody>
-                        <tr>
-                            <th scope="row">SE for ln(IRR)</th>
-                            <td>{irrStats.lnStdErr.toFixed(4)}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Incidence rate ratio</th>
-                            <td>{irrStats.irr.toFixed(4)}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Lower bound 95% CI</th>
-                            <td>{irrStats.lower95CI.toFixed(4)}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Upper bound 95% CI</th>
-                            <td>{irrStats.upper95CI.toFixed(4)}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">P-Value</th>
-                            <td>{(irrStats.pValue < 0.0001) ? '< 0.0001' : irrStats.pValue.toFixed(4)}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div className="grid grid-flow-col grid-rows-4 gap-1">
+                <TwoByTwoTable tableData={tableData} />
+                <IncidenceRateRatioCountsTable tableData={tableData} irrStats={irrStats} />
+                <QueryXMLResultTable tableData={tableData} />
+                <IncidenceRateRatioStatsTable irrStats={irrStats} />
             </div>
         </section>
     );
