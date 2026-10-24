@@ -3,28 +3,28 @@
     "status": "success",
     "data": {
         "version": "step4-query-plan-v1",
-        "question": "In Patients with calf muscle injury, what is the effect of Calf muscle injury (e.g., strain, tear, or rupture) versus Patients without calf muscle injury on Incidence or risk of deep vein thrombosis (DVT)?",
+        "question": "In Patients with calf muscle injury, what is the effect of Presence of calf muscle injury (e.g., strain, tear, or hematoma) versus Patients without calf muscle injury on Risk of deep vein thrombosis (DVT) over Not specified; likely acute to subacute (days to weeks post-injury)?",
         "analysisType": "comparative_count",
-        "querySetName": "Calf Muscle Injury vs No Injury — DVT Incidence",
+        "querySetName": "Calf Muscle Injury vs No Injury: DVT Risk",
         "countQueries": [
             {
                 "id": "query-calf-injury-with-dvt",
-                "name": "Calf Muscle Injury — With DVT",
+                "name": "Calf Muscle Injury Group — DVT Outcome",
                 "purpose": "Count patients with calf muscle injury who subsequently develop DVT",
                 "panels": [
                     {
-                        "id": "panel-calf-injury-arm1",
-                        "title": "Calf Muscle Injury",
+                        "id": "panel-calf-injury-exposed",
+                        "title": "Calf Muscle Injury (Strain, Tear, or Hematoma)",
                         "logic": "WITH",
                         "items": [
                             {
-                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or rupture)",
-                                "concept": "Calf muscle injury (strain, tear, or rupture)",
+                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or hematoma)",
+                                "concept": "Calf muscle injury (strain, tear, or hematoma)",
                                 "category": "diagnosis",
                                 "role": "target_condition",
-                                "code": "PHECODE:1008",
-                                "display": "Crushing Or Internal Injury To Organs (PHECODE:1008) ",
-                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_0\\Phecode_1008\\",
+                                "code": "PHECODE:728",
+                                "display": "Disorders Of Muscle, Ligament, And Fascia (PHECODE:728) ",
+                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_14\\Phecode_728\\",
                                 "system": "PheCode",
                                 "level": 7,
                                 "source": "step3_reviewed"
@@ -34,13 +34,13 @@
                         "panelTiming": "ANY"
                     },
                     {
-                        "id": "panel-dvt-arm1",
+                        "id": "panel-dvt-exposed",
                         "title": "Deep Vein Thrombosis",
                         "logic": "WITH",
                         "items": [
                             {
-                                "mappingId": "outcome:deep vein thrombosis incidence",
-                                "concept": "Deep Vein Thrombosis incidence",
+                                "mappingId": "outcome:deep vein thrombosis",
+                                "concept": "Deep Vein Thrombosis",
                                 "category": "outcome",
                                 "code": "PHECODE:452.2",
                                 "display": "Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ",
@@ -56,32 +56,33 @@
                 ],
                 "temporalRules": [
                     {
-                        "id": "temporal-injury-before-dvt-arm1",
+                        "id": "temporal-injury-before-dvt-exposed",
                         "relation": "BEFORE",
-                        "firstPanelId": "panel-calf-injury-arm1",
-                        "secondPanelId": "panel-dvt-arm1",
-                        "minDays": 0
+                        "firstPanelId": "panel-calf-injury-exposed",
+                        "secondPanelId": "panel-dvt-exposed",
+                        "minDays": 0,
+                        "maxDays": 90
                     }
                 ]
             },
             {
                 "id": "query-calf-injury-denominator",
-                "name": "Calf Muscle Injury — All Patients",
-                "purpose": "Count all patients with calf muscle injury (denominator for injury arm)",
+                "name": "Calf Muscle Injury Group — Denominator",
+                "purpose": "Count all patients with calf muscle injury (exposed arm denominator)",
                 "panels": [
                     {
                         "id": "panel-calf-injury-denom",
-                        "title": "Calf Muscle Injury",
+                        "title": "Calf Muscle Injury (Strain, Tear, or Hematoma)",
                         "logic": "WITH",
                         "items": [
                             {
-                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or rupture)",
-                                "concept": "Calf muscle injury (strain, tear, or rupture)",
+                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or hematoma)",
+                                "concept": "Calf muscle injury (strain, tear, or hematoma)",
                                 "category": "diagnosis",
                                 "role": "target_condition",
-                                "code": "PHECODE:1008",
-                                "display": "Crushing Or Internal Injury To Organs (PHECODE:1008) ",
-                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_0\\Phecode_1008\\",
+                                "code": "PHECODE:728",
+                                "display": "Disorders Of Muscle, Ligament, And Fascia (PHECODE:728) ",
+                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_14\\Phecode_728\\",
                                 "system": "PheCode",
                                 "level": 7,
                                 "source": "step3_reviewed"
@@ -95,22 +96,22 @@
             },
             {
                 "id": "query-no-calf-injury-with-dvt",
-                "name": "No Calf Muscle Injury — With DVT",
+                "name": "No Calf Muscle Injury Group — DVT Outcome",
                 "purpose": "Count patients without calf muscle injury who develop DVT",
                 "panels": [
                     {
-                        "id": "panel-no-calf-injury-arm2",
+                        "id": "panel-no-calf-injury",
                         "title": "No Calf Muscle Injury",
                         "logic": "WITHOUT",
                         "items": [
                             {
-                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or rupture)",
-                                "concept": "Calf muscle injury (strain, tear, or rupture)",
+                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or hematoma)",
+                                "concept": "Calf muscle injury (strain, tear, or hematoma)",
                                 "category": "diagnosis",
                                 "role": "target_condition",
-                                "code": "PHECODE:1008",
-                                "display": "Crushing Or Internal Injury To Organs (PHECODE:1008) ",
-                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_0\\Phecode_1008\\",
+                                "code": "PHECODE:728",
+                                "display": "Disorders Of Muscle, Ligament, And Fascia (PHECODE:728) ",
+                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_14\\Phecode_728\\",
                                 "system": "PheCode",
                                 "level": 7,
                                 "source": "step3_reviewed"
@@ -120,13 +121,13 @@
                         "panelTiming": "ANY"
                     },
                     {
-                        "id": "panel-dvt-arm2",
+                        "id": "panel-dvt-unexposed",
                         "title": "Deep Vein Thrombosis",
                         "logic": "WITH",
                         "items": [
                             {
-                                "mappingId": "outcome:deep vein thrombosis incidence",
-                                "concept": "Deep Vein Thrombosis incidence",
+                                "mappingId": "outcome:deep vein thrombosis",
+                                "concept": "Deep Vein Thrombosis",
                                 "category": "outcome",
                                 "code": "PHECODE:452.2",
                                 "display": "Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ",
@@ -144,8 +145,8 @@
             },
             {
                 "id": "query-no-calf-injury-denominator",
-                "name": "No Calf Muscle Injury — All Patients",
-                "purpose": "Count all patients without calf muscle injury (denominator for comparator arm)",
+                "name": "No Calf Muscle Injury Group — Denominator",
+                "purpose": "Count all patients without calf muscle injury (comparator arm denominator)",
                 "panels": [
                     {
                         "id": "panel-no-calf-injury-denom",
@@ -153,13 +154,13 @@
                         "logic": "WITHOUT",
                         "items": [
                             {
-                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or rupture)",
-                                "concept": "Calf muscle injury (strain, tear, or rupture)",
+                                "mappingId": "diagnosis:calf muscle injury (strain, tear, or hematoma)",
+                                "concept": "Calf muscle injury (strain, tear, or hematoma)",
                                 "category": "diagnosis",
                                 "role": "target_condition",
-                                "code": "PHECODE:1008",
-                                "display": "Crushing Or Internal Injury To Organs (PHECODE:1008) ",
-                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_0\\Phecode_1008\\",
+                                "code": "PHECODE:728",
+                                "display": "Disorders Of Muscle, Ligament, And Fascia (PHECODE:728) ",
+                                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_14\\Phecode_728\\",
                                 "system": "PheCode",
                                 "level": 7,
                                 "source": "step3_reviewed"
@@ -174,30 +175,30 @@
         ],
         "analysisCells": [
             {
-                "id": "cell-calf-injury-denominator",
-                "arm": "Calf Muscle Injury",
+                "id": "cell-exposed-denominator",
+                "arm": "Calf Muscle Injury Group",
                 "outcome": "cohort",
                 "kind": "denominator",
                 "queryId": "query-calf-injury-denominator"
             },
             {
-                "id": "cell-calf-injury-dvt",
-                "arm": "Calf Muscle Injury",
-                "outcome": "Deep Vein Thrombosis incidence",
+                "id": "cell-exposed-dvt",
+                "arm": "Calf Muscle Injury Group",
+                "outcome": "Deep Vein Thrombosis",
                 "kind": "outcome_positive",
                 "queryId": "query-calf-injury-with-dvt"
             },
             {
-                "id": "cell-no-calf-injury-denominator",
-                "arm": "No Calf Muscle Injury",
+                "id": "cell-unexposed-denominator",
+                "arm": "No Calf Muscle Injury Group",
                 "outcome": "cohort",
                 "kind": "denominator",
                 "queryId": "query-no-calf-injury-denominator"
             },
             {
-                "id": "cell-no-calf-injury-dvt",
-                "arm": "No Calf Muscle Injury",
-                "outcome": "Deep Vein Thrombosis incidence",
+                "id": "cell-unexposed-dvt",
+                "arm": "No Calf Muscle Injury Group",
+                "outcome": "Deep Vein Thrombosis",
                 "kind": "outcome_positive",
                 "queryId": "query-no-calf-injury-with-dvt"
             }
@@ -209,20 +210,20 @@
     "reviewContext": {
         "authoritativeItems": [
             {
-                "mappingId": "diagnosis:calf muscle injury (strain, tear, or rupture)",
-                "concept": "Calf muscle injury (strain, tear, or rupture)",
+                "mappingId": "diagnosis:calf muscle injury (strain, tear, or hematoma)",
+                "concept": "Calf muscle injury (strain, tear, or hematoma)",
                 "category": "diagnosis",
-                "code": "PHECODE:1008",
-                "display": "Crushing Or Internal Injury To Organs (PHECODE:1008) ",
-                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_0\\Phecode_1008\\",
+                "code": "PHECODE:728",
+                "display": "Disorders Of Muscle, Ligament, And Fascia (PHECODE:728) ",
+                "path": "\\\\ACT_RESEARCH\\ACT\\Research\\Phenotyping\\PheCode\\Case\\Category_14\\Phecode_728\\",
                 "system": "PheCode",
                 "level": 7,
                 "source": "step3_reviewed",
                 "role": "target_condition"
             },
             {
-                "mappingId": "outcome:deep vein thrombosis incidence",
-                "concept": "Deep Vein Thrombosis incidence",
+                "mappingId": "outcome:deep vein thrombosis",
+                "concept": "Deep Vein Thrombosis",
                 "category": "outcome",
                 "code": "PHECODE:452.2",
                 "display": "Deep Vein Thrombosis [Dvt] (PHECODE:452.2) ",
@@ -232,6 +233,6 @@
                 "source": "step3_reviewed"
             }
         ],
-        "artifactToken": "eyJhdXRob3JpdGF0aXZlSXRlbXMiOlt7ImNhdGVnb3J5IjoiZGlhZ25vc2lzIiwiY29kZSI6IlBIRUNPREU6MTAwOCIsImNvbmNlcHQiOiJDYWxmIG11c2NsZSBpbmp1cnkgKHN0cmFpbiwgdGVhciwgb3IgcnVwdHVyZSkiLCJkaXNwbGF5IjoiQ3J1c2hpbmcgT3IgSW50ZXJuYWwgSW5qdXJ5IFRvIE9yZ2FucyAoUEhFQ09ERToxMDA4KSAiLCJsZXZlbCI6NywibWFwcGluZ0lkIjoiZGlhZ25vc2lzOmNhbGYgbXVzY2xlIGluanVyeSAoc3RyYWluLCB0ZWFyLCBvciBydXB0dXJlKSIsInBhdGgiOiJcXFxcQUNUX1JFU0VBUkNIXFxBQ1RcXFJlc2VhcmNoXFxQaGVub3R5cGluZ1xcUGhlQ29kZVxcQ2FzZVxcQ2F0ZWdvcnlfMFxcUGhlY29kZV8xMDA4XFwiLCJyb2xlIjoidGFyZ2V0X2NvbmRpdGlvbiIsInNvdXJjZSI6InN0ZXAzX3Jldmlld2VkIiwic3lzdGVtIjoiUGhlQ29kZSJ9LHsiY2F0ZWdvcnkiOiJvdXRjb21lIiwiY29kZSI6IlBIRUNPREU6NDUyLjIiLCJjb25jZXB0IjoiRGVlcCBWZWluIFRocm9tYm9zaXMgaW5jaWRlbmNlIiwiZGlzcGxheSI6IkRlZXAgVmVpbiBUaHJvbWJvc2lzIFtEdnRdIChQSEVDT0RFOjQ1Mi4yKSAiLCJsZXZlbCI6OCwibWFwcGluZ0lkIjoib3V0Y29tZTpkZWVwIHZlaW4gdGhyb21ib3NpcyBpbmNpZGVuY2UiLCJwYXRoIjoiXFxcXEFDVF9SRVNFQVJDSFxcQUNUXFxSZXNlYXJjaFxcUGhlbm90eXBpbmdcXFBoZUNvZGVcXENhc2VcXENhdGVnb3J5XzhcXFBoZWNvZGVfNDUyXFxQaGVjb2RlXzQ1Mi4yXFwiLCJzb3VyY2UiOiJzdGVwM19yZXZpZXdlZCIsInN5c3RlbSI6IlBoZUNvZGUifV0sImNsaW5pY2FsUXVlc3Rpb24iOiJJbiBQYXRpZW50cyB3aXRoIGNhbGYgbXVzY2xlIGluanVyeSwgd2hhdCBpcyB0aGUgZWZmZWN0IG9mIENhbGYgbXVzY2xlIGluanVyeSAoZS5nLiwgc3RyYWluLCB0ZWFyLCBvciBydXB0dXJlKSB2ZXJzdXMgUGF0aWVudHMgd2l0aG91dCBjYWxmIG11c2NsZSBpbmp1cnkgb24gSW5jaWRlbmNlIG9yIHJpc2sgb2YgZGVlcCB2ZWluIHRocm9tYm9zaXMgKERWVCk_IiwiZXhwaXJlc0F0IjoxNzkyNTQ5OTgxMzEyLCJnZW5lcmF0aW9uIjoibGxtIiwiaXNzdWVkQXQiOjE3OTI1NDgxODEzMTIsIm5vbmNlIjoiR3lTbjFDUFkxTndzVWhuaC12bmJ3dyIsInBlcnNpc3RlbnRJc3N1ZXMiOltdLCJ2ZXJzaW9uIjoic3RlcDQtcmV2aWV3LWFydGlmYWN0LXYxIn0.uSg9rNsCqQtsPLQruCesBYluli_l7ANJ7356QTFH3l4"
+        "artifactToken": "eyJhdXRob3JpdGF0aXZlSXRlbXMiOlt7ImNhdGVnb3J5IjoiZGlhZ25vc2lzIiwiY29kZSI6IlBIRUNPREU6NzI4IiwiY29uY2VwdCI6IkNhbGYgbXVzY2xlIGluanVyeSAoc3RyYWluLCB0ZWFyLCBvciBoZW1hdG9tYSkiLCJkaXNwbGF5IjoiRGlzb3JkZXJzIE9mIE11c2NsZSwgTGlnYW1lbnQsIEFuZCBGYXNjaWEgKFBIRUNPREU6NzI4KSAiLCJsZXZlbCI6NywibWFwcGluZ0lkIjoiZGlhZ25vc2lzOmNhbGYgbXVzY2xlIGluanVyeSAoc3RyYWluLCB0ZWFyLCBvciBoZW1hdG9tYSkiLCJwYXRoIjoiXFxcXEFDVF9SRVNFQVJDSFxcQUNUXFxSZXNlYXJjaFxcUGhlbm90eXBpbmdcXFBoZUNvZGVcXENhc2VcXENhdGVnb3J5XzE0XFxQaGVjb2RlXzcyOFxcIiwicm9sZSI6InRhcmdldF9jb25kaXRpb24iLCJzb3VyY2UiOiJzdGVwM19yZXZpZXdlZCIsInN5c3RlbSI6IlBoZUNvZGUifSx7ImNhdGVnb3J5Ijoib3V0Y29tZSIsImNvZGUiOiJQSEVDT0RFOjQ1Mi4yIiwiY29uY2VwdCI6IkRlZXAgVmVpbiBUaHJvbWJvc2lzIiwiZGlzcGxheSI6IkRlZXAgVmVpbiBUaHJvbWJvc2lzIFtEdnRdIChQSEVDT0RFOjQ1Mi4yKSAiLCJsZXZlbCI6OCwibWFwcGluZ0lkIjoib3V0Y29tZTpkZWVwIHZlaW4gdGhyb21ib3NpcyIsInBhdGgiOiJcXFxcQUNUX1JFU0VBUkNIXFxBQ1RcXFJlc2VhcmNoXFxQaGVub3R5cGluZ1xcUGhlQ29kZVxcQ2FzZVxcQ2F0ZWdvcnlfOFxcUGhlY29kZV80NTJcXFBoZWNvZGVfNDUyLjJcXCIsInNvdXJjZSI6InN0ZXAzX3Jldmlld2VkIiwic3lzdGVtIjoiUGhlQ29kZSJ9XSwiY2xpbmljYWxRdWVzdGlvbiI6IkluIFBhdGllbnRzIHdpdGggY2FsZiBtdXNjbGUgaW5qdXJ5LCB3aGF0IGlzIHRoZSBlZmZlY3Qgb2YgUHJlc2VuY2Ugb2YgY2FsZiBtdXNjbGUgaW5qdXJ5IChlLmcuLCBzdHJhaW4sIHRlYXIsIG9yIGhlbWF0b21hKSB2ZXJzdXMgUGF0aWVudHMgd2l0aG91dCBjYWxmIG11c2NsZSBpbmp1cnkgb24gUmlzayBvZiBkZWVwIHZlaW4gdGhyb21ib3NpcyAoRFZUKSBvdmVyIE5vdCBzcGVjaWZpZWQ7IGxpa2VseSBhY3V0ZSB0byBzdWJhY3V0ZSAoZGF5cyB0byB3ZWVrcyBwb3N0LWluanVyeSk_IiwiZXhwaXJlc0F0IjoxNzkyODEzNDYzOTM0LCJnZW5lcmF0aW9uIjoibGxtIiwiaXNzdWVkQXQiOjE3OTI4MTE2NjM5MzQsIm5vbmNlIjoiY2RUVDNIX1FGeHlxd3F0QnBOY3NIUSIsInBlcnNpc3RlbnRJc3N1ZXMiOltdLCJ2ZXJzaW9uIjoic3RlcDQtcmV2aWV3LWFydGlmYWN0LXYxIn0.vmToAgIBTg9wFkz1JEBRsjdLI1-9hoxG-9wPGUMeMPc"
     }
 }

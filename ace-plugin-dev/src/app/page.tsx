@@ -15,12 +15,12 @@ import {
   type StageUiStatus,
 } from "@/lib/common/agents-client-state";
 import { hasValidationErrors } from "@/lib/stage4/query-plan-review";
-import { fakeRunQueryXml, runQueryXml } from "@/lib/i2b2/query-xml"
 import type {
   QueryPlanItem,
   Step4QueryPlan,
   Step4ReviewContext,
 } from "@/lib/common/query-plan-types";
+import { getPatientCounts } from "@/lib/i2b2/query-xml"
 
 /** One member path of an expanded drug class, as shown in the review list. */
 interface ClassPath {
@@ -121,7 +121,7 @@ const STAGES = [
   },
   {
     num: 5,
-    name: "2x2 Table: Incidence Rate Ratio (IRR)",
+    name: "Sharephe / i2b2 XML Compiler",
     color: "blue",
     description: "Compile reviewed query logic into validated i2b2 XML",
     team: "Informatics Analyst Team",
@@ -1596,7 +1596,7 @@ export default function Home() {
     ? hasValidationErrors(editedQueryPlan)
     : false;
 
-  // Step 5
+  // step 5
   const [patientCounts, setPatientCounts] = useState<Map<string, number>>(new Map());
 
   const abortRef = useRef<AbortController | null>(null);
@@ -1605,9 +1605,8 @@ export default function Home() {
     body: Record<string, unknown>,
     signal: AbortSignal
   ) => {
-
     const ACE_REST_URL = (typeof window === 'undefined') ? '' : window.ACE_REST_URL;
-    const response = await fetch(`${ACE_REST_URL}/api/i2b2/agents`, {
+    const response = await fetch(`${ACE_REST_URL}/api/agents`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -1686,12 +1685,12 @@ export default function Home() {
                 );
               }
             }
-            // run i2b2 query XMLs to get patient counts
-            if (event.stage === 5 && event.result?.data?.artifacts) {
-              // const patientCounts: Map<string, number> = await runQueryXml(event.result.data.artifacts);
-              const patientCounts: Map<string, number> = await fakeRunQueryXml(event.result.data.artifacts);
-              setPatientCounts(patientCounts);
+            if (event.stage === 5 && event.result?.data) {
+              const counts: Map<string, number> = await getPatientCounts(event.result.data);
+
+              setPatientCounts(counts);
             }
+
             if (completion.restoreStep4Review) {
               const recovery = resolveStep4ReviewRecovery(event.result);
               const reviewUpdate = recovery.update;
@@ -1748,6 +1747,7 @@ export default function Home() {
     setStep4AuthoritativeItems(null);
     setStep4ArtifactToken(null);
     setStages(STAGES.map((s) => ({ stage: s.num, agent: s.name, status: "pending" })));
+    setPatientCounts(new Map())
 
     abortRef.current = new AbortController();
 

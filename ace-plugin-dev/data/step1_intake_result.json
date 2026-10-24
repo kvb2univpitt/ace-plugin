@@ -4,228 +4,121 @@
     "data": {
         "isValid": true,
         "questionType": "comparative_effectiveness",
-        "refinedQuestion": "In Patients with calf muscle injury, what is the effect of Calf muscle injury (e.g., strain, tear, or rupture) versus Patients without calf muscle injury on Incidence or risk of deep vein thrombosis (DVT)?",
+        "refinedQuestion": "In Patients with calf muscle injury, what is the effect of Presence of calf muscle injury (e.g., strain, tear, or hematoma) versus Patients without calf muscle injury on Risk of deep vein thrombosis (DVT) over Not specified; likely acute to subacute (days to weeks post-injury)?",
         "literatureStatus": "no_existing_evidence",
-        "literatureNotes": "The retrieved literature does not directly address whether calf muscle injury (strain, tear, or rupture) increases DVT risk relative to uninjured comparators. Nearly all papers concern calf muscle *vein* thrombosis (CMVT/ICMVT) as a complication of hip, tibial plateau, or lower-limb fracture surgery — a different exposure that shares terminology but not the structured question's injury type — and the only moderately applicable study examines cast-immobilized foot/ankle trauma. What can be said indirectly is that lower-limb injury plus immobilization is consistently associated with high rates of (mostly asymptomatic) distal DVT, with pooled CMVT occurrence of ~18% after fracture surgery and 27% asymptomatic DVT in casted foot/ankle trauma, all occurring in the injured limb. No study provides an injured-versus-uninjured comparison for isolated calf muscle injury.",
+        "literatureNotes": "The retrieved literature does not directly answer whether calf muscle injury increases DVT risk relative to uninjured comparators; no study used a without-injury control group. The single moderately applicable paper, an ultrasound series of 141 \"tennis leg\" patients, found DVT in roughly 10% of patients presenting with suspected gastrocnemius injury, establishing that DVT is a common concurrent or mimicking finding in this presentation but not an attributable risk [12091669]. The remaining papers address calf muscle vein thrombosis as an outcome in hip fracture, stroke, diabetic myonecrosis, or war-related vascular trauma populations, and speak to DVT risk factors in those settings rather than to calf muscle injury as an exposure [37507789, 42437913, 19110532, 15251835, 24462283]. Overall the evidence base is observational, uncontrolled, and largely indirect.",
         "literaturePapers": [
             {
-                "title": "The effect of active toe movement (AToM) on calf pump function and deep vein  thrombosis in patients with acute foot and ankle trauma treated with cast - A prospective randomized study.",
-                "authors": "Hickey BA et al.",
-                "year": "2017",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/28865588/",
-                "relevance": "RCT · applicability: moderate · cited in assessment · Population is acute foot and ankle trauma patients in cast, not specifically calf muscle strain/tear/rupture; Intervention is active toe movement vs. no movement (thromboprophylaxis strategy), not calf muscle injury per se; DVT incidence is reported (27% asymptomatic DVT), which partially addresses the outcome of interest, but in a different injury population"
-            },
-            {
-                "title": "Calf Muscle Vein Thrombosis After Hip and Lower-Limb Fracture Surgery: A  Systematic Review and Meta-Analysis.",
-                "authors": "Jin X et al.",
-                "year": "2026",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/42606384/",
-                "relevance": "systematic-review · applicability: low · cited in assessment · Population is patients undergoing surgery for hip and lower-limb fractures, not calf muscle injury (strain/tear/rupture); Intervention/exposure is fracture surgery, not calf muscle injury; Outcome is calf muscle vein thrombosis (CMVT), not DVT as a consequence of calf muscle injury per se; All included studies from mainland China only"
-            },
-            {
-                "title": "The effect of calf muscular vein thrombosis on the prognosis within one year  postoperatively of geriatric hip fracture patients: a propensity score-matched analysis.",
-                "authors": "Jiang J et al.",
-                "year": "2024",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/39736565/",
-                "relevance": "cohort · applicability: low · cited in assessment · Population is geriatric hip fracture patients, not patients with calf muscle strain/tear/rupture; CMVT here is a preoperative complication of hip fracture, not a consequence of calf muscle injury; Outcome focuses on postoperative mortality prognosis, not DVT incidence from calf muscle injury"
-            },
-            {
-                "title": "An unexpected event after deep vein thrombosis in spinal cord injury: Ruptured  Baker's cyst.",
-                "authors": "Mengi A et al.",
-                "year": "2022",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/32379533/",
-                "relevance": "case-series · applicability: low · cited in assessment · Single case report of a spinal cord injury patient, not calf muscle injury population; Injury described is Baker's cyst rupture in context of DVT treatment, not calf muscle strain/tear; Does not address incidence or risk of DVT following calf muscle injury"
+                "title": "Tennis leg: clinical US study of 141 patients and anatomic investigation of four  cadavers with MR imaging and US.",
+                "authors": "Delgado GJ et al.",
+                "year": "2002",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/12091669/",
+                "relevance": "cohort · applicability: moderate · cited in assessment · Population is 'tennis leg' patients (gastrocnemius rupture/fluid collection), which partially overlaps with calf muscle injury but is a specific subset; DVT presence is assessed as a secondary/incidental finding rather than as a primary quantified outcome with a comparator group; No control group without calf muscle injury to calculate relative DVT risk; Cadaveric sub-study is not clinically informative for DVT risk"
             },
             {
                 "title": "Elderly hip fracture patients with isolated calf muscle vein thrombosis are more  likely to have suffered an intertrochanteric fracture and be hypertensive.",
                 "authors": "Jin L et al.",
                 "year": "2023",
                 "url": "https://pubmed.ncbi.nlm.nih.gov/37507789/",
-                "relevance": "cohort · applicability: low · cited in assessment · Population is elderly hip fracture patients, not patients with calf muscle strain/tear/rupture; Exposure is hip fracture, not calf muscle injury; DVT location analysis is secondary to hip fracture context, not calf muscle injury"
-            },
-            {
-                "title": "In-hospital deep vein thrombosis after tibial plateau fractures: incidence,  laterality/anatomy, and risk factors in a multicenter retrospective cohort of 3366 patients.",
-                "authors": "Yang S et al.",
-                "year": "2026",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/41886203/",
-                "relevance": "cohort · applicability: low · cited in assessment · Population is patients with tibial plateau fractures, not calf muscle strain/tear/rupture; Calf muscle vein thrombosis is explicitly excluded from primary endpoint; Intervention/exposure is tibial plateau fracture, not calf muscle injury"
-            },
-            {
-                "title": "[Comparison of muscle injury between piriformis muscle release and preservation  in total hip arthroplasty via supercapsular percutaneously-assisted total hip approach].",
-                "authors": "Gan F et al.",
-                "year": "2025",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/40545460/",
-                "relevance": "RCT · applicability: low · cited in assessment · Population is total hip arthroplasty patients, not patients with calf muscle strain/tear/rupture; Intervention compares piriformis muscle release vs. preservation during THA surgery, unrelated to calf muscle injury; Outcome is muscle injury serological markers and hip function, not DVT incidence; No DVT outcome reported"
-            },
-            {
-                "title": "Pathogenesis of venous thrombosis.",
-                "authors": "Mammen EF",
-                "year": "1992",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/1451539/",
-                "relevance": "other · applicability: low · cited in assessment · Narrative review of venous thrombosis pathogenesis focused on spinal cord injury patients, not calf muscle injury; Does not provide incidence or risk data for DVT following calf muscle injury; No comparator group relevant to the structured question"
-            },
-            {
-                "title": "Risk factors and prediction model of nomogram for preoperative calf muscle vein  thrombosis in geriatric hip fracture patients.",
-                "authors": "Jiang J et al.",
-                "year": "2023",
-                "url": "https://pubmed.ncbi.nlm.nih.gov/37720507/",
-                "relevance": "cohort · applicability: low · cited in assessment · Population is geriatric hip fracture patients, not patients with calf muscle strain/tear/rupture; CMVT is studied as a complication of hip fracture, not of calf muscle injury; Focus is on risk prediction nomogram for a different population"
+                "relevance": "cohort · applicability: low · cited in assessment · Population is elderly hip fracture patients, not general calf muscle injury patients; DVT here is a complication of hip fracture/surgery, not a consequence of calf muscle injury per se; Calf muscle vein thrombosis (CMVT) is treated as the outcome (DVT subtype), not the exposure/intervention; No comparator of patients with vs. without calf muscle injury in the context of the structured question"
             },
             {
                 "title": "Risk factors for preoperative isolated calf muscle vein thrombosis in elderly  patients with hip fracture and development of a predictive nomogram: a retrospective study.",
                 "authors": "Meng Y et al.",
                 "year": "2026",
                 "url": "https://pubmed.ncbi.nlm.nih.gov/42437913/",
-                "relevance": "cohort · applicability: low · cited in assessment · Population is elderly hip fracture patients, not patients with calf muscle strain/tear/rupture; ICMVT studied as perioperative complication of hip fracture surgery, not as sequela of calf muscle injury; Focus is on risk factor identification and nomogram development for a different population"
+                "relevance": "cohort · applicability: low · cited in assessment · Population is elderly hip fracture patients, not general calf muscle injury patients; Intervention of interest is hip fracture surgery, not calf muscle strain/tear/hematoma; Isolated calf muscle vein thrombosis is the outcome (DVT subtype) rather than a risk factor (exposure) as framed in the structured question; Does not address DVT risk attributable to calf muscle injury itself"
+            },
+            {
+                "title": "Diabetic myonecrosis in a previously healthy woman and review of a 25-year Mayo  Clinic experience.",
+                "authors": "Bunch TJ et al.",
+                "year": "2002",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/15251835/",
+                "relevance": "case-series · applicability: low · cited in assessment · Case report/series of diabetic myonecrosis, not calf muscle strain, tear, or hematoma from injury; No comparison group; does not quantify DVT risk; Population is a single patient with undiagnosed diabetes, not a general calf muscle injury population; Ultrasound was negative for DVT in this case, providing no relevant risk data"
+            },
+            {
+                "title": "Deep venous thrombosis in stroke patients during rehabilitation phase.",
+                "authors": "Hara Y",
+                "year": "2008",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/19110532/",
+                "relevance": "cohort · applicability: low · cited in assessment · Population is post-stroke rehabilitation patients, not patients with calf muscle injury; DVT risk factors studied are neurological (paresis, spasticity) rather than calf muscle injury; Calf muscle involvement is as a site of spasticity, not traumatic injury; Different mechanism and population from the structured question"
+            },
+            {
+                "title": "Outcomes of popliteal vascular injuries at Sri Lankan war-front military  hospital: case series of 44 cases.",
+                "authors": "Ratnayake A et al.",
+                "year": "2014",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/24462283/",
+                "relevance": "case-series · applicability: low · cited in assessment · Population is military trauma patients with popliteal vascular injuries, not calf muscle strain/tear/hematoma; Injury mechanism (war-related popliteal vascular trauma) is fundamentally different from calf muscle injury; Thrombosis reported is graft/vascular thrombosis, not deep vein thrombosis from muscle injury; No comparator group; DVT risk from calf muscle injury not addressed"
             }
         ],
         "revisedQuestions": [
             {
-                "question": "In Patients with calf muscle injury, what is the effect of Calf muscle injury (e.g., strain, tear, or rupture) versus Patients without calf muscle injury on Incidence or risk of deep vein thrombosis (DVT)?",
+                "question": "In Patients with calf muscle injury, what is the effect of Presence of calf muscle injury (e.g., strain, tear, or hematoma) versus Patients without calf muscle injury on Risk of deep vein thrombosis (DVT) over Not specified; likely acute to subacute (days to weeks post-injury)?",
                 "clarification": "Restated in explicit PICO-T form (population, intervention, comparator, and outcome made precise)."
             }
         ],
         "suitableForShrine": true,
         "suitabilityNotes": "Stage 1 characterizes the published evidence base for this question. SHRINE suitability is confirmed downstream, when the concepts are mapped to queryable ontology codes.",
         "suggestedClarifications": [
-            "Severity of calf muscle injury is unspecified (e.g., grade I strain vs. complete rupture)",
-            "Whether injury is traumatic, sports-related, or iatrogenic is not defined",
-            "No timeframe specified for DVT development post-injury",
-            "Whether thromboprophylaxis use is controlled for is unclear",
-            "Patient population is unspecified (e.g., athletes, general population, post-surgical patients)"
+            "Type and severity of calf muscle injury not specified (e.g., strain grade I–III, complete tear, hematoma, contusion)",
+            "Whether the population is athletic, post-surgical, trauma-related, or general — not specified",
+            "Whether DVT refers to isolated calf/distal DVT, proximal DVT, or both",
+            "Timeframe for DVT development after injury not specified",
+            "Whether thromboprophylaxis use is accounted for or controlled",
+            "Whether the question is about association (observational) or causation"
         ],
         "structured": {
             "population": "Patients with calf muscle injury",
-            "intervention": "Calf muscle injury (e.g., strain, tear, or rupture)",
+            "intervention": "Presence of calf muscle injury (e.g., strain, tear, or hematoma)",
             "comparator": "Patients without calf muscle injury",
-            "outcome": "Incidence or risk of deep vein thrombosis (DVT)",
-            "timeframe": null,
+            "outcome": "Risk of deep vein thrombosis (DVT)",
+            "timeframe": "Not specified; likely acute to subacute (days to weeks post-injury)",
             "ambiguities": [
-                "Severity of calf muscle injury is unspecified (e.g., grade I strain vs. complete rupture)",
-                "Whether injury is traumatic, sports-related, or iatrogenic is not defined",
-                "No timeframe specified for DVT development post-injury",
-                "Whether thromboprophylaxis use is controlled for is unclear",
-                "Patient population is unspecified (e.g., athletes, general population, post-surgical patients)"
+                "Type and severity of calf muscle injury not specified (e.g., strain grade I–III, complete tear, hematoma, contusion)",
+                "Whether the population is athletic, post-surgical, trauma-related, or general — not specified",
+                "Whether DVT refers to isolated calf/distal DVT, proximal DVT, or both",
+                "Timeframe for DVT development after injury not specified",
+                "Whether thromboprophylaxis use is accounted for or controlled",
+                "Whether the question is about association (observational) or causation"
             ]
         },
         "assessment": {
-            "summary": "The retrieved literature does not directly address whether calf muscle injury (strain, tear, or rupture) increases DVT risk relative to uninjured comparators. Nearly all papers concern calf muscle *vein* thrombosis (CMVT/ICMVT) as a complication of hip, tibial plateau, or lower-limb fracture surgery — a different exposure that shares terminology but not the structured question's injury type — and the only moderately applicable study examines cast-immobilized foot/ankle trauma. What can be said indirectly is that lower-limb injury plus immobilization is consistently associated with high rates of (mostly asymptomatic) distal DVT, with pooled CMVT occurrence of ~18% after fracture surgery and 27% asymptomatic DVT in casted foot/ankle trauma, all occurring in the injured limb. No study provides an injured-versus-uninjured comparison for isolated calf muscle injury.",
+            "summary": "The retrieved literature does not directly answer whether calf muscle injury increases DVT risk relative to uninjured comparators; no study used a without-injury control group. The single moderately applicable paper, an ultrasound series of 141 \"tennis leg\" patients, found DVT in roughly 10% of patients presenting with suspected gastrocnemius injury, establishing that DVT is a common concurrent or mimicking finding in this presentation but not an attributable risk [12091669]. The remaining papers address calf muscle vein thrombosis as an outcome in hip fracture, stroke, diabetic myonecrosis, or war-related vascular trauma populations, and speak to DVT risk factors in those settings rather than to calf muscle injury as an exposure [37507789, 42437913, 19110532, 15251835, 24462283]. Overall the evidence base is observational, uncontrolled, and largely indirect.",
             "key_findings": [
-                "In cast-immobilized acute foot and ankle trauma without chemical thromboprophylaxis, 27% of patients sustained asymptomatic DVT on surveillance ultrasound, and all DVTs occurred in the injured limb — the closest available analogue for 'injury to the lower limb confers substantial distal DVT risk,' though the injury is fracture/soft-tissue trauma in a cast rather than a calf muscle strain or tear [28865588]",
-                "Pooled calf muscle vein thrombosis occurrence after hip and lower-limb fracture surgery was 18.2% (95% CI 12.4-26.0%), with preoperative prevalence 29.1% and postoperative incidence 12.3%, though heterogeneity was extreme (I²=96.1%) and all eight studies came from mainland China [42606384]",
-                "In tibial plateau fracture patients under routine thromboprophylaxis with protocolized serial duplex surveillance, cumulative in-hospital DVT was 20.0%, with 64% of events detected preoperatively; isolated intermuscular calf-muscle vein thrombosis was recorded only descriptively and excluded from the primary endpoint [41886203]",
-                "Risk factors for calf muscle vein thrombosis in fracture populations consistently include female sex, intertrochanteric fracture pattern, hypertension, lower albumin and hemoglobin, smoking, and longer time from injury to admission — suggesting patient- and delay-related factors, not the muscle injury itself, drive much of the observed thrombosis risk [42606384, 37507789, 37720507, 42437913]",
-                "Isolated calf muscle vein thrombosis in geriatric hip fracture patients was not associated with increased mortality at 1, 3, 6, or 12 months after propensity-score matching, though it was associated with longer hospital stay — relevant to the clinical significance, not the incidence, of distal thrombosis [39736565]",
-                "Mechanistic review material supports stasis in calf venous sinuses and loss of calf muscle pump action as a core element of Virchow's triad in lower-limb venous thrombosis, offering biological plausibility but no incidence or comparative risk data for calf muscle injury [1451539]"
+                "In 141 consecutive patients referred with clinical 'tennis leg' (suspected medial gastrocnemius injury) and evaluated by ultrasound, DVT was found in isolation in 14 patients (9.9%), while 66.7% had medial gastrocnemius rupture and 21.3% had an inter-aponeurotic fluid collection — indicating DVT both coexists with and clinically mimics acute calf muscle injury [12091669]",
+                "No retrieved study compared DVT incidence in patients with versus without calf muscle injury, so no relative risk, odds ratio, or attributable risk for calf muscle injury as an exposure can be derived from this evidence set [12091669, 37507789, 42437913]",
+                "Isolated calf muscle vein thrombosis (ICMVT) is common as an outcome in non-injury orthopedic populations: among 951 elderly hip fracture patients, 31.3% had preoperative DVT, with CMVT associated with lower albumin and hemoglobin, intertrochanteric fracture, and hypertension [37507789]; a separate hip fracture cohort of 673 patients identified independent risk factors for preoperative ICMVT and built a predictive nomogram [42437913]",
+                "In 272 subacute/chronic stroke rehabilitation patients, DVT occurred in 8.8%, predominantly distal and on the hemiparetic side, with severe calf muscle spasticity strongly associated (OR 28.2, 95% CI 6.9–113.5) — suggesting calf muscle dysfunction/immobility, rather than muscle tearing per se, as a plausible mechanistic pathway [19110532]",
+                "Case-level reports of non-traumatic calf muscle pathology (diabetic myonecrosis presenting with acute leg pain and swelling) had negative ultrasound for DVT, reinforcing that painful swollen calf of muscular origin requires imaging to separate muscle injury from DVT but providing no risk estimate [15251835]",
+                "Thrombotic complications reported in severe lower-limb trauma series are graft/arterial thromboses after popliteal vascular repair (5 of 21 interposition vein grafts), not venous thromboembolism attributable to muscle injury [24462283]"
             ],
             "applicability_gaps": [
-                "No retrieved study enrolled patients with calf muscle strain, tear, or rupture as the exposure; the dominant literature concerns calf muscle *vein* thrombosis after hip/lower-limb fracture surgery, which is a different entity despite the shared 'calf muscle' terminology [42606384, 39736565, 37507789, 37720507, 42437913]",
-                "No study provides the structured comparator — patients without calf muscle injury — for DVT incidence; fracture cohorts compare DVT-positive vs DVT-negative patients within an injured population, not injured vs uninjured [37507789, 42437913]",
-                "Populations skew elderly, hospitalized, and surgical (geriatric hip fracture, tibial plateau fracture, THA), with no representation of athletes or ambulatory community patients with sports-related calf strains [42606384, 39736565, 37720507, 41886203, 40545460]",
-                "The pooled fracture-surgery evidence derives entirely from mainland China, limiting generalizability of absolute rates [42606384]",
-                "Two papers address spinal cord injury or intraoperative piriformis release and report no DVT-incidence data relevant to calf muscle injury at all [32379533, 1451539, 40545460]",
-                "The one moderate-applicability trial excluded patients requiring chemical thromboprophylaxis and was limited to ages 18-60, so neither prophylaxis-treated nor elderly calf-injury patients are represented [28865588]"
+                "No study included a comparator group of patients without calf muscle injury; all estimates are single-arm proportions or risk-factor analyses within other populations",
+                "Injury grading is absent — no stratification by strain grade I–III, complete tear, hematoma, or contusion; the most relevant paper [12091669] mixes gastrocnemius rupture, fluid collection, plantaris and soleus tears",
+                "Most papers are drawn from populations fundamentally different from the question: elderly hip fracture surgery [37507789, 42437913], post-stroke rehabilitation [19110532], diabetic myonecrosis [15251835], and military popliteal vascular trauma [24462283]",
+                "In several papers calf muscle vein thrombosis is the outcome (a DVT subtype) rather than the exposure, inverting the direction of the structured question [37507789, 42437913]",
+                "Athletic/sports-injury populations, the most common setting for calf strain, are represented only indirectly via the 'tennis leg' referral series [12091669]",
+                "Thromboprophylaxis use, immobilization, and casting/weight-bearing status are not controlled or reported in relation to calf muscle injury in any retrieved study",
+                "Proximal versus isolated distal DVT is not consistently distinguished; [12091669] does not specify DVT anatomic level, while hip fracture cohorts separate CMVT, deep calf, and proximal DVT in a non-injury context [37507789]"
             ],
             "unresolved_ambiguities": [
-                "Whether DVT risk differs by calf muscle injury severity (grade I strain vs complete gastrocnemius/soleus rupture) is entirely unaddressed",
-                "Whether mechanism of injury (sports-related, traumatic, iatrogenic) modifies thrombotic risk is not examined in any retrieved study",
-                "No data on the time course of DVT development after calf muscle injury, or the duration of elevated risk",
-                "The independent contribution of immobilization/non-weight-bearing versus the muscle injury itself cannot be separated from the available evidence",
-                "Whether thromboprophylaxis alters DVT incidence specifically after calf muscle injury is untested; the one randomized intervention (active toe movement) showed no effect on DVT in a different injury population [28865588]",
-                "Clinical significance of calf-vein thrombosis after muscle injury — propagation to proximal DVT, pulmonary embolism, or post-thrombotic syndrome — is not addressed in this population"
+                "Whether the ~10% DVT prevalence in tennis leg reflects injury-induced thrombosis, pre-existing DVT misdiagnosed as muscle injury, or referral/ascertainment bias cannot be determined [12091669]",
+                "Time course of DVT risk after calf muscle injury (acute days vs. weeks of reduced mobility) is not reported by any study",
+                "No evidence on whether thromboprophylaxis alters DVT incidence after calf muscle injury, or which injury severities would warrant it",
+                "Causality versus association cannot be addressed given the absence of controlled or prospectively followed injury cohorts",
+                "No data on progression of isolated calf/muscular vein thrombosis to proximal DVT or pulmonary embolism specifically in the muscle-injury population"
             ],
-            "confidence": 0.15,
+            "confidence": 0.2,
             "cited_pmids": [
-                "42606384",
-                "39736565",
+                "12091669",
                 "37507789",
-                "41886203",
-                "37720507",
                 "42437913",
-                "28865588",
-                "1451539",
-                "32379533",
-                "40545460"
+                "19110532",
+                "15251835",
+                "24462283"
             ]
         },
         "gradedPapers": [
-            {
-                "article": {
-                    "pmid": "42606384",
-                    "title": "Calf Muscle Vein Thrombosis After Hip and Lower-Limb Fracture Surgery: A  Systematic Review and Meta-Analysis.",
-                    "abstract": "BackgroundCalf muscle vein thrombosis (CMVT) is frequently grouped with distal  deep vein thrombosis in fracture-related studies, leaving its specific burden and clinical relevance uncertain. This systematic review and meta-analysis evaluated the occurrence, associated factors, and clinical outcomes of CMVT in patients undergoing surgery for hip and lower-limb fractures.MethodsPubMed, Embase, Web of Science Core Collection, the Cochrane Library, ClinicalTrials.gov, Google Scholar, and reference lists were searched from inception to June 8, 2026. Eligible studies reported extractable CMVT-related data in patients undergoing surgery or perioperative management for hip or lower-limb fractures. Random-effects meta-analyses were performed using logit-transformed proportions. Risk factors with extractable 2 x 2 data were pooled as unadjusted odds ratios (ORs).ResultsEight observational studies involving 3,695 patients were included; seven studies with 3,435 patients contributed to quantitative synthesis. All studies were conducted in mainland China. Overall, 691 CMVT events were reported. The pooled occurrence was 18.2% (95% CI, 12.4%-26.0%; prediction interval, 4.4%-51.6%; I(2) = 96.1%). The pooled preoperative prevalence was 29.1%, whereas the postoperative or perioperative incidence/detection rate was 12.3%. Exploratory pooled analyses showed higher CMVT odds in female patients (OR, 1.53; 95% CI, 1.03-2.29) and in those with intertrochanteric rather than femoral neck fractures (OR, 1.36; 95% CI, 1.10-1.68). Narrative synthesis suggested possible associations with thrombus progression, postoperative complications, prolonged hospitalization, early mortality, and poorer functional outcomes.ConclusionCMVT is relatively common in patients undergoing surgery for hip and lower-limb fractures, particularly when screened preoperatively in older patients with hip fractures. However, because all included studies were observational and conducted in mainland China, and substantial heterogeneity was present, global generalizability is limited. These findings should therefore be interpreted cautiously and confirmed in prospective, multicenter studies.",
-                    "year": 2026,
-                    "journal": "Clin Appl Thromb Hemost",
-                    "authors": [
-                        "Jin X",
-                        "Dong Z",
-                        "Li J",
-                        "Bian M"
-                    ]
-                },
-                "grade": {
-                    "pmid": "42606384",
-                    "study_type": "systematic-review",
-                    "applicability": "low",
-                    "applicability_flags": [
-                        "Population is patients undergoing surgery for hip and lower-limb fractures, not calf muscle injury (strain/tear/rupture)",
-                        "Intervention/exposure is fracture surgery, not calf muscle injury",
-                        "Outcome is calf muscle vein thrombosis (CMVT), not DVT as a consequence of calf muscle injury per se",
-                        "All included studies from mainland China only"
-                    ]
-                }
-            },
-            {
-                "article": {
-                    "pmid": "39736565",
-                    "title": "The effect of calf muscular vein thrombosis on the prognosis within one year  postoperatively of geriatric hip fracture patients: a propensity score-matched analysis.",
-                    "abstract": "INTRODUCTION: Calf muscular vein thrombosis (CMVT) is a type of distal deep vein  thrombosis, which is common in geriatric hip fracture patients. However, studies focusing on whether the orthopedic operation has an impact on the prognosis of geriatric hip fracture patients with CMVT are very limited. Therefore, the aim of this study was to explore whether geriatric hip fractures with CMVT affect the mortality of patients within one year postoperatively. The difficulty of the operation, postoperative complications, the status of thrombosis, and function scores were also compared. MATERIALS AND METHODS: Geriatric hip fracture patients who underwent surgery between January 2019 and January 2021 were included. Patients were divided into groups with and without CMVT by preoperative color Doppler ultrasound examination. Propensity score-matching (PSM) was performed in a ratio of 1:1 between the patient with and without CMVT groups. Baseline characteristics, laboratory results, perioperative indicators and prognosis of patients were collected retrospectively. Intraoperative and postoperative comparisons were conducted between patients with and without CMVT. RESULTS: Two hundred and sixty geriatric hip fracture patients were included. Eighty-nine patients in each group were matched after PSM. There was no significant difference in mortality between the two groups at one-month, three-month, six-month, and one-year postoperatively. However, patients with CMVT had longer hospital stays, a higher incidence of postoperative complications, and a higher incidence of thrombosis progression than patients without CMVT in the follow-up. CONCLUSION: No significant difference in mortality within one year postoperatively was observed in Chinese geriatric hip fracture patients with or without CMVT formation. Strategies such as close monitoring the status of thrombosis, individualized care, and strengthening rehabilitation are recommended to reduce the risk of complications and optimize patient outcomes in this patient population. TRIAL REGISTRATION: Chinese Clinical Trial Registry (ChiCTR2300069411). Registered March 15, 2023, https://www.chictr.org.cn/showproj.html?proj=192079 .",
-                    "year": 2024,
-                    "journal": "BMC Geriatr",
-                    "authors": [
-                        "Jiang J",
-                        "Xing F",
-                        "Luo R",
-                        "Chen Z",
-                        "Liu H",
-                        "Xiang Z",
-                        "Duan X"
-                    ]
-                },
-                "grade": {
-                    "pmid": "39736565",
-                    "study_type": "cohort",
-                    "applicability": "low",
-                    "applicability_flags": [
-                        "Population is geriatric hip fracture patients, not patients with calf muscle strain/tear/rupture",
-                        "CMVT here is a preoperative complication of hip fracture, not a consequence of calf muscle injury",
-                        "Outcome focuses on postoperative mortality prognosis, not DVT incidence from calf muscle injury"
-                    ]
-                }
-            },
-            {
-                "article": {
-                    "pmid": "32379533",
-                    "title": "An unexpected event after deep vein thrombosis in spinal cord injury: Ruptured  Baker's cyst.",
-                    "abstract": "Context: Deep vein thrombosis (DVT) is a well-known complication of spinal cord  injury (SCI). Low-molecular-weight heparin (LMWH) may be used in SCI patients who develop DVT, but can lead to subcutaneous bleeding. If subcutaneous bleeding occurs, then lymphedema, cellulitis, muscle or tendon tearing, or baker's cyst rupture should be considered in the differential diagnosis.Findings: Herein, we present a 61-year-old female patient who was hospitalized for rehabilitation due to paraplegia, and used LMWH due to DVT development. The patient suddenly developed pain, swelling, and discoloration of the left lower extremity. Although subcutaneous hemorrhage was considered initially, ultrasound and MRI revealed a ruptured Baker's cyst. In addition to supportive therapy, ultrasound-guided aspiration was performed.Conclusion/Clinical Relevance: In this report, we present a case of clinically severe Baker's cyst rupture, which occurred in the lower extremity of a SCI patient using LMWH due to DVT in the same extremity. To our knowledge, no similar cases have been reported.",
-                    "year": 2022,
-                    "journal": "J Spinal Cord Med",
-                    "authors": [
-                        "Mengi A",
-                        "Ilhan I"
-                    ]
-                },
-                "grade": {
-                    "pmid": "32379533",
-                    "study_type": "case-series",
-                    "applicability": "low",
-                    "applicability_flags": [
-                        "Single case report of a spinal cord injury patient, not calf muscle injury population",
-                        "Injury described is Baker's cyst rupture in context of DVT treatment, not calf muscle strain/tear",
-                        "Does not address incidence or risk of DVT following calf muscle injury"
-                    ]
-                }
-            },
             {
                 "article": {
                     "pmid": "37507789",
@@ -247,148 +140,10 @@
                     "study_type": "cohort",
                     "applicability": "low",
                     "applicability_flags": [
-                        "Population is elderly hip fracture patients, not patients with calf muscle strain/tear/rupture",
-                        "Exposure is hip fracture, not calf muscle injury",
-                        "DVT location analysis is secondary to hip fracture context, not calf muscle injury"
-                    ]
-                }
-            },
-            {
-                "article": {
-                    "pmid": "41886203",
-                    "title": "In-hospital deep vein thrombosis after tibial plateau fractures: incidence,  laterality/anatomy, and risk factors in a multicenter retrospective cohort of 3366 patients.",
-                    "abstract": "BACKGROUND: We aimed to determine the cumulative in-hospital incidence, anatomic  distribution, and predictors of duplex ultrasonography-detected lower-extremity deep vein thrombosis (DVT) in patients hospitalized with tibial plateau fractures under routine thromboprophylaxis and protocolized surveillance. METHODS:  We retrospectively analyzed consecutive adults (>/= 18 years) admitted to two level-I trauma centers (November 2014-January 2024). Bilateral duplex ultrasonography was performed on admission/preoperatively (as soon as feasible after arrival and prior to surgery) and repeated serially during hospitalization (approximately every 5-7 days and when clinically suspected). The primary outcome was cumulative in-hospital DVT from admission to discharge; isolated intermuscular calf-muscle vein thrombosis (soleal/gastrocnemius) was recorded descriptively but excluded from the primary endpoint. Multiple injuries (polytrauma) were defined as >/= 1 additional acute traumatic lesion beyond the index tibial plateau fracture documented on admission. Pulmonary embolism (PE) was assessed only when clinically suspected and confirmed by computed tomography pulmonary angiography (CTPA). Multivariable logistic regression identified independent predictors; receiver operating characteristic (ROC) analysis evaluated discrimination for key continuous predictors. RESULTS: Among 3366 patients, 675 developed in-hospital DVT (20.0%). First detection occurred preoperatively in 432 (64.0%) patients and postoperatively in 243 (36.0%). Most events were distal (584/675, 86.5%) and ipsilateral (617/675, 91.4%); proximal DVT occurred in 91 patients (2.7% of the cohort). Independent predictors included age, multiple injuries, anemia, alcohol use, and inverse associations with activated partial thromboplastin time and serum sodium. ROC analysis of age showed modest discrimination (area under the curve [AUC] 0.593) with a cohort-derived Youden threshold of 42 years (age >/= 42 years). Symptomatic PE occurred in five patients (0.15% of the cohort) and was confirmed by CTPA. CONCLUSIONS:  Under protocolized inpatient duplex surveillance, patients with tibial plateau fracture had a substantial in-hospital burden of predominantly distal and ipsilateral DVT. Increasing age was independently associated with DVT; however, age alone showed limited discriminatory ability (AUC 0.593), with a cohort-derived Youden threshold of 42 years (age >/= 42 years). Multiple injuries, anemia, alcohol use, shorter activated partial thromboplastin time (APTT), and lower serum sodium were independently associated with DVT, while the discrimination of age alone was modest. These findings may help inform risk stratification and the consideration of systematic or risk-adapted surveillance and individualized perioperative management; prospective studies are needed to determine whether risk-tailored strategies improve clinically meaningful outcomes.",
-                    "year": 2026,
-                    "journal": "J Orthop Traumatol",
-                    "authors": [
-                        "Yang S",
-                        "Li G",
-                        "Li Y",
-                        "Long Y",
-                        "Zhang J",
-                        "Liu L",
-                        "Zhao Z",
-                        "Sun C",
-                        "Liu L",
-                        "Jin L",
-                        "Wang T",
-                        "Hou Z"
-                    ]
-                },
-                "grade": {
-                    "pmid": "41886203",
-                    "study_type": "cohort",
-                    "applicability": "low",
-                    "applicability_flags": [
-                        "Population is patients with tibial plateau fractures, not calf muscle strain/tear/rupture",
-                        "Calf muscle vein thrombosis is explicitly excluded from primary endpoint",
-                        "Intervention/exposure is tibial plateau fracture, not calf muscle injury"
-                    ]
-                }
-            },
-            {
-                "article": {
-                    "pmid": "40545460",
-                    "title": "[Comparison of muscle injury between piriformis muscle release and preservation  in total hip arthroplasty via supercapsular percutaneously-assisted total hip approach].",
-                    "abstract": "OBJECTIVE: To compare the effects of piriformis muscle release versus  preservation in total hip arthroplasty (THA) via supercapsular percutaneously-assisted total hip (SuperPATH) approach on muscle injury. METHODS: Forty-nine patients undergoing initial THA via SuperPATH approach between June 2022 and June 2023 were randomly divided into two groups, with 24 patients in trial group and 25 patients in control group. The trial group received piriformis muscle release intraoperatively, whereas the control group underwent muscle preservation. There was no significant difference in baseline data such as gender, age, body mass index, disease type, American Society of Anesthesiologists (ASA) grading, and preoperative muscle infiltration, muscle atrophy, muscle injury serological indicators, Harris score, etc. ( P>0.05). The incision length, operation time, intraoperative blood loss, total blood loss, hospital stay, preoperative and postoperative 1-day muscle injury serological indicators [including creatine kinase (CK) and lactic dehydrogenase (LDH)], and incidence of complications between two groups were recorded. Harris score was used to evaluate the recovery of hip joint function. MRI was used to evaluate the extent of hip muscle injuries (gluteus minimus, gluteus medius, piriformis, obturator internus, quadratus femoris), including tendon integrity, degree of muscle fat infiltration, and degree of muscle atrophy preoperative and 1 year postoperatively. RESULTS: The operation time, intraoperative blood loss, and total blood loss in the trial group were significantly shorter than those in the control group ( P<0.05). There was no significant difference in the incision length and length of hospital stay between the two groups ( P>0.05). Both groups showed a significant increase in serum CK and LDH levels on postoperative day 1 compared to preoperative levels ( P<0.05), but there was no significant difference between the two groups ( P>0.05). All patients were followed up, the follow-up time for the trial group and the control group was (14.8+/-2.8) and (15.1+/-3.0) months, respectively, with no significant difference ( t=-0.400, P=0.691). Incisions healed by first intention in both groups, with 1 case in the trial group and 2 cases in the control group experiencing venous thrombosis in the calf muscle space. There was no complication such as deep vein thrombosis, pulmonary embolism, hip dislocation, prosthesis loosening, or periprosthetic infection in the lower limbs. There was no significant difference in the incidence of complications between the two groups ( P>0.05). At 1 year after operation, both groups of patients showed a significant increase in Harris scores compared to preoperative levels ( P<0.05), but there was no significant difference between the two groups ( P>0.05). Compared with preoperative results, both groups showed significant fat infiltration in the piriformis and obturator muscles at 1 year after operation ( P<0.05), while there was no significant fat infiltration in the gluteus minimus, gluteus medius, and quadratus femoris muscles ( P>0.05). At 1 year after operation, except for the higher incidence of piriformis muscle fat infiltration in the control group compared to the trial group ( P<0.05), there was no significant difference in the incidence of other muscle infiltrations between the two groups ( P>0.05). At 1 year after operation, both groups of piriformis and obturator muscles showed significant muscle atrophy compared to preoperative levels ( P<0.05). The gluteus minimus and gluteus medius showed mild atrophy compared to preoperative levels, while the maximum transverse diameter of the quadriceps muscle slightly increased, but the differences were not significant ( P>0.05). There was no significant difference in the maximum cross-sectional diameter or cross-sectional area changes of each muscle between the two groups ( P>0.05). At 1 year after operation, the continuity of the gluteus medius and quadratus femoris muscles in both groups was intact. Both groups had some patients with incomplete continuity of the piriformis muscle, obturator internus, and gluteus minimus, but the difference was not significant ( P>0.05). CONCLUSION: The SuperPATH approach THA may cause injury to the piriformis, gluteus minimus, and obturator internus. The piriformis muscle release does not increase muscle injury, but it can shorten the operation time and reduce bleeding.",
-                    "year": 2025,
-                    "journal": "Zhongguo Xiu Fu Chong Jian Wai Ke Za Zhi",
-                    "authors": [
-                        "Gan F",
-                        "Zhang Q",
-                        "Mo F",
-                        "Li L",
-                        "Zheng F",
-                        "Lin X",
-                        "Qin H"
-                    ]
-                },
-                "grade": {
-                    "pmid": "40545460",
-                    "study_type": "RCT",
-                    "applicability": "low",
-                    "applicability_flags": [
-                        "Population is total hip arthroplasty patients, not patients with calf muscle strain/tear/rupture",
-                        "Intervention compares piriformis muscle release vs. preservation during THA surgery, unrelated to calf muscle injury",
-                        "Outcome is muscle injury serological markers and hip function, not DVT incidence",
-                        "No DVT outcome reported"
-                    ]
-                }
-            },
-            {
-                "article": {
-                    "pmid": "1451539",
-                    "title": "Pathogenesis of venous thrombosis.",
-                    "abstract": "This brief review attempts to describe the present understanding of the  pathogenesis of venous thrombosis in general with special reference to venous thromboembolism in spinal cord injury patients with paralysis. The component parts of Virchow's triad are examined. Most venous thrombi seem to originate in regions of slow blood flow, ie, the large venous sinuses of the calf and thigh or in valve cusp pockets. Decreased blood flow or even stasis due to lack of the pumping action of the large muscle packages in paralyzed patients is undoubtedly one of the major factors. As blood pools, activation products of the coagulation system accumulate locally leading potentially to local hypercoagulability. Activation products of clotting and fibrinolysis can induce endothelial damage which in turn leads to further activation of the hemostasis system. Endothelial damage may also result from distension of the vessel walls by the pooling blood. Blood flow is further decreased by hyperviscosity due to elevated fibrinogen levels and dehydration. Some spinal cord injury patients may sustain direct trauma to the legs; others may encounter vessel wall damage by the immobilized limbs. Shortly after injury, certain changes develop in the clotting system, especially increases in components of the von Willebrand factor macromolecular complex and increased platelet aggregability which could further contribute to hypercoagulability. Recently, an inhibition of the fibrinolytic system was suggested which also could add to a prothrombotic state. All of these interrelated processes clearly explain the high risk of venous thromboembolism in spinal cord injury patients with paralysis which has been clearly demonstrated by many investigators. It is hoped that intense thrombosis prophylaxis will reduce the incidence of this potentially devastating complication.",
-                    "year": 1992,
-                    "journal": "Chest",
-                    "authors": [
-                        "Mammen EF"
-                    ]
-                },
-                "grade": {
-                    "pmid": "1451539",
-                    "study_type": "other",
-                    "applicability": "low",
-                    "applicability_flags": [
-                        "Narrative review of venous thrombosis pathogenesis focused on spinal cord injury patients, not calf muscle injury",
-                        "Does not provide incidence or risk data for DVT following calf muscle injury",
-                        "No comparator group relevant to the structured question"
-                    ]
-                }
-            },
-            {
-                "article": {
-                    "pmid": "37720507",
-                    "title": "Risk factors and prediction model of nomogram for preoperative calf muscle vein  thrombosis in geriatric hip fracture patients.",
-                    "abstract": "INTRODUCTION: Calf muscular vein thrombosis (CMVT) is a common complication in  geriatric hip fracture patients. Despite its high incidence, prior research on the topic is limited. The occurrence of CMVT in patients will prolong the preoperative waiting time and even lead to serious thromboembolic events, which can be detrimental to the patient's prognosis. Therefore, this study aimed to identify the risk factors for preoperative CMVT in geriatric hip fracture patients and construct a nomogram model to predict the risk of preoperative CMVT in patients. MATERIALS AND METHODS: Geriatric hip fracture patients who underwent surgery between January 2019 and January 2022 were included. The patients were categorized into two groups depending on whether they had preoperative CMVT, confirmed through Color Doppler ultrasound or venography examination. Univariate and multivariate logistic regression analyses were used to analyze demographic characteristics, medical history, comorbidities, and laboratory tests. A nomogram was constructed to predict preoperative CMVT in geriatric hip fracture patients based on the results of the multivariate logistic regression. RESULTS: Three hundred and eighty-eight geriatric hip fracture patients, including one hundred and thirty-four patients with CMVT and two hundred and fifty-four patients without CMVT, were ultimately included in our study. After multivariable logistic regression analysis, the time from injury to admission, smoking history, serum albumin levels, and D-dimer levels was identified as independent risk factors and was entered into a nomogram model. The nomogram showed robust discrimination, with an area under the receiver operating characteristic curve of 0.805. The calibration curve showed strong agreement between the CMVT probabilities predicted by the nomogram and the actual probabilities. The decision curve analysis illustrates the excellent clinical utility of the model. CONCLUSION: We have constructed a new nomogram prediction model that can effectively predict the risk of preoperative CMVT in geriatric hip fracture patients based on their medical history and blood test results. This model can help clinicians make individualized predictions of CMVT that are tailored to each patient's unique circumstances.",
-                    "year": 2023,
-                    "journal": "Front Med (Lausanne)",
-                    "authors": [
-                        "Jiang J",
-                        "Xing F",
-                        "Luo R",
-                        "Chen Z",
-                        "Liu H",
-                        "Xiang Z",
-                        "Duan X"
-                    ]
-                },
-                "grade": {
-                    "pmid": "37720507",
-                    "study_type": "cohort",
-                    "applicability": "low",
-                    "applicability_flags": [
-                        "Population is geriatric hip fracture patients, not patients with calf muscle strain/tear/rupture",
-                        "CMVT is studied as a complication of hip fracture, not of calf muscle injury",
-                        "Focus is on risk prediction nomogram for a different population"
-                    ]
-                }
-            },
-            {
-                "article": {
-                    "pmid": "28865588",
-                    "title": "The effect of active toe movement (AToM) on calf pump function and deep vein  thrombosis in patients with acute foot and ankle trauma treated with cast - A prospective randomized study.",
-                    "abstract": "BACKGROUND: Patients with foot and ankle trauma treated with cast are advised to  perform toe movements to prevent venous thromboembolism (VTE). Our aim was to determine the effect of active toe movement on asymptomatic deep vein thrombosis (DVT) and venous calf pump function. METHODS: Patients aged 18-60 years with acute foot and ankle trauma requiring below knee non weight bearing cast were randomized to intervention (regular active toe movement) or control groups (n=100). Patients had bilateral lower limb venous ultrasound to assess for DVT on discharge from clinic. Patients requiring chemical thromboprophylaxis were excluded. RESULTS: 78 completed the study. 27% sustained asymptomatic DVT, with no statistically significant difference in calf pump function or DVT incidence between groups. All DVT's occurred in the injured lower limb. CONCLUSION: Active toe movement is not a viable strategy for thromboprophylaxis in patients with acute foot and ankle trauma treated with cast.",
-                    "year": 2017,
-                    "journal": "Foot Ankle Surg",
-                    "authors": [
-                        "Hickey BA",
-                        "Cleves A",
-                        "Alikhan R",
-                        "Pugh N",
-                        "Nokes L",
-                        "Perera A"
-                    ]
-                },
-                "grade": {
-                    "pmid": "28865588",
-                    "study_type": "RCT",
-                    "applicability": "moderate",
-                    "applicability_flags": [
-                        "Population is acute foot and ankle trauma patients in cast, not specifically calf muscle strain/tear/rupture",
-                        "Intervention is active toe movement vs. no movement (thromboprophylaxis strategy), not calf muscle injury per se",
-                        "DVT incidence is reported (27% asymptomatic DVT), which partially addresses the outcome of interest, but in a different injury population"
+                        "Population is elderly hip fracture patients, not general calf muscle injury patients",
+                        "DVT here is a complication of hip fracture/surgery, not a consequence of calf muscle injury per se",
+                        "Calf muscle vein thrombosis (CMVT) is treated as the outcome (DVT subtype), not the exposure/intervention",
+                        "No comparator of patients with vs. without calf muscle injury in the context of the structured question"
                     ]
                 }
             },
@@ -412,53 +167,154 @@
                     "study_type": "cohort",
                     "applicability": "low",
                     "applicability_flags": [
-                        "Population is elderly hip fracture patients, not patients with calf muscle strain/tear/rupture",
-                        "ICMVT studied as perioperative complication of hip fracture surgery, not as sequela of calf muscle injury",
-                        "Focus is on risk factor identification and nomogram development for a different population"
+                        "Population is elderly hip fracture patients, not general calf muscle injury patients",
+                        "Intervention of interest is hip fracture surgery, not calf muscle strain/tear/hematoma",
+                        "Isolated calf muscle vein thrombosis is the outcome (DVT subtype) rather than a risk factor (exposure) as framed in the structured question",
+                        "Does not address DVT risk attributable to calf muscle injury itself"
+                    ]
+                }
+            },
+            {
+                "article": {
+                    "pmid": "15251835",
+                    "title": "Diabetic myonecrosis in a previously healthy woman and review of a 25-year Mayo  Clinic experience.",
+                    "abstract": "OBJECTIVE: To describe a case of diabetic myonecrosis, an unusual complication of  diabetes mellitus, and to provide an overview of an institutional experience with this condition. METHODS: We report the clinical, laboratory, and imaging findings in a 50-year-old woman with no history of diabetes, who was hospitalized because of weakness in her left lower extremity and an infection in her right hand. RESULTS: A morbidly obese woman had sustained several falls attributable to left leg weakness, which had resulted in repetitive trauma to, and subsequent infection of, her right hand. Laboratory studies showed a fasting blood glucose level of 204 mg/dL, a glycated hemoglobin of 12.8%, and a calculated hemoglobin Alc of 10.6%. Results of evaluations for retinopathy and nephropathy were negative. Electromyography of the left leg suggested the presence of a diabetic plexopathy. Two weeks after admission of the patient, severe left lower extremity pain and swelling developed abruptly. Ultrasound evaluation of the leg was negative for deep venous thrombosis. Laboratory data revealed a leukocyte count of 7.1 x 10(3)/mL and a creatine kinase level of 26 U/L. Magnetic resonance imaging of the left leg demonstrated extensive muscle edema and collections of fluid surrounding the femur and posterior compartment of the thigh and extending into the left calf. Gram stain and cultures of aspirated fluid were negative. The patient was managed with supportive care, including strict glycemic control, periodic analgesia, and physical therapy. A review of medical records for a 25-year period at the Mayo Clinic disclosed only five patients with the diagnosis of diabetic myonecrosis. All five patients had insulin-treated diabetes and severe end-organ disease. CONCLUSION: The current case is the first report of myonecrosis as the initial manifestation of diabetes. This case also demonstrates that myonecrosis, although typically involving the thigh, can extend abruptly to the calf. Diabetic myonecrosis should be included in the differential diagnosis of an acutely painful lower extremity mass in patients with diabetes.",
+                    "year": 2002,
+                    "journal": "Endocr Pract",
+                    "authors": [
+                        "Bunch TJ",
+                        "Birskovich LM",
+                        "Eiken PW"
+                    ]
+                },
+                "grade": {
+                    "pmid": "15251835",
+                    "study_type": "case-series",
+                    "applicability": "low",
+                    "applicability_flags": [
+                        "Case report/series of diabetic myonecrosis, not calf muscle strain, tear, or hematoma from injury",
+                        "No comparison group; does not quantify DVT risk",
+                        "Population is a single patient with undiagnosed diabetes, not a general calf muscle injury population",
+                        "Ultrasound was negative for DVT in this case, providing no relevant risk data"
+                    ]
+                }
+            },
+            {
+                "article": {
+                    "pmid": "19110532",
+                    "title": "Deep venous thrombosis in stroke patients during rehabilitation phase.",
+                    "abstract": "PURPOSE: The purpose of this study was to examine the incidence, factors, and  effects of antiplatelet and anticoagulant agents on sub-acute and chronic ischemic stroke patients during the rehabilitation phase for rates of deep venous thrombosis (DVT) from the perspective for rehabilitation medicine. METHODS: In this study of 272 patients undergoing rehabilitation for completed cerebral infarction, multiple circumference measurements of calf and thigh along with presence or absence of symptoms (congestion, swelling, skin redness, warmth, pain, pigmentation, fever and/or Homan sign or Luck's sign) documented in the physical examination were recorded in all patients. Patients with these symptoms suggestive of DVT were included for D-dimer assay and venous duplex ultrasonography to confirm presence of DVT. RESULTS: DVT was documented in 24 patients (8.8%), most of whom displayed distal DVT on the hemiparetic side. A significant association was seen between occurrence of DVT and more severe lower limb paresis, manifesting as gait disturbance, severe calf muscle spasticity, use of ankle-foot orthosis (AFO). A significant increase in development of DVT was associated with severe spasticity in hemiparetic calf muscles (odds ratio (OR) 28.2; 95% confidence interval (CI), 6.9-113.5). Cilostazol seemed to be the only effective antiplatelet drug for preventing DVT in cerebral infarction patients. CONCLUSION: Incidence of DVT in the rehabilitation phase following stroke was not low, which was predominant as distal DVT on the hemiparetic side. Lower limb paresis, gait disturbance, calf muscle spasticity and use of AFO contributed to occurrence of DVT. It is likely that micro-injuries in the venous endothelium due to spasticity and AFO might cause DVT. Cilostazol seems effective for protecting against venous endothelial damage following DVT.",
+                    "year": 2008,
+                    "journal": "Keio J Med",
+                    "authors": [
+                        "Hara Y"
+                    ]
+                },
+                "grade": {
+                    "pmid": "19110532",
+                    "study_type": "cohort",
+                    "applicability": "low",
+                    "applicability_flags": [
+                        "Population is post-stroke rehabilitation patients, not patients with calf muscle injury",
+                        "DVT risk factors studied are neurological (paresis, spasticity) rather than calf muscle injury",
+                        "Calf muscle involvement is as a site of spasticity, not traumatic injury",
+                        "Different mechanism and population from the structured question"
+                    ]
+                }
+            },
+            {
+                "article": {
+                    "pmid": "12091669",
+                    "title": "Tennis leg: clinical US study of 141 patients and anatomic investigation of four  cadavers with MR imaging and US.",
+                    "abstract": "PURPOSE: To evaluate the ultrasonographic (US) findings in patients with a  referring diagnosis of tennis leg and to explore the relative importance of the plantaris tendon and gastrocnemius muscle in the pathogenesis of this condition. MATERIALS AND METHODS: A cadaveric study was performed to outline the normal anatomy of the posterosuperficial compartment of the calf. Magnetic resonance (MR) imaging and US were performed, followed by gross anatomic correlation. US findings in 141 patients referred with a clinical diagnosis of tennis leg were retrospectively reviewed by means of consensus of two radiologists. Images were analyzed with respect to the integrity of the lower-leg musculotendinous units, presence of fluid collection, and deep venous thrombosis. RESULTS: MR imaging and US enabled distinction of the musculotendinous unit of the plantaris from the remaining muscles of the lower extremity in cadaveric specimens. US findings in the 141 patients included rupture of the medial head of the gastrocnemius muscle in 94 patients (66.7%), fluid collection between the aponeuroses of the medial gastrocnemius and soleus muscles without muscle rupture in 30 patients (21.3%), rupture of the plantaris tendon in two patients (1.4%), and partial rupture of the soleus muscle in one patient (0.7%). Deep venous thrombosis was seen in isolation in 14 patients (9.9%). CONCLUSION: In patients with clinical findings of tennis leg who undergo US, abnormalities of the medial gastrocnemius muscle appear to be more common than those of the plantaris tendon.",
+                    "year": 2002,
+                    "journal": "Radiology",
+                    "authors": [
+                        "Delgado GJ",
+                        "Chung CB",
+                        "Lektrakul N",
+                        "Azocar P",
+                        "Botte MJ",
+                        "Coria D",
+                        "Bosch E",
+                        "Resnick D"
+                    ]
+                },
+                "grade": {
+                    "pmid": "12091669",
+                    "study_type": "cohort",
+                    "applicability": "moderate",
+                    "applicability_flags": [
+                        "Population is 'tennis leg' patients (gastrocnemius rupture/fluid collection), which partially overlaps with calf muscle injury but is a specific subset",
+                        "DVT presence is assessed as a secondary/incidental finding rather than as a primary quantified outcome with a comparator group",
+                        "No control group without calf muscle injury to calculate relative DVT risk",
+                        "Cadaveric sub-study is not clinically informative for DVT risk"
+                    ]
+                }
+            },
+            {
+                "article": {
+                    "pmid": "24462283",
+                    "title": "Outcomes of popliteal vascular injuries at Sri Lankan war-front military  hospital: case series of 44 cases.",
+                    "abstract": "BACKGROUND AND AIMS: Traumatic injury to the popliteal vascular zone remains a  challenging problem on the modern battlefield and is frequently associated with more complications than other vascular injuries. Limb salvage and morbidity (graft infection, thrombosis and delayed haemorrhage) were studied. MATERIALS AND METHODS: All popliteal vascular injuries over an 8 month period admitted to the Military Base Hospital were analyzed. Local limb evaluation included confirmation of the presence of ischaemia, extent of soft tissue damage, muscle viability after calf fasciotomy, and neurological injury. Ischaemic time was recorded from the time of injury to definitive revascularization. If there was a prior attempt at reconstruction, the amputation was considered delayed. RESULTS: For a series of 44 patients with popliteal vascular injury average time to presentation was 390min, 46% were completely ischaemic. Of those 39 (89%) had popliteal artery injuries. There were 24 (62%) complete popliteal artery transections and associated venous (69%) and osseous (46%) injuries. The preferred technique of repair was inter-position venous graft (IPVG) (54%). Eleven immediate amputations were performed (28%). There were 13 wound infections (33%), 5 early graft thromboses (5 of 21 IPVG, 238%), 2 anastomotic disruptions (2 of 21 IPVG, 9%), which resulted in 4 delayed amputations. Mortality was 5% (2 patients). CONCLUSIONS: In this case series of popliteal artery injury early identification of limbs at risk, early four compartment fasciotomy, temporary intra-luminal shunting, definitive repair of concomitant venous injuries and aggressive treatment of haemodynamic instability were shown to be beneficial in achieving reasonable outcome in an austere environment with limited recourses.",
+                    "year": 2014,
+                    "journal": "Injury",
+                    "authors": [
+                        "Ratnayake A",
+                        "Samarasinghe B",
+                        "Bala M"
+                    ]
+                },
+                "grade": {
+                    "pmid": "24462283",
+                    "study_type": "case-series",
+                    "applicability": "low",
+                    "applicability_flags": [
+                        "Population is military trauma patients with popliteal vascular injuries, not calf muscle strain/tear/hematoma",
+                        "Injury mechanism (war-related popliteal vascular trauma) is fundamentally different from calf muscle injury",
+                        "Thrombosis reported is graft/vascular thrombosis, not deep vein thrombosis from muscle injury",
+                        "No comparator group; DVT risk from calf muscle injury not addressed"
                     ]
                 }
             }
         ],
-        "confidence": 0.15,
+        "confidence": 0.2,
         "keyFindings": [
-            "In cast-immobilized acute foot and ankle trauma without chemical thromboprophylaxis, 27% of patients sustained asymptomatic DVT on surveillance ultrasound, and all DVTs occurred in the injured limb — the closest available analogue for 'injury to the lower limb confers substantial distal DVT risk,' though the injury is fracture/soft-tissue trauma in a cast rather than a calf muscle strain or tear [28865588]",
-            "Pooled calf muscle vein thrombosis occurrence after hip and lower-limb fracture surgery was 18.2% (95% CI 12.4-26.0%), with preoperative prevalence 29.1% and postoperative incidence 12.3%, though heterogeneity was extreme (I²=96.1%) and all eight studies came from mainland China [42606384]",
-            "In tibial plateau fracture patients under routine thromboprophylaxis with protocolized serial duplex surveillance, cumulative in-hospital DVT was 20.0%, with 64% of events detected preoperatively; isolated intermuscular calf-muscle vein thrombosis was recorded only descriptively and excluded from the primary endpoint [41886203]",
-            "Risk factors for calf muscle vein thrombosis in fracture populations consistently include female sex, intertrochanteric fracture pattern, hypertension, lower albumin and hemoglobin, smoking, and longer time from injury to admission — suggesting patient- and delay-related factors, not the muscle injury itself, drive much of the observed thrombosis risk [42606384, 37507789, 37720507, 42437913]",
-            "Isolated calf muscle vein thrombosis in geriatric hip fracture patients was not associated with increased mortality at 1, 3, 6, or 12 months after propensity-score matching, though it was associated with longer hospital stay — relevant to the clinical significance, not the incidence, of distal thrombosis [39736565]",
-            "Mechanistic review material supports stasis in calf venous sinuses and loss of calf muscle pump action as a core element of Virchow's triad in lower-limb venous thrombosis, offering biological plausibility but no incidence or comparative risk data for calf muscle injury [1451539]"
+            "In 141 consecutive patients referred with clinical 'tennis leg' (suspected medial gastrocnemius injury) and evaluated by ultrasound, DVT was found in isolation in 14 patients (9.9%), while 66.7% had medial gastrocnemius rupture and 21.3% had an inter-aponeurotic fluid collection — indicating DVT both coexists with and clinically mimics acute calf muscle injury [12091669]",
+            "No retrieved study compared DVT incidence in patients with versus without calf muscle injury, so no relative risk, odds ratio, or attributable risk for calf muscle injury as an exposure can be derived from this evidence set [12091669, 37507789, 42437913]",
+            "Isolated calf muscle vein thrombosis (ICMVT) is common as an outcome in non-injury orthopedic populations: among 951 elderly hip fracture patients, 31.3% had preoperative DVT, with CMVT associated with lower albumin and hemoglobin, intertrochanteric fracture, and hypertension [37507789]; a separate hip fracture cohort of 673 patients identified independent risk factors for preoperative ICMVT and built a predictive nomogram [42437913]",
+            "In 272 subacute/chronic stroke rehabilitation patients, DVT occurred in 8.8%, predominantly distal and on the hemiparetic side, with severe calf muscle spasticity strongly associated (OR 28.2, 95% CI 6.9–113.5) — suggesting calf muscle dysfunction/immobility, rather than muscle tearing per se, as a plausible mechanistic pathway [19110532]",
+            "Case-level reports of non-traumatic calf muscle pathology (diabetic myonecrosis presenting with acute leg pain and swelling) had negative ultrasound for DVT, reinforcing that painful swollen calf of muscular origin requires imaging to separate muscle injury from DVT but providing no risk estimate [15251835]",
+            "Thrombotic complications reported in severe lower-limb trauma series are graft/arterial thromboses after popliteal vascular repair (5 of 21 interposition vein grafts), not venous thromboembolism attributable to muscle injury [24462283]"
         ],
         "applicabilityGaps": [
-            "No retrieved study enrolled patients with calf muscle strain, tear, or rupture as the exposure; the dominant literature concerns calf muscle *vein* thrombosis after hip/lower-limb fracture surgery, which is a different entity despite the shared 'calf muscle' terminology [42606384, 39736565, 37507789, 37720507, 42437913]",
-            "No study provides the structured comparator — patients without calf muscle injury — for DVT incidence; fracture cohorts compare DVT-positive vs DVT-negative patients within an injured population, not injured vs uninjured [37507789, 42437913]",
-            "Populations skew elderly, hospitalized, and surgical (geriatric hip fracture, tibial plateau fracture, THA), with no representation of athletes or ambulatory community patients with sports-related calf strains [42606384, 39736565, 37720507, 41886203, 40545460]",
-            "The pooled fracture-surgery evidence derives entirely from mainland China, limiting generalizability of absolute rates [42606384]",
-            "Two papers address spinal cord injury or intraoperative piriformis release and report no DVT-incidence data relevant to calf muscle injury at all [32379533, 1451539, 40545460]",
-            "The one moderate-applicability trial excluded patients requiring chemical thromboprophylaxis and was limited to ages 18-60, so neither prophylaxis-treated nor elderly calf-injury patients are represented [28865588]"
+            "No study included a comparator group of patients without calf muscle injury; all estimates are single-arm proportions or risk-factor analyses within other populations",
+            "Injury grading is absent — no stratification by strain grade I–III, complete tear, hematoma, or contusion; the most relevant paper [12091669] mixes gastrocnemius rupture, fluid collection, plantaris and soleus tears",
+            "Most papers are drawn from populations fundamentally different from the question: elderly hip fracture surgery [37507789, 42437913], post-stroke rehabilitation [19110532], diabetic myonecrosis [15251835], and military popliteal vascular trauma [24462283]",
+            "In several papers calf muscle vein thrombosis is the outcome (a DVT subtype) rather than the exposure, inverting the direction of the structured question [37507789, 42437913]",
+            "Athletic/sports-injury populations, the most common setting for calf strain, are represented only indirectly via the 'tennis leg' referral series [12091669]",
+            "Thromboprophylaxis use, immobilization, and casting/weight-bearing status are not controlled or reported in relation to calf muscle injury in any retrieved study",
+            "Proximal versus isolated distal DVT is not consistently distinguished; [12091669] does not specify DVT anatomic level, while hip fracture cohorts separate CMVT, deep calf, and proximal DVT in a non-injury context [37507789]"
         ],
         "citedPmids": [
-            "42606384",
-            "39736565",
+            "12091669",
             "37507789",
-            "41886203",
-            "37720507",
             "42437913",
-            "28865588",
-            "1451539",
-            "32379533",
-            "40545460"
+            "19110532",
+            "15251835",
+            "24462283"
         ],
         "trace": {
-            "search_query": "Calf muscle injury deep vein thrombosis",
+            "search_query": "Presence calf muscle injury deep vein thrombosis",
             "queries_used": [
-                "Calf muscle injury deep vein thrombosis",
-                "calf strain tear rupture deep vein thrombosis incidence risk venous thromboembolism",
-                "gastrocnemius soleus muscle strain tear rupture deep vein thrombosis thrombosis risk sports athletic injury"
+                "Presence calf muscle injury deep vein thrombosis",
+                "calf muscle strain tear hematoma thrombosis risk deep vein thrombosis",
+                "calf muscle injury strain tear hematoma deep vein thrombosis DVT risk venous thromboembolism incidence"
             ],
             "rounds": 3,
             "useful_count": 1,
-            "n_papers": 10
+            "n_papers": 6
         }
     },
-    "summary": "Structured PICO-T; retrieved 10 PubMed papers over 3 rounds (1 applicable). Evidence confidence 0.15."
+    "summary": "Structured PICO-T; retrieved 6 PubMed papers over 3 rounds (1 applicable). Evidence confidence 0.20."
 }

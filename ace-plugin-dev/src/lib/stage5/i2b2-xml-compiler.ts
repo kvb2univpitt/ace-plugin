@@ -344,11 +344,11 @@ function compileReadyQuery(query: CountQuery): {
 
   let temporal:
     | {
-      rule: TemporalRule;
-      first: QueryPanel;
-      second: QueryPanel;
-      inclusive: boolean;
-    }
+        rule: TemporalRule;
+        first: QueryPanel;
+        second: QueryPanel;
+        inclusive: boolean;
+      }
     | undefined;
   if (query.temporalRules.length === 1) {
     const rule = query.temporalRules[0];
@@ -435,7 +435,6 @@ export function compileI2b2XmlPackage(
         sharepheReady: compiled.status === "ready",
         warnings,
         panelSummary: panelSummary(query),
-        tableCell: '',
       };
     }
   );

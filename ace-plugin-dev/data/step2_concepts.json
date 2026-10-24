@@ -4,7 +4,7 @@
     "data": {
         "diseases": [
             {
-                "name": "Calf muscle injury (strain, tear, or rupture)",
+                "name": "Calf muscle injury (strain, tear, or hematoma)",
                 "role": "target_condition"
             }
         ],
@@ -17,7 +17,7 @@
         },
         "temporalRelationships": [
             {
-                "description": "DVT occurrence following calf muscle injury — no specific timeframe stated in the question",
+                "description": "DVT risk assessed in the acute to subacute period following calf muscle injury (days to weeks post-injury)",
                 "sequence": "calf_muscle_injury -> deep_vein_thrombosis",
                 "value": null,
                 "unit": null
@@ -25,21 +25,21 @@
         ],
         "outcomes": [
             {
-                "name": "Deep Vein Thrombosis incidence",
+                "name": "Deep Vein Thrombosis",
                 "type": "primary"
             }
         ],
-        "populationDescription": "Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury, with no restriction on age, sex, injury severity, mechanism of injury, or clinical setting",
+        "populationDescription": "Patients with calf muscle injury (strain, tear, or hematoma) compared to patients without calf muscle injury",
         "comparisonGroups": [
             {
                 "name": "Calf muscle injury group",
-                "definition": "Patients with a documented calf muscle injury, including gastrocnemius or soleus strain, tear, or rupture"
+                "definition": "Patients with a documented calf muscle injury, including muscle strain (grade I–III), muscle tear, or hematoma of the calf"
             },
             {
                 "name": "No calf muscle injury group",
-                "definition": "Patients without calf muscle injury serving as comparators for DVT incidence"
+                "definition": "Patients without calf muscle injury serving as the comparator population"
             }
         ]
     },
-    "summary": "Extracted 1 medical concepts. 2 comparison groups identified. Population: Patients with calf muscle injury (strain, tear, or rupture) compared to patients without calf muscle injury, with no restriction on age, sex, injury severity, mechanism of injury, or clinical setting"
+    "summary": "Extracted 1 medical concepts. 2 comparison groups identified. Population: Patients with calf muscle injury (strain, tear, or hematoma) compared to patients without calf muscle injury"
 }

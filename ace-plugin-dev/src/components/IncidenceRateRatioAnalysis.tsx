@@ -1,7 +1,7 @@
 "use client";
 
 import type { Step5XmlPackage } from "@/lib/common/query-plan-types";
-import type { TableData, TableCounts, IncidenceRateRatio } from "@/types/stats-table";
+import type { CountData, IncidenceRateRatio, TableCounts } from "@/types/stats-table";
 
 
 function normalCDF(z: number): number {
@@ -12,11 +12,11 @@ function normalCDF(z: number): number {
     return z > 0 ? 1 - p : p;
 }
 
-function computeTableCounts(tableData: TableData): TableCounts {
-    const r1c1 = tableData.r1c1.counts;
-    const r1c2 = tableData.r1c2.counts;
-    const r2c1 = tableData.r2c1.counts;
-    const r2c2 = tableData.r2c2.counts;
+function computeTableCounts(countData: CountData): TableCounts {
+    const r1c1 = countData.r1c1.counts;
+    const r1c2 = countData.r1c2.counts;
+    const r2c1 = countData.r2c1.counts;
+    const r2c2 = countData.r2c2.counts;
 
     return {
         exposed: {
@@ -32,11 +32,11 @@ function computeTableCounts(tableData: TableData): TableCounts {
     };
 }
 
-function computeIncidenceRateRatio(tableData: TableData): IncidenceRateRatio {
-    const r1c1 = tableData.r1c1.counts;
-    const r1c2 = tableData.r1c2.counts;
-    const r2c1 = tableData.r2c1.counts;
-    const r2c2 = tableData.r2c2.counts;
+function computeIncidenceRateRatio(countData: CountData): IncidenceRateRatio {
+    const r1c1 = countData.r1c1.counts;
+    const r1c2 = countData.r1c2.counts;
+    const r2c1 = countData.r2c1.counts;
+    const r2c2 = countData.r2c2.counts;
 
     // total # per 100 persons
     const r1c3 = (r1c1 / r1c2);
@@ -105,16 +105,16 @@ export function IncidenceRateRatioStatsTable({
 }
 
 export function IncidenceRateRatioCountsTable({
-    tableData: tableData,
+    countData: countData,
     irrStats: irrStats
 }: {
-    tableData: TableData
+    countData: CountData
     irrStats: IncidenceRateRatio
 }) {
-    const r1c1 = tableData.r1c1.counts;
-    const r1c2 = tableData.r1c2.counts;
-    const r2c1 = tableData.r2c1.counts;
-    const r2c2 = tableData.r2c2.counts;
+    const r1c1 = countData.r1c1.counts;
+    const r1c2 = countData.r1c2.counts;
+    const r2c1 = countData.r2c1.counts;
+    const r2c2 = countData.r2c2.counts;
 
     const r1c3 = irrStats.exposedTotalPer100;
     const r2c3 = irrStats.unexposedTotalPer100
@@ -156,11 +156,11 @@ export function IncidenceRateRatioCountsTable({
 }
 
 export function TwoByTwoTable({
-    tableData: tableData
+    countData: countData
 }: {
-    tableData: TableData
+    countData: CountData
 }): React.ReactNode {
-    const counts = computeTableCounts(tableData);
+    const counts = computeTableCounts(countData);
 
     return (
         <div className="relative overflow-x-auto">
@@ -199,9 +199,9 @@ export function TwoByTwoTable({
 }
 
 export function QueryXMLResultTable({
-    tableData: tableData
+    countData: countData
 }: {
-    tableData: TableData
+    countData: CountData
 }): React.ReactNode {
     return (
         <div className="relative overflow-x-auto shadow-md max-w-4xl">
@@ -218,23 +218,23 @@ export function QueryXMLResultTable({
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                     <tr className="bg-white">
-                        <td className="px-3 py-1">{tableData.r1c1.description}</td>
-                        <td className="px-3 py-1">{tableData.r1c1.counts}</td>
+                        <td className="px-3 py-1">{countData.r1c1.name}</td>
+                        <td className="px-3 py-1">{countData.r1c1.counts}</td>
                         <td className="px-3 py-1">Exposed with positive outcome.</td>
                     </tr>
                     <tr className="bg-gray-100">
-                        <td className="px-3 py-1">{tableData.r1c2.description}</td>
-                        <td className="px-3 py-1">{tableData.r1c2.counts}</td>
+                        <td className="px-3 py-1">{countData.r1c2.name}</td>
+                        <td className="px-3 py-1">{countData.r1c2.counts}</td>
                         <td className="px-3 py-1">Exposed total counts.</td>
                     </tr>
                     <tr className="bg-white">
-                        <td className="px-3 py-1">{tableData.r2c1.description}</td>
-                        <td className="px-3 py-1">{tableData.r2c1.counts}</td>
+                        <td className="px-3 py-1">{countData.r2c1.name}</td>
+                        <td className="px-3 py-1">{countData.r2c1.counts}</td>
                         <td className="px-3 py-1">Unexposed with positive outcome.</td>
                     </tr>
                     <tr className="bg-gray-100 ">
-                        <td className="px-3 py-1">{tableData.r2c2.description}</td>
-                        <td className="px-3 py-1">{tableData.r2c2.counts}</td>
+                        <td className="px-3 py-1">{countData.r2c2.name}</td>
+                        <td className="px-3 py-1">{countData.r2c2.counts}</td>
                         <td className="px-3 py-1">Unexposed total counts.</td>
                     </tr>
                 </tbody>
@@ -243,14 +243,14 @@ export function QueryXMLResultTable({
     );
 }
 
-export function IncidenceRateRatioTable({
+export function IncidenceRateRatioAnalysis({
     package: xmlPackage,
-    tableData: tableData
+    countData: countData
 }: {
     package: Step5XmlPackage,
-    tableData: TableData
+    countData: CountData
 }): React.ReactNode {
-    const irrStats = computeIncidenceRateRatio(tableData);
+    const irrStats = computeIncidenceRateRatio(countData);
 
     return (
         <section aria-labelledby="step5-query-set" className="space-y-4">
@@ -258,11 +258,12 @@ export function IncidenceRateRatioTable({
                 <h5 id="step5-query-set" className="wrap-break-word text-base font-semibold text-gray-900">{xmlPackage.querySetName || "Untitled i2b2 query set"}</h5>
             </div>
             <div className="grid grid-flow-col grid-rows-4 gap-1">
-                <TwoByTwoTable tableData={tableData} />
-                <IncidenceRateRatioCountsTable tableData={tableData} irrStats={irrStats} />
-                <QueryXMLResultTable tableData={tableData} />
+                <TwoByTwoTable countData={countData} />
+                <IncidenceRateRatioCountsTable countData={countData} irrStats={irrStats} />
+                <QueryXMLResultTable countData={countData} />
                 <IncidenceRateRatioStatsTable irrStats={irrStats} />
             </div>
         </section>
-    );
+
+    )
 }

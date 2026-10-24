@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "npm run clean && next build",
     "start": "next start",
-    "lint": "eslint",
-    "postbuild": "node scripts/postbuild.mts"
+    "lint": "eslint"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

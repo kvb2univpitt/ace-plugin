@@ -106,10 +106,8 @@ export function isStep5XmlPackage(value: unknown): value is Step5XmlPackage {
 
 export function Step5ResultDetails({
   data,
-  patientCounts,
 }: {
   data: unknown;
-  patientCounts: Map<string, number>;
 }): React.ReactNode {
   if (!isStep5XmlPackage(data)) {
     return (
@@ -124,15 +122,13 @@ export function Step5ResultDetails({
       </div>
     );
   }
-  return <I2b2XmlResults package={data} patientCounts={patientCounts} />;
+  return <I2b2XmlResults package={data} />;
 }
 
 export function I2b2XmlResults({
   package: xmlPackage,
-  patientCounts: patientCounts,
 }: {
   package: Step5XmlPackage;
-  patientCounts: Map<string, number>;
 }): React.ReactNode {
   const [feedback, setFeedback] = useState<{
     queryId: string;
@@ -245,15 +241,6 @@ export function I2b2XmlResults({
               </p>
             </div>
 
-            <div className="px-4 py-3 border-t border-gray-200">
-              <p className="text-xs font-semibold uppercase text-gray-500">
-                Patient Counts
-              </p>
-              <p className="mt-1 whitespace-pre-wrap text-sm text-gray-800">
-                {patientCounts.get(artifact.queryId.trim())}
-              </p>
-            </div>
-
             {artifact.warnings.length > 0 ? (
               <div className="border-t border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
                 <p className="font-semibold">Validation warnings</p>
@@ -299,8 +286,9 @@ export function I2b2XmlResults({
               {artifactFeedback ? (
                 <p
                   aria-live="polite"
-                  className={`mt-2 text-xs ${artifactFeedback.error ? "text-red-700" : "text-emerald-700"
-                    }`}
+                  className={`mt-2 text-xs ${
+                    artifactFeedback.error ? "text-red-700" : "text-emerald-700"
+                  }`}
                 >
                   {artifactFeedback.message}
                 </p>

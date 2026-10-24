@@ -1,6 +1,6 @@
 "use client";
 
-import type { Step5XmlArtifact } from "@/lib/common/query-plan-types";
+import type { Step5XmlPackage, Step5XmlArtifact } from "@/lib/common/query-plan-types";
 
 
 function parseXMLFromString(xmlString: string): Document | null {
@@ -26,45 +26,11 @@ function parseXMLFromString(xmlString: string): Document | null {
     }
 }
 
-export function getFakeQueryXmlResults(artifacts: Step5XmlArtifact[]): Map<string, number> {
-    const patientCounts: Map<string, number> = new Map();
-
-    for (const artifact of artifacts) {
-        const queryId: string = artifact.queryId;
-        switch (queryId) {
-            case 'query-calf-injury-with-dvt':
-                // r1c1
-                patientCounts.set(artifact.queryId, 7194);
-                break;
-            case 'query-calf-injury-denominator':
-                // r1c2
-                patientCounts.set(artifact.queryId, 97952);
-                break;
-            case 'query-no-calf-injury-with-dvt':
-                // r2c1
-                patientCounts.set(artifact.queryId, 8195);
-                break;
-            case 'query-no-calf-injury-denominator':
-                // r2c2
-                patientCounts.set(artifact.queryId, 103648);
-                break;
-        }
-    }
-
-    return patientCounts;
-}
-
-export async function fakeRunQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
-    return getFakeQueryXmlResults(artifacts);
-}
-
-export async function runQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<string, number>> {
-    const patientCounts: Map<string, number> = new Map();
-
+async function runQueryXml(artifacts: Step5XmlArtifact[], patientCounts: Map<string, number>): Promise<void> {
     // verify that the i2b2 framework is loaded in the global window
     if (typeof window === 'undefined' || !(window as any).i2b2) {
         console.warn('DOMParser is only available in the browser.');
-        return patientCounts;
+        return;
     }
 
     const i2b2 = (window as any).i2b2;
@@ -106,6 +72,37 @@ export async function runQueryXml(artifacts: Step5XmlArtifact[]): Promise<Map<st
     } catch (error) {
         console.error("Failed to securely communicate with i2b2 framework:", error);
     }
+}
+
+async function runFakeQueryXml(artifacts: Step5XmlArtifact[], patientCounts: Map<string, number>): Promise<void> {
+    for (const artifact of artifacts) {
+        const queryId: string = artifact.queryId;
+        switch (queryId) {
+            case "query-calf-injury-with-dvt":
+                // r1c1
+                patientCounts.set(artifact.queryId, 7194);
+                break;
+            case "query-calf-injury-denominator":
+                // r1c2
+                patientCounts.set(artifact.queryId, 97952);
+                break;
+            case "query-no-calf-injury-with-dvt":
+                // r2c1
+                patientCounts.set(artifact.queryId, 8195);
+                break;
+            case "query-no-calf-injury-denominator":
+                // r2c2
+                patientCounts.set(artifact.queryId, 103648);
+                break;
+        }
+    }
+}
+
+export async function getPatientCounts(xmlPackage: Step5XmlPackage): Promise<Map<string, number>> {
+    const patientCounts: Map<string, number> = new Map();
+
+    // runQueryXml(xmlPackage.artifacts, patientCounts);
+    runFakeQueryXml(xmlPackage.artifacts, patientCounts);
 
     return patientCounts;
 }

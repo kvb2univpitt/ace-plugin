@@ -11,7 +11,7 @@
 // Without that prefix a downstream consumer can't tell SHRINE which ontology
 // table to look the term up in, so Step 3 stamps it on every emitted path.
 //
-// Source of truth: src/app/step3/table_access_info.csv (the ENACT
+// Source of truth: src/lib/stage3/table_access_info.csv (the ENACT
 // TABLE_ACCESS export). The snapshot below is embedded so the mapping works
 // with no filesystem access; set ENACT_TABLE_ACCESS_CSV (or leave the CSV at
 // its default path) to load a newer export at runtime instead.
@@ -142,7 +142,7 @@ function csvCandidatePaths(): string[] {
   return explicit
     ? [explicit]
     : [
-        "src/app/step3/table_access_info.csv",
+        "src/lib/stage3/table_access_info.csv",
         "data/table_access_info.csv",
         "table_access_info.csv",
       ];

@@ -1,9 +1,8 @@
 "use client";
 
 import type { Step5XmlPackage } from "@/lib/common/query-plan-types";
-import type { CellData, TableData } from "@/types/stats-table";
-import { IncidenceRateRatioTable } from "@/components/IncidenceRateRatioTable";
-
+import type { CountData } from "@/types/stats-table";
+import { IncidenceRateRatioAnalysis } from "@/components/IncidenceRateRatioAnalysis";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -48,74 +47,98 @@ function isStep5XmlPackage(value: unknown): value is Step5XmlPackage {
     );
 }
 
-function createCellData(id: string, description: string, counts: number): CellData {
+function getNewCountData(): CountData {
     return {
-        id: id,
-        description: description,
-        counts: counts
-    };
+        r1c1: {
+            id: "",
+            name: "",
+            counts: -1
+        },
+        r1c2: {
+            id: "",
+            name: "",
+            counts: -1
+        },
+        r2c1: {
+            id: "",
+            name: "",
+            counts: -1
+        },
+        r2c2: {
+            id: "",
+            name: "",
+            counts: -1
+        }
+    }
 }
 
-function getTableData(xmlPackage: Step5XmlPackage, patientCounts: Map<string, number>): TableData {
-    const tableData: TableData = {
-        r1c1: createCellData("", "", -1),
-        r1c2: createCellData("", "", -1),
-        r2c1: createCellData("", "", -1),
-        r2c2: createCellData("", "", -1)
-    };
+
+function getCountData(xmlPackage: Step5XmlPackage, patientCounts: Map<string, number>): CountData {
+    const countData: CountData = getNewCountData();
 
     xmlPackage.artifacts.map((artifact) => {
         const queryId = artifact.queryId;
         const queryName = artifact.queryName;
-        const tableCell = artifact.tableCell;
         const counts = patientCounts.get(queryId) ?? -1;
 
-        const cellData = createCellData(queryId, queryName, counts);
-        switch (tableCell) {
-            case "r1c1":
-                tableData.r1c1 = cellData;
-                break;
-            case "r1c2":
-                tableData.r1c2 = cellData;
-                break;
-            case "r2c1":
-                tableData.r2c1 = cellData;
-                break;
-            case "r2c2":
-                tableData.r2c2 = cellData;
-                break;
+        if (queryId.includes("-no-")) {
+            // unexposed
+            if (queryId.endsWith("-denominator")) {
+                // total counts
+                countData.r2c2.id = queryId;
+                countData.r2c2.name = queryName;
+                countData.r2c2.counts = counts;
+            } else {
+                // positive counts
+                countData.r2c1.id = queryId;
+                countData.r2c1.name = queryName;
+                countData.r2c1.counts = counts;
+            }
+        } else {
+            // exposed
+            if (queryId.endsWith("-denominator")) {
+                // total counts
+                countData.r1c2.id = queryId;
+                countData.r1c2.name = queryName;
+                countData.r1c2.counts = counts;
+            } else {
+                // positive counts
+                countData.r1c1.id = queryId;
+                countData.r1c1.name = queryName;
+                countData.r1c1.counts = counts;
+            }
         }
     });
 
-    return tableData;
+    return countData;
 }
 
-function checkDataExists(tableData: TableData): string[] {
+function checkDataExists(countData: CountData): string[] {
     const errorMsg: string[] = [];
 
-    if (tableData.r1c1.counts < 0) {
+    if (countData.r1c1.counts < 0) {
         errorMsg.push("Counts for the exposed group that has a positive outcome.")
     }
-    if (tableData.r1c2.counts < 0) {
+    if (countData.r1c2.counts < 0) {
         errorMsg.push("Total counts for the exposed group.");
     }
-    if (tableData.r2c1.counts < 0) {
+    if (countData.r2c1.counts < 0) {
         errorMsg.push("Counts for the unexposed group that has a positive outcome.");
     }
-    if (tableData.r2c2.counts < 0) {
+    if (countData.r2c2.counts < 0) {
         errorMsg.push("Total counts for the unexposed group.");
     }
 
     return errorMsg;
 }
 
-function checkDataIsValid(tableData: TableData): string[] {
+function checkDataIsValid(countData: CountData): string[] {
     const errorMsg: string[] = [];
 
-    if (tableData.r1c2.counts <= 0) {
+    if (countData.r1c2.counts <= 0) {
         errorMsg.push("Total counts for the exposed group.");
     }
-    if (tableData.r2c2.counts <= 0) {
+    if (countData.r2c2.counts <= 0) {
         errorMsg.push("Total counts for the unexposed group.");
     }
 
@@ -130,9 +153,9 @@ export function Step5ResultAnalysis({
     patientCounts: Map<string, number>;
 }): React.ReactNode {
     if (isStep5XmlPackage(data)) {
-        const tableData = getTableData(data, patientCounts);
+        const countData = getCountData(data, patientCounts);
 
-        let errors = checkDataExists(tableData);
+        let errors = checkDataExists(countData);
         if (errors.length > 0) {
             return (
                 <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
@@ -151,7 +174,7 @@ export function Step5ResultAnalysis({
             );
         }
 
-        errors = checkDataIsValid(tableData);
+        errors = checkDataIsValid(countData);
         if (errors.length > 0) {
             return (
                 <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
@@ -170,7 +193,7 @@ export function Step5ResultAnalysis({
             );
         }
 
-        return <IncidenceRateRatioTable package={data} tableData={tableData} />
+        return (<IncidenceRateRatioAnalysis package={data} countData={countData} />);
     } else {
         return (
             <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">

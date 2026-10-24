@@ -1,16 +1,3 @@
-export interface CellData {
-    id: string;
-    counts: number;
-    description: string;
-};
-
-export interface TableData {
-    r1c1: CellData;
-    r1c2: CellData;
-    r2c1: CellData;
-    r2c2: CellData;
-};
-
 export interface TableCounts {
     exposed: {
         positive: number,
@@ -36,4 +23,27 @@ export interface IncidenceRateRatio {
     upper95CI: number,
     zScore: number,
     pValue: number
+}
+
+export interface CountData {
+    r1c1: {
+        id: string;
+        name: string;
+        counts: number;
+    };
+    r1c2: {
+        id: string;
+        name: string;
+        counts: number;
+    };
+    r2c1: {
+        id: string;
+        name: string;
+        counts: number;
+    };
+    r2c2: {
+        id: string;
+        name: string;
+        counts: number;
+    };
 }
