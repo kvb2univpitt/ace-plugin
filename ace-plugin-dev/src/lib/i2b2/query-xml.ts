@@ -101,8 +101,8 @@ async function runFakeQueryXml(artifacts: Step5XmlArtifact[], patientCounts: Map
 export async function getPatientCounts(xmlPackage: Step5XmlPackage): Promise<Map<string, number>> {
     const patientCounts: Map<string, number> = new Map();
 
-    // runQueryXml(xmlPackage.artifacts, patientCounts);
-    runFakeQueryXml(xmlPackage.artifacts, patientCounts);
+    // await runQueryXml(xmlPackage.artifacts, patientCounts);
+    await runFakeQueryXml(xmlPackage.artifacts, patientCounts);
 
     return patientCounts;
 }
