@@ -121,7 +121,7 @@ const STAGES = [
   },
   {
     num: 5,
-    name: "Sharephe / i2b2 XML Compiler",
+    name: "2x2 Table / Incidence Rate Ratio (IRR)",
     color: "blue",
     description: "Compile reviewed query logic into validated i2b2 XML",
     team: "Informatics Analyst Team",

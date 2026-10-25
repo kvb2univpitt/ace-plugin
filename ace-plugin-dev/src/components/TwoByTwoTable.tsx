@@ -29,27 +29,27 @@ export function TwoByTwoTable({
                         <th></th>
                         <th>Positive</th>
                         <th>Negative</th>
-                        <th>Total</th>
+                        <th className="text-gray-500">Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row" className="text-right">Exposed Group</th>
-                        <td className="border-3 border-black text-center">{r1c1}</td>
-                        <td className="border-3 border-black text-center">{r1c2}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r1c3}</td>
+                        <td className="border-2 border-black text-center">{r1c1}</td>
+                        <td className="border-2 border-black text-center">{r1c2}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r1c3}</td>
                     </tr>
                     <tr>
                         <th scope="row" className="text-right">Unexposed Group</th>
-                        <td className="border-3 border-black text-center">{r2c1}</td>
-                        <td className="border-3 border-black text-center">{r2c2}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r2c3}</td>
+                        <td className="border-2 border-black text-center">{r2c1}</td>
+                        <td className="border-2 border-black text-center">{r2c2}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r2c3}</td>
                     </tr>
                     <tr>
-                        <th scope="row" className="text-right">Total</th>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r3c1}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r3c2}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center">{r3c3}</td>
+                        <th scope="row" className="text-right text-gray-500">Total</th>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c1}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c2}</td>
+                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c3}</td>
                     </tr>
                 </tbody>
             </table>
