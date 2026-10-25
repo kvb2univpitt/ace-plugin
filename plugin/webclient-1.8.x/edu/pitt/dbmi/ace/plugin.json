@@ -1,11 +1,18 @@
 {
-  "title": "Automated Clinical Evidence",
-  "description": "An i2b2 plugin for Automated Clinical Evidence.",
-  "category": ["llm"],
-  "icons": { "size32x32": "ace.png" },
-  "assetDir": "_next",
-  "plugin_version" : "1.0",
-  "i2b2_version" : "1.8.3",
-  "base": "index.html",
-  "sandbox": true
+    "title": "Automated Clinical Evidence",
+    "description": "An i2b2 plugin for Automated Clinical Evidence.",
+    "category": ["llm"],
+    "icons": {
+        "size32x32": "ace.png"
+    },
+    "assetDir": "_next",
+    "plugin_version": "1.0",
+    "i2b2_version": "1.8.3",
+    "base": "index.html",
+    "sandbox": true,
+    "authorizedTunnel": {
+        "functions": [
+            "i2b2.CRC.view.history.doRefreshAll"
+        ]
+    }
 }
