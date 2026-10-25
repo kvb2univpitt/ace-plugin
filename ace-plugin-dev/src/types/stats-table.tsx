@@ -1,16 +1,3 @@
-export interface TableCounts {
-    exposed: {
-        positive: number,
-        negative: number,
-        total: number
-    };
-    unexposed: {
-        positive: number,
-        negative: number,
-        total: number
-    }
-};
-
 export interface IncidenceRateRatio {
     exposedTotalPer100: number,
     unexposedTotalPer100: number,
