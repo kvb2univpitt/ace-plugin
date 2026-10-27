@@ -2361,7 +2361,7 @@ export default function Home() {
                 <ReviewPanel
                   title="Review Query Plan"
                   subtitle="Review count queries, panels, authoritative mapped items, and the optional temporal rule for each query."
-                  continueLabel="Continue to Step 5"
+                  continueLabel="Run Queries"
                   onContinue={continueToStage5}
                   disabled={
                     isRunning || editedQueryPlanHasErrors || !step4ArtifactToken
