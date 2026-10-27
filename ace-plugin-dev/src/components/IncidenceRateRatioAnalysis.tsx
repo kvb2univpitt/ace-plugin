@@ -18,7 +18,7 @@ export function IncidenceRateRatioAnalysis({
     return (
         <section aria-labelledby="step5-query-set" className="space-y-4">
             <div className="border-b border-gray-200 pb-4">
-                <h5 id="step5-query-set" className="break-words text-base font-semibold text-gray-900">{xmlPackage.querySetName || "Untitled i2b2 query set"}</h5>
+                <h5 id="step5-query-set" className="wrap-break-word text-base font-semibold text-gray-900">{xmlPackage.querySetName || "Untitled i2b2 query set"}</h5>
                 <div className="mt-2 flex flex-wrap gap-2 text-xs font-semibold">
                     <span className="rounded-md border border-emerald-200 bg-emerald-50 px-2 py-1 text-emerald-700">Ready {xmlPackage.validationSummary.readyCount}</span>
                     <span className="rounded-md border border-red-200 bg-red-50 px-2 py-1 text-red-700">Needs mapping {xmlPackage.validationSummary.needsMappingCount}</span>
@@ -40,7 +40,7 @@ export function IncidenceRateRatioAnalysis({
             <article className="rounded-lg border border-gray-200 bg-white">
                 <header className="flex flex-wrap items-start justify-between gap-3 border-b border-gray-200 px-4 py-3">
                     <div className="min-w-0">
-                        <h6 className="break-words text-sm font-semibold text-gray-900">2x2 Table</h6>
+                        <h6 className="wrap-break-word text-sm font-semibold text-gray-900">2x2 Table</h6>
                     </div>
                 </header>
                 <div className="border-t border-gray-200 px-4 pt-2 pb-6">
@@ -54,7 +54,7 @@ export function IncidenceRateRatioAnalysis({
             <article className="rounded-lg border border-gray-200 bg-white">
                 <header className="flex flex-wrap items-start justify-between gap-3 border-b border-gray-200 px-4 py-3">
                     <div className="min-w-0">
-                        <h6 className="break-words text-sm font-semibold text-gray-900">Incidence Rate Ratio (IRR)</h6>
+                        <h6 className="wrap-break-word text-sm font-semibold text-gray-900">Incidence Rate Ratio (IRR)</h6>
                     </div>
                 </header>
                 <div className="border-t border-gray-200 px-4 py-6 pb-6">
