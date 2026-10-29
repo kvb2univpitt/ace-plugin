@@ -7,6 +7,30 @@ import { AgentResult } from "@/lib/agents";
 
 class RequestBodyTooLargeError extends Error { }
 
+// async function saveToFile(data: unknown, filename: string): Promise<{ success: boolean; message: string }> {
+//     try {
+//         // resolve the file path in your project directory
+//         const filePath = path.join(process.cwd(), 'data', filename);
+
+//         // ensure the data is formatted cleanly as JSON
+//         const jsonString = JSON.stringify(data, null, 4);
+
+//         // write the file asynchronously
+//         await fs.writeFile(filePath, jsonString, 'utf8');
+
+//         return { success: true, message: 'JSON file saved successfully.' };
+//     } catch (error) {
+//         console.error('Error writing JSON file:', error);
+//         return { success: false, message: 'Failed to save JSON file.' };
+//     }
+// };
+// async function saveAgentResultToFile(data: AgentResult, filename: string): Promise<{ success: boolean; message: string }> {
+//     return await saveToFile(data, filename);
+// };
+// async function saveUnknownToFile(data: unknown, filename: string): Promise<{ success: boolean; message: string }> {
+//     return await saveToFile(data, filename);
+// };
+
 async function loadFromFile(filename: string): Promise<string> {
     // build an absolute path to the JSON file using process.cwd()
     const filePath = path.join(process.cwd(), 'sample_response_data', filename);
