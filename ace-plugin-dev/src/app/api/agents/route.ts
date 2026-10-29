@@ -9,7 +9,7 @@ class RequestBodyTooLargeError extends Error { }
 
 async function loadFromFile(filename: string): Promise<string> {
     // build an absolute path to the JSON file using process.cwd()
-    const filePath = path.join(process.cwd(), 'data', filename);
+    const filePath = path.join(process.cwd(), 'sample_response_data', filename);
 
     // read the file contents as a string
     const fileContents = await fs.readFile(filePath, 'utf8');
