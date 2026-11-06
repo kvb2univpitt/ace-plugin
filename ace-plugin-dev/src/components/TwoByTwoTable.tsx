@@ -27,8 +27,8 @@ export function TwoByTwoTable({
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Positive</th>
-                        <th>Negative</th>
+                        <th>Outcome Present</th>
+                        <th>Outcome Absent</th>
                         <th className="text-gray-500">Total</th>
                     </tr>
                 </thead>

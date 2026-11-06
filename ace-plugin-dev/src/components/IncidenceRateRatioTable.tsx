@@ -47,8 +47,8 @@ export function IncidenceRateRatioTable({
                         <tr>
                             <th></th>
                             <th>Outcome</th>
-                            <th>Total</th>
-                            <th>Total # Per 100 Persons</th>
+                            <th>Total # of Patients</th>
+                            <th>Total Outcomes per 100 Persons</th>
                             <th>Incidence rate ratio (95% CI)</th>
                         </tr>
                     </thead>

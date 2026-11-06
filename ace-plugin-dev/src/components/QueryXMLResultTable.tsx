@@ -25,7 +25,7 @@ export function QueryXMLResultTable({
                     <tr className="bg-white">
                         <td className="px-3 py-1">{countData.r1c1.name}</td>
                         <td className="px-3 py-1">{countData.r1c1.counts}</td>
-                        <td className="px-3 py-1">Exposed group with positive outcome.</td>
+                        <td className="px-3 py-1">Exposed group with outcome present.</td>
                     </tr>
                     <tr className="bg-gray-100">
                         <td className="px-3 py-1">{countData.r1c2.name}</td>
@@ -35,7 +35,7 @@ export function QueryXMLResultTable({
                     <tr className="bg-white">
                         <td className="px-3 py-1">{countData.r2c1.name}</td>
                         <td className="px-3 py-1">{countData.r2c1.counts}</td>
-                        <td className="px-3 py-1">Unexposed group with positive outcome.</td>
+                        <td className="px-3 py-1">Unexposed group with outcome present.</td>
                     </tr>
                     <tr className="bg-gray-100 ">
                         <td className="px-3 py-1">{countData.r2c2.name}</td>
