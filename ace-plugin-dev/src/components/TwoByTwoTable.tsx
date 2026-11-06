@@ -53,6 +53,13 @@ export function TwoByTwoTable({
                     </tr>
                 </tbody>
             </table>
+            <aside className="mt-4">
+                <div className="sticky top-8 text-sm text-gray-500 border-l-2 border-amber-400 pl-2">
+                    <p>The 2x2 table is constructed from the counts returned by the four query runs.</p>
+                    <p>The queries return the total counts for the exposed group and the unexposed group and the counts for the outcome present in both groups.</p>
+                    <p>The counts for the outcome absent is calculated by taking the total counts minus the outcome present counts.</p>
+                </div>
+            </aside>
         </div>
     )
 }
