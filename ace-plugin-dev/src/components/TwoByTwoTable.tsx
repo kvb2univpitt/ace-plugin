@@ -22,44 +22,48 @@ export function TwoByTwoTable({
 
 
     return (
-        <div className="relative overflow-x-auto">
-            <table className="text-sm [&_td]:px-6 [&_td]:py-4 [&_th]:px-6 [&_th]:py-4">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Outcome Present</th>
-                        <th>Outcome Absent</th>
-                        <th className="text-gray-500">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row" className="text-right">Exposed Group</th>
-                        <td className="border-2 border-black text-center">{r1c1}</td>
-                        <td className="border-2 border-black text-center">{r1c2}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r1c3}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" className="text-right">Unexposed Group</th>
-                        <td className="border-2 border-black text-center">{r2c1}</td>
-                        <td className="border-2 border-black text-center">{r2c2}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r2c3}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" className="text-right text-gray-500">Total</th>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c1}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c2}</td>
-                        <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c3}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <aside className="mt-4">
-                <div className="sticky top-8 text-sm text-gray-500 border-l-2 border-amber-400 pl-2">
-                    <p>The 2x2 table is constructed from the counts returned by the four query runs.</p>
-                    <p>The queries return the total counts for the exposed group and the unexposed group and the counts for the outcome present in both groups.</p>
-                    <p>The counts for the outcome absent is calculated by taking the total counts minus the outcome present counts.</p>
+        <div className="grid grid-flow-row auto-rows-max">
+            <div>
+                <div className="relative overflow-x-auto">
+                    <table className="text-sm [&_td]:px-6 [&_td]:py-4 [&_th]:px-6 [&_th]:py-4">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Outcome Present</th>
+                                <th>Outcome Absent</th>
+                                <th className="text-gray-500">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" className="text-right">Exposed Group</th>
+                                <td className="border-2 border-black text-center">{r1c1}</td>
+                                <td className="border-2 border-black text-center">{r1c2}</td>
+                                <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r1c3}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" className="text-right">Unexposed Group</th>
+                                <td className="border-2 border-black text-center">{r2c1}</td>
+                                <td className="border-2 border-black text-center">{r2c2}</td>
+                                <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r2c3}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" className="text-right text-gray-500">Total</th>
+                                <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c1}</td>
+                                <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c2}</td>
+                                <td className="border border-slate-300 dark:border-slate-700 text-center text-gray-500">{r3c3}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </aside>
+            </div>
+            <div>
+                <aside className="mt-4 bg-amber-50">
+                    <div className="sticky top-8 text-sm text-gray-500 border-l-2 border-amber-400 pl-2">
+                        <p>The 2x2 table is constructed from the four patient counts returned by the queries.</p>
+                    </div>
+                </aside>
+            </div>
         </div>
     )
 }

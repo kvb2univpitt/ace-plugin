@@ -44,9 +44,13 @@ export function IncidenceRateRatioAnalysis({
                     </div>
                 </header>
                 <div className="border-t border-gray-200 px-4 pt-2 pb-6">
-                    <div className="grid grid-flow-col grid-rows-2 gap-6">
-                        <TwoByTwoTable countData={countData} />
-                        <QueryXMLResultTable countData={countData} />
+                    <div className="grid grid-flow-row auto-rows-max">
+                        <div>
+                            <TwoByTwoTable countData={countData} />
+                        </div>
+                        <div className="mt-6">
+                            <QueryXMLResultTable countData={countData} />
+                        </div>
                     </div>
                 </div>
             </article>
